@@ -5,7 +5,9 @@
         android:persistent="false"
         android:selectable="false"
         android:title="@string/pref_intro" />
-    <Preference android:title="@string/pref_sync" />
+    <Preference
+        android:key="@string/pref_sync_key"
+        android:title="@string/pref_sync" />
 
     <PreferenceCategory android:title="@string/pref_settings" >
         <EditTextPreference

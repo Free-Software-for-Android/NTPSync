@@ -114,4 +114,17 @@ public class Utils {
         return stream.toString();
     }
 
+//    public static boolean setTime(final Activity activity) {
+//        if (isAndroidRooted(activity)) {
+//            // check if binary is available and has right permissions
+//            if (RootTools.checkUtil(Constants.COMMAND_DATE)) {
+//                RootTools.sendShell(Constants.COMMAND_DATE+" -s ", timeout)
+//            } else {
+//                return false;
+//            }
+//        } else {
+//            return false;
+//        }
+//    }
+
 }

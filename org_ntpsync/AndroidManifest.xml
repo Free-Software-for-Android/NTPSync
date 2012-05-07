@@ -19,7 +19,6 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
-    <uses-permission android:name="android.permission.INTERNET" />
     <!-- Required permission to use Google Android Market donations -->
     <uses-permission android:name="com.android.vending.BILLING" />
 
@@ -60,6 +59,8 @@
             android:label="@string/activity_donations"
             android:launchMode="singleTask"
             android:theme="@android:style/Theme.Dialog" />
+
+        <service android:name=".service.NtpSyncService" />
     </application>
 
 </manifest>

@@ -34,7 +34,7 @@ Fork NTPSync and do a merge request. I will merge your changes back into the mai
 
   1. remove src/test
   2. remove src/main/java/examples
-  3. in src/main/java/org/apache/commons/net remove every folder except io, util, ntp
+  3. in src/main/java/org/apache/commons/net remove every folder except io, util, ntp, time
 
 3. execute "mvn package" to build jar in target directory
 

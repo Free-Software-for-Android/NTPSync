@@ -22,7 +22,9 @@ package org.ntpsync.ui;
 
 import org.donations.DonationsActivity;
 import org.ntpsync.R;
+import org.ntpsync.service.NtpSyncService;
 import org.ntpsync.util.Constants;
+import org.ntpsync.util.PreferencesHelper;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -61,10 +63,12 @@ public class BaseActivity extends PreferenceActivity {
 
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                
-                
-                
-                
+                // start service with ntp server from preferences
+                Intent intent = new Intent(mActivity, NtpSyncService.class);
+                intent.putExtra(NtpSyncService.EXTRA_NTP_SERVER,
+                        PreferencesHelper.getNtpServer(mActivity));
+                mActivity.startService(intent);
+
                 return false;
             }
 
