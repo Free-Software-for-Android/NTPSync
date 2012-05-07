@@ -28,7 +28,7 @@ Fork NTPSync and do a merge request. I will merge your changes back into the mai
 
 ## Build Apache Commons Net
 
-1. Download Source IP from http://commons.apache.org/net/download_net.cgi
+1. Download Source zip file from http://commons.apache.org/net/download_net.cgi
 
 2. Strip it down to NTP only:
 
@@ -37,3 +37,7 @@ Fork NTPSync and do a merge request. I will merge your changes back into the mai
   3. in src/main/java/org/apache/commons/net remove every folder except io, util, ntp
 
 3. execute "mvn package" to build jar in target directory
+
+## RootTools
+
+See http://code.google.com/p/roottools/
