@@ -26,12 +26,14 @@ Fork NTPSync and do a merge request. I will merge your changes back into the mai
 
 # Build Libraries
 
-## Build Apache Commons
+## Build Apache Commons Net
 
-1. Strip it down to NTP only:
+1. Download Source IP from http://commons.apache.org/net/download_net.cgi
+
+2. Strip it down to NTP only:
 
   1. remove src/test
   2. remove src/main/java/examples
   3. in src/main/java/org/apache/commons/net remove every folder except io, util, ntp
 
-2. execute "mvn package" to build jar in target directory
+3. execute "mvn package" to build jar in target directory
