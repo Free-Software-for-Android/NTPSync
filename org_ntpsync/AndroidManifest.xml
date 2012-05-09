@@ -19,6 +19,8 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <!-- Required permission to wake phone up for setting date -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <!-- Required permission to use Google Android Market donations -->
     <uses-permission android:name="com.android.vending.BILLING" />
 
@@ -38,6 +40,7 @@
         android:label="@string/app_name" >
         <activity
             android:name=".ui.BaseActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -59,6 +62,12 @@
             android:label="@string/activity_donations"
             android:launchMode="singleTask"
             android:theme="@android:style/Theme.Dialog" />
+
+        <!-- <receiver android:name=".service.BootReceiver" > -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.BOOT_COMPLETED" /> -->
+        <!-- </intent-filter> -->
+        <!-- </receiver> -->
 
         <service android:name=".service.NtpSyncService" />
     </application>

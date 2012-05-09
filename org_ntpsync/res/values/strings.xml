@@ -24,7 +24,7 @@
     <string name="pref_donations">Donations</string>
 
     <!-- About -->
-    <string name="about_description">bla</string>
+    <string name="about_description">NTPSync is a simple NTP daemon for Android.</string>
     <string name="about_license">License: GPL v3+</string>
     <string name="about_version">Version:</string>
     <string name="about_developer">Developer:</string>

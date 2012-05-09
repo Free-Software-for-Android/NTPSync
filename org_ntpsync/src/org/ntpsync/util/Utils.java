@@ -20,11 +20,14 @@
 
 package org.ntpsync.util;
 
+import org.ntpsync.R;
+import org.ntpsync.service.NtpSyncService;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-
-import org.ntpsync.R;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -37,6 +40,8 @@ import com.stericson.RootTools.RootTools;
 
 public class Utils {
 
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyyMMdd.HHmmss");
+
     /**
      * Check if Android is rooted, check for su binary and display possible solutions if they are
      * not available
@@ -44,7 +49,7 @@ public class Utils {
      * @param activity
      * @return true if phone is rooted
      */
-    public static boolean isAndroidRooted(final Activity activity) {
+    public static boolean isAndroidRooted() {
         boolean rootAvailable = false;
 
         // root check can be disabled for debugging in emulator
@@ -53,29 +58,7 @@ public class Utils {
         } else {
             // check for root on device and call su binary
             try {
-                if (!RootTools.isAccessGiven()) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-                    builder.setCancelable(false);
-                    builder.setIcon(android.R.drawable.ic_dialog_alert);
-                    builder.setTitle(activity.getString(R.string.no_root_title));
-
-                    // build view from layout
-                    LayoutInflater factory = LayoutInflater.from(activity);
-                    final View dialogView = factory.inflate(R.layout.no_root_dialog, null);
-                    builder.setView(dialogView);
-
-                    builder.setNeutralButton(activity.getResources()
-                            .getString(R.string.button_exit),
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    activity.finish(); // finish current activity, means exiting app
-                                }
-                            });
-
-                    AlertDialog alert = builder.create();
-                    alert.show();
-                } else {
+                if (RootTools.isAccessGiven()) {
                     rootAvailable = true;
                 }
             } catch (Exception e) {
@@ -85,6 +68,34 @@ public class Utils {
         }
 
         return rootAvailable;
+    }
+
+    /**
+     * Show dialog how to root Android
+     * 
+     * @param activity
+     */
+    public static void showRootDialog(final Activity activity) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setCancelable(false);
+        builder.setIcon(android.R.drawable.ic_dialog_alert);
+        builder.setTitle(activity.getString(R.string.no_root_title));
+
+        // build view from layout
+        LayoutInflater factory = LayoutInflater.from(activity);
+        final View dialogView = factory.inflate(R.layout.no_root_dialog, null);
+        builder.setView(dialogView);
+
+        builder.setNeutralButton(activity.getResources().getString(R.string.button_exit),
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        activity.finish(); // finish current activity, means exiting app
+                    }
+                });
+
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
     /**
@@ -114,17 +125,35 @@ public class Utils {
         return stream.toString();
     }
 
-//    public static boolean setTime(final Activity activity) {
-//        if (isAndroidRooted(activity)) {
-//            // check if binary is available and has right permissions
-//            if (RootTools.checkUtil(Constants.COMMAND_DATE)) {
-//                RootTools.sendShell(Constants.COMMAND_DATE+" -s ", timeout)
-//            } else {
-//                return false;
-//            }
-//        } else {
-//            return false;
-//        }
-//    }
+    /**
+     * Sets time in Android using "date -s $time" on command line as root
+     * 
+     * @param time
+     * @return true if it succeeded
+     */
+    public static int setTime(Date time) {
+        if (isAndroidRooted()) {
+            // check if binary is available and has right permissions
+            if (RootTools.checkUtil(Constants.COMMAND_DATE)) {
+                try {
+                    RootTools.sendShell(Constants.COMMAND_DATE + " -s " + DATE_FORMAT.format(time),
+                            -1);
+                    Log.d(Constants.TAG, "Date was set successful using 'date -s $time' as root!");
+
+                    // it works, thus return true
+                    return NtpSyncService.MESSAGE_OKAY;
+                } catch (Exception e) {
+                    Log.e(Constants.TAG, "Error while using 'date -s $time' as root!", e);
+                    return NtpSyncService.MESSAGE_ERROR;
+                }
+            } else {
+                Log.e(Constants.TAG, "Util 'date' could not be found!");
+                return NtpSyncService.MESSAGE_UTIL_NOT_FOUND;
+            }
+        } else {
+            Log.e(Constants.TAG, "Android is not rooted!");
+            return NtpSyncService.MESSAGE_NO_ROOT;
+        }
+    }
 
 }

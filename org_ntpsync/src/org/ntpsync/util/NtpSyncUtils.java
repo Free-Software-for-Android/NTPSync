@@ -22,6 +22,7 @@ import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.text.NumberFormat;
+import java.util.Date;
 
 import org.apache.commons.net.ntp.NTPUDPClient;
 import org.apache.commons.net.ntp.NtpUtils;
@@ -149,6 +150,11 @@ public class NtpSyncUtils {
         System.out.println(" Roundtrip delay(ms)=" + delay + ", clock offset(ms)=" + offset);
     }
 
+    /**
+     * Queries NTP server to get many details
+     * 
+     * @param args
+     */
     public static void detailedQuery(String args) {
         NTPUDPClient client = new NTPUDPClient();
         // We want to timeout if a response takes longer than 10 seconds
@@ -171,16 +177,29 @@ public class NtpSyncUtils {
         client.close();
     }
 
-    public static final void query(String host) throws IOException {
+    /**
+     * Queries NTP server using TCP to get current time as Date
+     * 
+     * @param ntpServerHostname
+     * @return current time as Date object
+     * @throws IOException
+     */
+    public static final Date query(String ntpServerHostname) throws IOException {
+        Date receivedDate = null;
 
         TimeTCPClient client = new TimeTCPClient();
         try {
-            // We want to timeout if a response takes longer than 60 seconds
-            client.setDefaultTimeout(60000);
-            client.connect(host);
-            System.out.println(client.getDate());
+            // We want to timeout if a response takes longer than 10 seconds
+            client.setDefaultTimeout(10000);
+            client.connect(ntpServerHostname);
+
+            receivedDate = client.getDate();
+
+            Log.d(Constants.TAG, "Received date: " + receivedDate);
         } finally {
             client.disconnect();
         }
+
+        return receivedDate;
     }
 }
