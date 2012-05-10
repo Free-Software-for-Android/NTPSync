@@ -15,6 +15,7 @@
 
     <!-- Preferences -->
     <string name="pref_intro">Intro...</string>
+    <string name="pref_detailed_query">Detailed!</string>
     <string name="pref_sync">Sync now!</string>
     <string name="pref_settings">Settings</string>
     <string name="pref_ntp_server">NTP server</string>

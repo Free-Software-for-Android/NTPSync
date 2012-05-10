@@ -2,6 +2,7 @@
 <resources>
 
     <string name="pref_sync_key" translate="false">sync</string>
+    <string name="pref_detailed_query_key" translate="false">detailed</string>
     <string name="pref_ntp_server_key" translate="false">ntpServer</string>
 
     <item name="pref_ntp_server_def" format="string" type="string">pool.ntp.org</item>

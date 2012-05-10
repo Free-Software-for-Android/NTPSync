@@ -26,17 +26,13 @@ import org.donations.DonationsActivity;
 import org.ntpsync.R;
 import org.ntpsync.service.NtpSyncService;
 import org.ntpsync.util.Constants;
-import org.ntpsync.util.Log;
-import org.ntpsync.util.PreferencesHelper;
 import org.ntpsync.util.Utils;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.os.Binder;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
 import android.preference.Preference;
@@ -50,6 +46,7 @@ public class BaseActivity extends PreferenceActivity {
     Activity mActivity;
 
     private Preference mSync;
+    private Preference mDetailedQuery;
 
     private Preference mHelp;
     private Preference mAbout;
@@ -91,6 +88,7 @@ public class BaseActivity extends PreferenceActivity {
         addPreferencesFromResource(R.xml.preferences);
 
         mSync = (Preference) findPreference(getString(R.string.pref_sync_key));
+        mDetailedQuery = (Preference) findPreference(getString(R.string.pref_detailed_query_key));
         mHelp = (Preference) findPreference(getString(R.string.pref_help_key));
         mAbout = (Preference) findPreference(getString(R.string.pref_about_key));
         mDonations = (Preference) findPreference(getString(R.string.pref_donations_key));
@@ -162,10 +160,86 @@ public class BaseActivity extends PreferenceActivity {
                 intent.putExtra(NtpSyncService.EXTRA_MESSENGER, messenger);
 
                 Bundle data = new Bundle();
-                data.putString(NtpSyncService.DATA_NTP_SERVER,
-                        PreferencesHelper.getNtpServer(mActivity));
-
+                data.putBoolean(NtpSyncService.DATA_GET_NTP_SERVER_FROM_PREFS, true);
                 intent.putExtra(NtpSyncService.EXTRA_DATA, data);
+
+                mActivity.startService(intent);
+
+                return false;
+            }
+
+        });
+
+        mDetailedQuery.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                // start progress indicator
+                setIndeterminateProgress(true);
+
+                // start service with ntp server from preferences
+                Intent intent = new Intent(mActivity, NtpSyncService.class);
+
+                intent.putExtra(NtpSyncService.EXTRA_ACTION, NtpSyncService.ACTION_GET_DETAILED);
+
+                // Message is received after saving is done in service
+                Handler resultHandler = new Handler() {
+                    public void handleMessage(Message message) {
+                        // stop progress indicator
+                        setIndeterminateProgress(false);
+
+                        // Toast toast = null;
+                        // switch (message.arg1) {
+                        // case NtpSyncService.MESSAGE_ERROR:
+                        // toast = Toast.makeText(mActivity, "error", Toast.LENGTH_LONG);
+                        // toast.show();
+                        //
+                        // break;
+                        //
+                        // case NtpSyncService.MESSAGE_OKAY:
+                        // Bundle returnData = message.getData();
+                        // Date newTime = (Date) returnData
+                        // .getSerializable(NtpSyncService.MESSAGE_DATA_TIME);
+                        //
+                        // toast = Toast.makeText(mActivity, "Time was set to " + newTime,
+                        // Toast.LENGTH_LONG);
+                        // toast.show();
+                        //
+                        // break;
+                        //
+                        // case NtpSyncService.MESSAGE_SERVER_TIMEOUT:
+                        // toast = Toast.makeText(mActivity, "server timeout!", Toast.LENGTH_LONG);
+                        // toast.show();
+                        //
+                        // break;
+                        //
+                        // case NtpSyncService.MESSAGE_NO_ROOT:
+                        // Utils.showRootDialog(mActivity);
+                        //
+                        // break;
+                        //
+                        // case NtpSyncService.MESSAGE_UTIL_NOT_FOUND:
+                        // toast = Toast.makeText(mActivity, "date Util not found!",
+                        // Toast.LENGTH_LONG);
+                        // toast.show();
+                        //
+                        // break;
+                        //
+                        // default:
+                        // break;
+                        // }
+
+                    };
+                };
+
+                // Create a new Messenger for the communication back
+                Messenger messenger = new Messenger(resultHandler);
+                intent.putExtra(NtpSyncService.EXTRA_MESSENGER, messenger);
+
+                Bundle data = new Bundle();
+                data.putBoolean(NtpSyncService.DATA_GET_NTP_SERVER_FROM_PREFS, true);
+                intent.putExtra(NtpSyncService.EXTRA_DATA, data);
+
                 mActivity.startService(intent);
 
                 return false;

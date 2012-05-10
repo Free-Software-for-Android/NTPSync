@@ -8,6 +8,9 @@
     <Preference
         android:key="@string/pref_sync_key"
         android:title="@string/pref_sync" />
+    <Preference
+        android:key="@string/pref_detailed_query_key"
+        android:title="@string/pref_detailed_query" />
 
     <PreferenceCategory android:title="@string/pref_settings" >
         <EditTextPreference

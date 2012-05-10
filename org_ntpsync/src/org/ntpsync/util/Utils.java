@@ -128,16 +128,20 @@ public class Utils {
     /**
      * Sets time in Android using "date -s $time" on command line as root
      * 
-     * @param time
+     * @param offset
      * @return true if it succeeded
      */
-    public static int setTime(Date time) {
+    public static int setTime(long offset) {
         if (isAndroidRooted()) {
             // check if binary is available and has right permissions
             if (RootTools.checkUtil(Constants.COMMAND_DATE)) {
                 try {
-                    RootTools.sendShell(Constants.COMMAND_DATE + " -s " + DATE_FORMAT.format(time),
-                            -1);
+                    // calculate new time based on system time and offset
+                    long newTime = System.currentTimeMillis() + offset;
+
+                    // set time using date command
+                    RootTools.sendShell(
+                            Constants.COMMAND_DATE + " -s " + DATE_FORMAT.format(newTime), -1);
                     Log.d(Constants.TAG, "Date was set successful using 'date -s $time' as root!");
 
                     // it works, thus return true

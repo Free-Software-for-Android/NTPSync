@@ -22,14 +22,12 @@ import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.text.NumberFormat;
-import java.util.Date;
 
 import org.apache.commons.net.ntp.NTPUDPClient;
 import org.apache.commons.net.ntp.NtpUtils;
 import org.apache.commons.net.ntp.NtpV3Packet;
 import org.apache.commons.net.ntp.TimeInfo;
 import org.apache.commons.net.ntp.TimeStamp;
-import org.apache.commons.net.time.TimeTCPClient;
 
 /***
  * This is based on the example program demonstrating how to use the NTPUDPClient class. This
@@ -151,20 +149,21 @@ public class NtpSyncUtils {
     }
 
     /**
-     * Queries NTP server to get many details
+     * Queries NTP server to get details
      * 
-     * @param args
+     * @param ntpServerHostname
      */
-    public static void detailedQuery(String args) {
+    public static void detailedQuery(String ntpServerHostname) {
         NTPUDPClient client = new NTPUDPClient();
         // We want to timeout if a response takes longer than 10 seconds
         client.setDefaultTimeout(10000);
         try {
             client.open();
-            System.out.println();
+
             try {
-                InetAddress hostAddr = InetAddress.getByName(args);
-                System.out.println("> " + hostAddr.getHostName() + "/" + hostAddr.getHostAddress());
+                InetAddress hostAddr = InetAddress.getByName(ntpServerHostname);
+                Log.d(Constants.TAG,
+                        "> " + hostAddr.getHostName() + "/" + hostAddr.getHostAddress());
                 TimeInfo info = client.getTime(hostAddr);
                 processResponse(info);
             } catch (IOException ioe) {
@@ -178,28 +177,33 @@ public class NtpSyncUtils {
     }
 
     /**
-     * Queries NTP server using TCP to get current time as Date
+     * Queries NTP server using TCP to get offset
      * 
      * @param ntpServerHostname
-     * @return current time as Date object
-     * @throws IOException
+     * @return offset
+     * @throws IOException, SocketException
      */
-    public static final Date query(String ntpServerHostname) throws IOException {
-        Date receivedDate = null;
+    public static final long query(String ntpServerHostname) throws IOException, SocketException {
+        NTPUDPClient client = new NTPUDPClient();
+        // We want to timeout if a response takes longer than 10 seconds
+        client.setDefaultTimeout(10000);
 
-        TimeTCPClient client = new TimeTCPClient();
+        TimeInfo info = null;
         try {
-            // We want to timeout if a response takes longer than 10 seconds
-            client.setDefaultTimeout(10000);
-            client.connect(ntpServerHostname);
+            client.open();
 
-            receivedDate = client.getDate();
+            InetAddress hostAddr = InetAddress.getByName(ntpServerHostname);
+            Log.d(Constants.TAG, "Trying to get time from " + hostAddr.getHostName() + "/"
+                    + hostAddr.getHostAddress());
 
-            Log.d(Constants.TAG, "Received date: " + receivedDate);
+            info = client.getTime(hostAddr);
         } finally {
-            client.disconnect();
+            client.close();
         }
 
-        return receivedDate;
+        // compute offset/delay if not already done
+        info.computeDetails();
+
+        return info.getOffset();
     }
 }

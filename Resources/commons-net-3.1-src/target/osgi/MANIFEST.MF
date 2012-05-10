@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Export-Package: org.apache.commons.net.io;version="3.1",org.apache.com
+ mons.net.ntp;version="3.1",org.apache.commons.net;version="3.1",org.a
+ pache.commons.net.util;version="3.1"
+Built-By: ds1
+Tool: Bnd-1.43.0
+Bundle-Name: Commons Net
+Created-By: Apache Maven Bundle Plugin
+Bundle-Vendor: The Apache Software Foundation
+Build-Jdk: 1.6.0_24
+Bundle-Version: 3.1.0
+Bnd-LastModified: 1336646894284
+Bundle-ManifestVersion: 2
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-Description: Apache Commons Net library contains a collection o
+ f network utilities and protocol implementations.Supported protocols 
+ include: Echo, Finger, FTP, NNTP, NTP, POP3(S), SMTP(S), Telnet, Whoi
+ s
+Import-Package: javax.net,javax.net.ssl
+Bundle-DocURL: http://commons.apache.org/net/
+Include-Resource: META-INF/NOTICE.txt=NOTICE.txt,META-INF/LICENSE.txt=
+ LICENSE.txt
+Bundle-SymbolicName: org.apache.commons.net
+

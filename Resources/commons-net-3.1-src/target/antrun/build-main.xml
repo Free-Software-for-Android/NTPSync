@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="maven-antrun-" default="main"  >
+<target name="main">
+  <jar destfile="target/commons-net-ftp-3.1.jar">
+    <metainf dir="/home/ds1/Projekte/NTPSync/Resources/commons-net-3.1-src" includes="NOTICE.txt,LICENSE.txt"/>
+    <manifest>
+      <attribute name="Extension-Name" value="org.apache.commons.net"/>
+      <attribute name="Specification-Title" value="Commons Net"/>
+      <attribute name="Implementation-Title" value="Commons Net"/>
+      <attribute name="Implementation-Vendor" value="The Apache Software Foundation"/>
+      <attribute name="Implementation-Version" value="3.1"/>
+      <attribute name="Implementation-Vendor-Id" value="org.apache"/>
+      <attribute name="Implementation-Build" value="${scmBranch}@r${buildNumber}; 2012-05-10 13:48:05+0300"/>
+      <attribute name="X-Compile-Source-JDK" value="1.5"/>
+      <attribute name="X-Compile-Target-JDK" value="1.5"/>
+    </manifest>
+    <fileset dir="target/classes" includes="org/apache/commons/net/ftp/**,org/apache/commons/net/*,org/apache/commons/net/io/*,org/apache/commons/net/util/*"/>
+  </jar>
+  <jar destfile="target/commons-net-examples-3.1.jar">
+    <metainf dir="/home/ds1/Projekte/NTPSync/Resources/commons-net-3.1-src" includes="NOTICE.txt,LICENSE.txt"/>
+    <manifest>
+      <attribute name="Extension-Name" value="org.apache.commons.net"/>
+      <attribute name="Specification-Title" value="Commons Net"/>
+      <attribute name="Implementation-Title" value="Commons Net"/>
+      <attribute name="Implementation-Vendor" value="The Apache Software Foundation"/>
+      <attribute name="Implementation-Version" value="3.1"/>
+      <attribute name="Implementation-Vendor-Id" value="org.apache"/>
+      <attribute name="Implementation-Build" value="${scmBranch}@r${buildNumber}; 2012-05-10 13:48:05+0300"/>
+      <attribute name="X-Compile-Source-JDK" value="1.5"/>
+      <attribute name="X-Compile-Target-JDK" value="1.5"/>
+    </manifest>
+    <fileset dir="target/classes" includes="examples/**"/>
+  </jar>
+</target>
+</project>

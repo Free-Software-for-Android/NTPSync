@@ -26,13 +26,12 @@ import java.util.Date;
 import org.ntpsync.util.Constants;
 import org.ntpsync.util.Log;
 import org.ntpsync.util.NtpSyncUtils;
+import org.ntpsync.util.PreferencesHelper;
 import org.ntpsync.util.Utils;
 
 import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
-import android.net.wifi.WifiManager;
-import android.net.wifi.WifiManager.WifiLock;
 import android.os.Bundle;
 import android.os.Message;
 import android.os.Messenger;
@@ -47,11 +46,13 @@ public class NtpSyncService extends IntentService {
     public static final String EXTRA_ACTION = "action";
     public static final String EXTRA_DATA = "data";
 
-    // possible ints for EXTRA_ACTION
+    // possible actions in this service
     public static final int ACTION_GET_TIME = 1;
     public static final int ACTION_GET_DETAILED = 2;
+    public static final int ACTION_SET_TIME_SILENTLY = 3;
 
     // keys for data bundle
+    public static final String DATA_GET_NTP_SERVER_FROM_PREFS = "use_ntp_server_from_prefs";
     public static final String DATA_NTP_SERVER = "ntp_server";
     public static final String DATA_APPLY_DIRECTLY = "apply_directly";
 
@@ -67,7 +68,7 @@ public class NtpSyncService extends IntentService {
 
     Messenger mMessenger;
 
-    private static WifiLock wifiLock;
+    // private static WifiLock wifiLock;
     private static WakeLock wakeLock;
 
     public NtpSyncService() {
@@ -79,7 +80,7 @@ public class NtpSyncService extends IntentService {
             wakeLock.acquire();
             // wifiLock.acquire();
         } catch (Exception e) {
-            Log.e(Constants.TAG, "Error getting Lock: " + e);
+            Log.e(Constants.TAG, "Error getting Lock!", e);
         }
     }
 
@@ -111,58 +112,104 @@ public class NtpSyncService extends IntentService {
         }
 
         // fail if required keys are not present
-        if (!(extras.containsKey(EXTRA_MESSENGER) && extras.containsKey(EXTRA_DATA) && extras
-                .containsKey(EXTRA_ACTION))) {
-            Log.e(Constants.TAG, "Extra bundle must contain a messenger, a bundle and a action!");
+        if (!(extras.containsKey(EXTRA_DATA) && extras.containsKey(EXTRA_ACTION))) {
+            Log.e(Constants.TAG, "Extra bundle must contain a bundle and a action!");
             return;
         }
 
-        mMessenger = (Messenger) extras.get(EXTRA_MESSENGER);
         Bundle data = extras.getBundle(EXTRA_DATA);
         int action = extras.getInt(EXTRA_ACTION);
 
-        /* DATA */
-        if (!data.containsKey(DATA_NTP_SERVER)) {
-            Log.e(Constants.TAG, "Extra bundle must contain a ntp server!");
-            return;
+        // for these actions we get a result back which is send via the messenger
+        if (action == ACTION_GET_TIME || action == ACTION_GET_DETAILED) {
+            if (!extras.containsKey(EXTRA_MESSENGER)) {
+                Log.e(Constants.TAG,
+                        "Extra bundle must contain a messenger to send result back to!");
+                return;
+            }
         }
+
+        mMessenger = (Messenger) extras.get(EXTRA_MESSENGER);
+
+        /* NTP server from prefs or from data bundle? */
+        boolean getNtpServerFromPrefs = false;
+        if (data.containsKey(DATA_GET_NTP_SERVER_FROM_PREFS)) {
+            if (data.getBoolean(DATA_GET_NTP_SERVER_FROM_PREFS)) {
+                getNtpServerFromPrefs = true;
+            }
+        }
+
+        String ntpHostname = null;
+        if (getNtpServerFromPrefs) {
+            ntpHostname = PreferencesHelper.getNtpServer(this);
+        } else {
+            if (data.containsKey(DATA_NTP_SERVER)) {
+                ntpHostname = data.getString(DATA_NTP_SERVER);
+            } else {
+                Log.e(Constants.TAG,
+                        "Extra bundle must contain a ntp server or a boolean to indicate that the ntp server should be get from the prefs!");
+                return;
+            }
+
+        }
+
+        // default is error
+        int returnMessage = MESSAGE_ERROR;
+        long offset = 0;
 
         // execute action from extra bundle
         switch (action) {
         case ACTION_GET_TIME:
-            // default is error
-            int returnMessage = MESSAGE_ERROR;
-
-            Date receivedTime = null;
-
-            String ntpHostname = data.getString(DATA_NTP_SERVER);
             Log.d(Constants.TAG, "Trying to get time from " + ntpHostname);
             try {
-                receivedTime = NtpSyncUtils.query(ntpHostname);
+                offset = NtpSyncUtils.query(ntpHostname);
                 returnMessage = MESSAGE_OKAY;
             } catch (IOException e) {
                 // send timeout message to ui
                 sendMessageToHandler(MESSAGE_SERVER_TIMEOUT);
-                Log.e(Constants.TAG, "Timeout on server!", e);
+                Log.d(Constants.TAG, "Timeout on server!");
                 // abort directly
                 return;
             }
 
             if (extras.containsKey(DATA_APPLY_DIRECTLY)) {
                 if (extras.getBoolean(DATA_APPLY_DIRECTLY)) {
-                    returnMessage = Utils.setTime(receivedTime);
+                    returnMessage = Utils.setTime(offset);
                 }
             }
 
             // return time to ui
             Bundle messageData = new Bundle();
-            messageData.putSerializable(MESSAGE_DATA_TIME, receivedTime);
+
+            // calculate new time
+            Date newTime = new Date(System.currentTimeMillis() + offset);
+
+            messageData.putSerializable(MESSAGE_DATA_TIME, newTime);
 
             sendMessageToHandler(returnMessage, messageData);
 
             break;
 
+        case ACTION_SET_TIME_SILENTLY:
+            Log.d(Constants.TAG, "Trying to get time from " + ntpHostname);
+            try {
+                // query time
+                offset = NtpSyncUtils.query(ntpHostname);
+
+                // set time
+                returnMessage = Utils.setTime(offset);
+            } catch (IOException e) {
+                returnMessage = MESSAGE_SERVER_TIMEOUT;
+            }
+
+            Log.d(Constants.TAG, "Time was get and set silently with the folowing returnMessage: "
+                    + returnMessage);
+
+            break;
+
         case ACTION_GET_DETAILED:
+
+            NtpSyncUtils.detailedQuery(ntpHostname);
 
             break;
         default:
