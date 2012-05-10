@@ -50,7 +50,9 @@ public class NtpSyncUtils {
      * @param info
      *            <code>TimeInfo</code> object.
      */
-    public static void processResponse(TimeInfo info) {
+    public static String processResponse(TimeInfo info) {
+        String output = "";
+
         NtpV3Packet message = info.getMessage();
         int stratum = message.getStratum();
         String refType;
@@ -62,21 +64,21 @@ public class NtpSyncUtils {
             refType = "(Secondary Reference; e.g. via NTP or SNTP)";
         }
         // stratum should be 0..15...
-        System.out.println(" Stratum: " + stratum + " " + refType);
+        output += "<p><b>Stratum:</b><br/> " + stratum + " " + refType + "</p>";
+
         int version = message.getVersion();
         int li = message.getLeapIndicator();
-        System.out.println(" leap=" + li + ", version=" + version + ", precision="
-                + message.getPrecision());
+        output += " leap=" + li + ", version=" + version + ", precision=" + message.getPrecision()
+                + "</p>";
 
-        System.out.println(" mode: " + message.getModeName() + " (" + message.getMode() + ")");
+        output += "<p>mode: " + message.getModeName() + " (" + message.getMode() + ")" + "</p>";
         int poll = message.getPoll();
         // poll value typically btwn MINPOLL (4) and MAXPOLL (14)
-        System.out.println(" poll: " + (poll <= 0 ? 1 : (int) Math.pow(2, poll)) + " seconds"
-                + " (2 ** " + poll + ")");
+        output += "<p>poll: " + (poll <= 0 ? 1 : (int) Math.pow(2, poll)) + " seconds" + " (2 ** "
+                + poll + ")" + "</p>";
         double disp = message.getRootDispersionInMillisDouble();
-        System.out.println(" rootdelay="
-                + numberFormat.format(message.getRootDelayInMillisDouble())
-                + ", rootdispersion(ms): " + numberFormat.format(disp));
+        output += " rootdelay=" + numberFormat.format(message.getRootDelayInMillisDouble())
+                + ", rootdispersion(ms): " + numberFormat.format(disp) + "</p>";
 
         int refId = message.getReferenceId();
         String refAddr = NtpUtils.getHostAddress(refId);
@@ -112,31 +114,27 @@ public class NtpSyncUtils {
         if (refName != null && refName.length() > 1) {
             refAddr += " (" + refName + ")";
         }
-        System.out.println(" Reference Identifier:\t" + refAddr);
+        output += "<p><b>Reference Identifier:</b><br/>" + refAddr + "</p>";
 
         TimeStamp refNtpTime = message.getReferenceTimeStamp();
-        System.out.println(" Reference Timestamp:\t" + refNtpTime + "  "
-                + refNtpTime.toDateString());
+        output += "<p><b>Reference Timestamp:</b><br/>" + refNtpTime.toDateString() + "</p>";
 
         // Originate Time is time request sent by client (t1)
         TimeStamp origNtpTime = message.getOriginateTimeStamp();
-        System.out.println(" Originate Timestamp:\t" + origNtpTime + "  "
-                + origNtpTime.toDateString());
+        output += "<p><b>Originate Timestamp:</b><br/>" + origNtpTime.toDateString() + "</p>";
 
         long destTime = info.getReturnTime();
         // Receive Time is time request received by server (t2)
         TimeStamp rcvNtpTime = message.getReceiveTimeStamp();
-        System.out.println(" Receive Timestamp:\t" + rcvNtpTime + "  " + rcvNtpTime.toDateString());
+        output += "<p><b>Receive Timestamp:</b><br/>" + rcvNtpTime.toDateString() + "</p>";
 
         // Transmit time is time reply sent by server (t3)
         TimeStamp xmitNtpTime = message.getTransmitTimeStamp();
-        System.out.println(" Transmit Timestamp:\t" + xmitNtpTime + "  "
-                + xmitNtpTime.toDateString());
+        output += "<p><b>Transmit Timestamp:</b><br/>" + xmitNtpTime.toDateString() + "</p>";
 
         // Destination time is time reply received by client (t4)
         TimeStamp destNtpTime = TimeStamp.getNtpTime(destTime);
-        System.out.println(" Destination Timestamp:\t" + destNtpTime + "  "
-                + destNtpTime.toDateString());
+        output += "<p><b>Destination Timestamp:</b><br/>" + destNtpTime.toDateString() + "</p>";
 
         info.computeDetails(); // compute offset/delay if not already done
         Long offsetValue = info.getOffset();
@@ -145,7 +143,9 @@ public class NtpSyncUtils {
         String offset = (offsetValue == null) ? "N/A" : offsetValue.toString();
 
         // offset in ms
-        System.out.println(" Roundtrip delay(ms)=" + delay + ", clock offset(ms)=" + offset);
+        output += "<p>Roundtrip delay(ms)=" + delay + ", clock offset(ms)=" + offset;
+
+        return output;
     }
 
     /**
@@ -153,27 +153,26 @@ public class NtpSyncUtils {
      * 
      * @param ntpServerHostname
      */
-    public static void detailedQuery(String ntpServerHostname) {
+    public static String detailedQuery(String ntpServerHostname) throws IOException,
+            SocketException {
+        String output = null;
+
         NTPUDPClient client = new NTPUDPClient();
         // We want to timeout if a response takes longer than 10 seconds
         client.setDefaultTimeout(10000);
         try {
             client.open();
 
-            try {
-                InetAddress hostAddr = InetAddress.getByName(ntpServerHostname);
-                Log.d(Constants.TAG,
-                        "> " + hostAddr.getHostName() + "/" + hostAddr.getHostAddress());
-                TimeInfo info = client.getTime(hostAddr);
-                processResponse(info);
-            } catch (IOException ioe) {
-                ioe.printStackTrace();
-            }
-        } catch (SocketException e) {
-            e.printStackTrace();
+            InetAddress hostAddr = InetAddress.getByName(ntpServerHostname);
+            Log.d(Constants.TAG, "> " + hostAddr.getHostName() + "/" + hostAddr.getHostAddress());
+            TimeInfo info = client.getTime(hostAddr);
+            output = processResponse(info);
+
+        } finally {
+            client.close();
         }
 
-        client.close();
+        return output;
     }
 
     /**
@@ -181,7 +180,8 @@ public class NtpSyncUtils {
      * 
      * @param ntpServerHostname
      * @return offset
-     * @throws IOException, SocketException
+     * @throws IOException
+     *             , SocketException
      */
     public static final long query(String ntpServerHostname) throws IOException, SocketException {
         NTPUDPClient client = new NTPUDPClient();

@@ -29,6 +29,7 @@ import org.ntpsync.util.Constants;
 import org.ntpsync.util.Utils;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -38,7 +39,9 @@ import android.os.Messenger;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
+import android.text.Html;
 import android.view.Window;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class BaseActivity extends PreferenceActivity {
@@ -188,46 +191,40 @@ public class BaseActivity extends PreferenceActivity {
                         // stop progress indicator
                         setIndeterminateProgress(false);
 
-                        // Toast toast = null;
-                        // switch (message.arg1) {
-                        // case NtpSyncService.MESSAGE_ERROR:
-                        // toast = Toast.makeText(mActivity, "error", Toast.LENGTH_LONG);
-                        // toast.show();
-                        //
-                        // break;
-                        //
-                        // case NtpSyncService.MESSAGE_OKAY:
-                        // Bundle returnData = message.getData();
-                        // Date newTime = (Date) returnData
-                        // .getSerializable(NtpSyncService.MESSAGE_DATA_TIME);
-                        //
-                        // toast = Toast.makeText(mActivity, "Time was set to " + newTime,
-                        // Toast.LENGTH_LONG);
-                        // toast.show();
-                        //
-                        // break;
-                        //
-                        // case NtpSyncService.MESSAGE_SERVER_TIMEOUT:
-                        // toast = Toast.makeText(mActivity, "server timeout!", Toast.LENGTH_LONG);
-                        // toast.show();
-                        //
-                        // break;
-                        //
-                        // case NtpSyncService.MESSAGE_NO_ROOT:
-                        // Utils.showRootDialog(mActivity);
-                        //
-                        // break;
-                        //
-                        // case NtpSyncService.MESSAGE_UTIL_NOT_FOUND:
-                        // toast = Toast.makeText(mActivity, "date Util not found!",
-                        // Toast.LENGTH_LONG);
-                        // toast.show();
-                        //
-                        // break;
-                        //
-                        // default:
-                        // break;
-                        // }
+                        Toast toast = null;
+                        switch (message.arg1) {
+                        case NtpSyncService.MESSAGE_ERROR:
+                            toast = Toast.makeText(mActivity, "error", Toast.LENGTH_LONG);
+                            toast.show();
+
+                            break;
+
+                        case NtpSyncService.MESSAGE_OKAY:
+                            Bundle returnData = message.getData();
+                            String detailedOutput = (String) returnData
+                                    .getString(NtpSyncService.MESSAGE_DATA_DETAILED_OUTPUT);
+
+                            AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
+                            builder.setTitle("Formatted");
+                            builder.setMessage(Html.fromHtml(detailedOutput));
+                            AlertDialog alert = builder.create();
+                            alert.show();
+
+                            TextView txtAlertMsg = (TextView) alert
+                                    .findViewById(android.R.id.message);
+                            txtAlertMsg.setTextSize(13);
+
+                            break;
+
+                        case NtpSyncService.MESSAGE_SERVER_TIMEOUT:
+                            toast = Toast.makeText(mActivity, "server timeout!", Toast.LENGTH_LONG);
+                            toast.show();
+
+                            break;
+
+                        default:
+                            break;
+                        }
 
                     };
                 };

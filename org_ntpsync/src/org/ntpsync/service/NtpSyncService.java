@@ -20,7 +20,6 @@
 
 package org.ntpsync.service;
 
-import java.io.IOException;
 import java.util.Date;
 
 import org.ntpsync.util.Constants;
@@ -65,6 +64,7 @@ public class NtpSyncService extends IntentService {
 
     // returned message data
     public static final String MESSAGE_DATA_TIME = "time";
+    public static final String MESSAGE_DATA_DETAILED_OUTPUT = "detailed_output";
 
     Messenger mMessenger;
 
@@ -160,11 +160,11 @@ public class NtpSyncService extends IntentService {
         // execute action from extra bundle
         switch (action) {
         case ACTION_GET_TIME:
-            Log.d(Constants.TAG, "Trying to get time from " + ntpHostname);
+
             try {
                 offset = NtpSyncUtils.query(ntpHostname);
                 returnMessage = MESSAGE_OKAY;
-            } catch (IOException e) {
+            } catch (Exception e) {
                 // send timeout message to ui
                 sendMessageToHandler(MESSAGE_SERVER_TIMEOUT);
                 Log.d(Constants.TAG, "Timeout on server!");
@@ -191,14 +191,13 @@ public class NtpSyncService extends IntentService {
             break;
 
         case ACTION_SET_TIME_SILENTLY:
-            Log.d(Constants.TAG, "Trying to get time from " + ntpHostname);
             try {
                 // query time
                 offset = NtpSyncUtils.query(ntpHostname);
 
                 // set time
                 returnMessage = Utils.setTime(offset);
-            } catch (IOException e) {
+            } catch (Exception e) {
                 returnMessage = MESSAGE_SERVER_TIMEOUT;
             }
 
@@ -209,7 +208,22 @@ public class NtpSyncService extends IntentService {
 
         case ACTION_GET_DETAILED:
 
-            NtpSyncUtils.detailedQuery(ntpHostname);
+            String output = null;
+            try {
+                output = NtpSyncUtils.detailedQuery(ntpHostname);
+            } catch (Exception e) {
+                // send timeout message to ui
+                sendMessageToHandler(MESSAGE_SERVER_TIMEOUT);
+                Log.d(Constants.TAG, "Timeout on server!");
+                // abort directly
+                return;
+            }
+
+            // return time to ui
+            Bundle messageDataDetailedQuery = new Bundle();
+            messageDataDetailedQuery.putSerializable(MESSAGE_DATA_DETAILED_OUTPUT, output);
+
+            sendMessageToHandler(MESSAGE_OKAY, messageDataDetailedQuery);
 
             break;
         default:
