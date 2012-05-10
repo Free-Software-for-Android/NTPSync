@@ -78,7 +78,6 @@ public class NtpSyncService extends IntentService {
     private static void lock() {
         try {
             wakeLock.acquire();
-            // wifiLock.acquire();
         } catch (Exception e) {
             Log.e(Constants.TAG, "Error getting Lock!", e);
         }
@@ -87,14 +86,10 @@ public class NtpSyncService extends IntentService {
     private static void unlock() {
         if (wakeLock.isHeld())
             wakeLock.release();
-        // if (wifiLock.isHeld())
-        // wifiLock.release();
     }
 
     private static void getLocks(Context context) {
-        // initialise the locks
-        // wifiLock = ((WifiManager) context.getSystemService(Context.WIFI_SERVICE)).createWifiLock(
-        // WifiManager.WIFI_MODE_FULL, "NtpSyncWifiLock");
+        // initialise the lock
         wakeLock = ((PowerManager) context.getSystemService(Context.POWER_SERVICE)).newWakeLock(
                 PowerManager.PARTIAL_WAKE_LOCK, "NtpSyncWakeLock");
     }
@@ -172,8 +167,8 @@ public class NtpSyncService extends IntentService {
                 return;
             }
 
-            if (extras.containsKey(DATA_APPLY_DIRECTLY)) {
-                if (extras.getBoolean(DATA_APPLY_DIRECTLY)) {
+            if (data.containsKey(DATA_APPLY_DIRECTLY)) {
+                if (data.getBoolean(DATA_APPLY_DIRECTLY)) {
                     returnMessage = Utils.setTime(offset);
                 }
             }
@@ -201,7 +196,7 @@ public class NtpSyncService extends IntentService {
                 returnMessage = MESSAGE_SERVER_TIMEOUT;
             }
 
-            Log.d(Constants.TAG, "Time was get and set silently with the folowing returnMessage: "
+            Log.d(Constants.TAG, "Time was get and set silently with the following returnMessage: "
                     + returnMessage);
 
             break;

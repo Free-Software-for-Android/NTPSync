@@ -48,8 +48,9 @@ public class BaseActivity extends PreferenceActivity {
 
     Activity mActivity;
 
-    private Preference mSync;
+    private Preference mQuery;
     private Preference mDetailedQuery;
+    private Preference mQueryAndSet;
 
     private Preference mHelp;
     private Preference mAbout;
@@ -90,13 +91,79 @@ public class BaseActivity extends PreferenceActivity {
         getPreferenceManager().setSharedPreferencesName(Constants.PREFS_NAME);
         addPreferencesFromResource(R.xml.preferences);
 
-        mSync = (Preference) findPreference(getString(R.string.pref_sync_key));
+        mQuery = (Preference) findPreference(getString(R.string.pref_query_key));
         mDetailedQuery = (Preference) findPreference(getString(R.string.pref_detailed_query_key));
+        mQueryAndSet = (Preference) findPreference(getString(R.string.pref_query_and_set_key));
         mHelp = (Preference) findPreference(getString(R.string.pref_help_key));
         mAbout = (Preference) findPreference(getString(R.string.pref_about_key));
         mDonations = (Preference) findPreference(getString(R.string.pref_donations_key));
 
-        mSync.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+        mQuery.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                // start progress indicator
+                setIndeterminateProgress(true);
+
+                // start service with ntp server from preferences
+                Intent intent = new Intent(mActivity, NtpSyncService.class);
+
+                intent.putExtra(NtpSyncService.EXTRA_ACTION, NtpSyncService.ACTION_GET_TIME);
+
+                // Message is received after saving is done in service
+                Handler resultHandler = new Handler() {
+                    public void handleMessage(Message message) {
+                        // stop progress indicator
+                        setIndeterminateProgress(false);
+
+                        Toast toast = null;
+                        switch (message.arg1) {
+                        case NtpSyncService.MESSAGE_ERROR:
+                            toast = Toast.makeText(mActivity, "error", Toast.LENGTH_LONG);
+                            toast.show();
+
+                            break;
+
+                        case NtpSyncService.MESSAGE_OKAY:
+                            Bundle returnData = message.getData();
+                            Date newTime = (Date) returnData
+                                    .getSerializable(NtpSyncService.MESSAGE_DATA_TIME);
+
+                            toast = Toast.makeText(mActivity, "NTP Time is " + newTime,
+                                    Toast.LENGTH_LONG);
+                            toast.show();
+
+                            break;
+
+                        case NtpSyncService.MESSAGE_SERVER_TIMEOUT:
+                            toast = Toast.makeText(mActivity, "server timeout!", Toast.LENGTH_LONG);
+                            toast.show();
+
+                            break;
+
+                        default:
+                            break;
+                        }
+
+                    };
+                };
+
+                // Create a new Messenger for the communication back
+                Messenger messenger = new Messenger(resultHandler);
+                intent.putExtra(NtpSyncService.EXTRA_MESSENGER, messenger);
+
+                Bundle data = new Bundle();
+                data.putBoolean(NtpSyncService.DATA_GET_NTP_SERVER_FROM_PREFS, true);
+                intent.putExtra(NtpSyncService.EXTRA_DATA, data);
+
+                mActivity.startService(intent);
+
+                return false;
+            }
+
+        });
+
+        mQueryAndSet.setOnPreferenceClickListener(new OnPreferenceClickListener() {
 
             @Override
             public boolean onPreferenceClick(Preference preference) {
@@ -164,6 +231,7 @@ public class BaseActivity extends PreferenceActivity {
 
                 Bundle data = new Bundle();
                 data.putBoolean(NtpSyncService.DATA_GET_NTP_SERVER_FROM_PREFS, true);
+                data.putBoolean(NtpSyncService.DATA_APPLY_DIRECTLY, true);
                 intent.putExtra(NtpSyncService.EXTRA_DATA, data);
 
                 mActivity.startService(intent);
@@ -205,7 +273,7 @@ public class BaseActivity extends PreferenceActivity {
                                     .getString(NtpSyncService.MESSAGE_DATA_DETAILED_OUTPUT);
 
                             AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
-                            builder.setTitle("Formatted");
+                            builder.setTitle("Detailed information");
                             builder.setMessage(Html.fromHtml(detailedOutput));
                             AlertDialog alert = builder.create();
                             alert.show();

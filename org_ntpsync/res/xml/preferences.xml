@@ -2,15 +2,15 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <Preference
-        android:persistent="false"
-        android:selectable="false"
-        android:title="@string/pref_intro" />
-    <Preference
-        android:key="@string/pref_sync_key"
-        android:title="@string/pref_sync" />
+        android:key="@string/pref_query_key"
+        android:title="@string/pref_query" />
     <Preference
         android:key="@string/pref_detailed_query_key"
         android:title="@string/pref_detailed_query" />
+    <Preference
+        android:key="@string/pref_query_and_set_key"
+        android:summary="@string/pref_query_and_set_summary"
+        android:title="@string/pref_query_and_set" />
 
     <PreferenceCategory android:title="@string/pref_settings" >
         <EditTextPreference

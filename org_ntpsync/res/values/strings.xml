@@ -14,9 +14,10 @@
     <string name="button_exit">Exit</string>
 
     <!-- Preferences -->
-    <string name="pref_intro">Intro...</string>
-    <string name="pref_detailed_query">Detailed!</string>
-    <string name="pref_sync">Sync now!</string>
+    <string name="pref_query">Query!</string>
+    <string name="pref_detailed_query">Detailed query!</string>
+    <string name="pref_query_and_set">Query and set time!</string>
+    <string name="pref_query_and_set_summary">Needs root access!</string>
     <string name="pref_settings">Settings</string>
     <string name="pref_ntp_server">NTP server</string>
     <string name="pref_ntp_server_summary">Choose NTP server</string>
@@ -25,11 +26,11 @@
     <string name="pref_donations">Donations</string>
 
     <!-- About -->
-    <string name="about_description">NTPSync is a simple NTP daemon for Android.</string>
+    <string name="about_description">NTPSync is a simple NTP time synchronization app for Android.</string>
     <string name="about_license">License: GPL v3+</string>
     <string name="about_version">Version:</string>
     <string name="about_developer">Developer:</string>
     <string name="about_translators">Translators:</string>
-    <string name="about_libs">NTPSync uses \'RootTools\' (License: GPL v2) Library to handle root access and Apache Commons Net (License: Apache License v2) to query NTP server.</string>
+    <string name="about_libs">NTPSync uses \'RootTools\' (License: GPL v2) Library to handle root access and Apache Commons Net (License: Apache License v2) to query NTP servers.</string>
 
 </resources>
