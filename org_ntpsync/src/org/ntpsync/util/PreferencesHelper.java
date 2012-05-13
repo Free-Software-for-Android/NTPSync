@@ -26,12 +26,12 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 public class PreferencesHelper {
-    // public static boolean getUpdateCheck(Context context) {
-    // SharedPreferences prefs = context.getSharedPreferences(Constants.PREFS_NAME,
-    // Context.MODE_PRIVATE);
-    // return prefs.getBoolean(context.getString(R.string.pref_update_check_key),
-    // Boolean.parseBoolean(context.getString(R.string.pref_update_check_def)));
-    // }
+    public static boolean getSetOnBoot(Context context) {
+        SharedPreferences prefs = context.getSharedPreferences(Constants.PREFS_NAME,
+                Context.MODE_PRIVATE);
+        return prefs.getBoolean(context.getString(R.string.pref_set_on_boot_key),
+                Boolean.parseBoolean(context.getString(R.string.pref_set_on_boot_def)));
+    }
 
     public static String getNtpServer(Context context) {
         SharedPreferences prefs = context.getSharedPreferences(Constants.PREFS_NAME,

@@ -62,7 +62,7 @@ public class AboutActivity extends Activity {
 
             result = String.format("%s (%s)", info.versionName, info.versionCode);
         } catch (NameNotFoundException e) {
-            Log.w(Constants.TAG, "Unable to get application version: " + e.getMessage());
+            Log.w(Constants.TAG, "Unable to get application version: ", e);
             result = "Unable to get application version.";
         }
 

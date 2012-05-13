@@ -67,6 +67,7 @@ public class NtpSyncService extends IntentService {
     public static final String MESSAGE_DATA_DETAILED_OUTPUT = "detailed_output";
 
     Messenger mMessenger;
+    Bundle mData;
 
     // private static WifiLock wifiLock;
     private static WakeLock wakeLock;
@@ -107,88 +108,26 @@ public class NtpSyncService extends IntentService {
         }
 
         // fail if required keys are not present
-        if (!(extras.containsKey(EXTRA_DATA) && extras.containsKey(EXTRA_ACTION))) {
-            Log.e(Constants.TAG, "Extra bundle must contain a bundle and a action!");
+        if (!extras.containsKey(EXTRA_ACTION)) {
+            Log.e(Constants.TAG, "Extra bundle must contain a action!");
             return;
         }
 
-        Bundle data = extras.getBundle(EXTRA_DATA);
         int action = extras.getInt(EXTRA_ACTION);
 
-        // for these actions we get a result back which is send via the messenger
-        if (action == ACTION_GET_TIME || action == ACTION_GET_DETAILED) {
-            if (!extras.containsKey(EXTRA_MESSENGER)) {
-                Log.e(Constants.TAG,
-                        "Extra bundle must contain a messenger to send result back to!");
-                return;
-            }
-        }
+        /*
+         * SET TIME SILENTLY
+         */
+        if (action == ACTION_SET_TIME_SILENTLY) {
+            // default values
+            int returnMessage = MESSAGE_ERROR;
+            long offset = 0;
 
-        mMessenger = (Messenger) extras.get(EXTRA_MESSENGER);
-
-        /* NTP server from prefs or from data bundle? */
-        boolean getNtpServerFromPrefs = false;
-        if (data.containsKey(DATA_GET_NTP_SERVER_FROM_PREFS)) {
-            if (data.getBoolean(DATA_GET_NTP_SERVER_FROM_PREFS)) {
-                getNtpServerFromPrefs = true;
-            }
-        }
-
-        String ntpHostname = null;
-        if (getNtpServerFromPrefs) {
-            ntpHostname = PreferencesHelper.getNtpServer(this);
-        } else {
-            if (data.containsKey(DATA_NTP_SERVER)) {
-                ntpHostname = data.getString(DATA_NTP_SERVER);
-            } else {
-                Log.e(Constants.TAG,
-                        "Extra bundle must contain a ntp server or a boolean to indicate that the ntp server should be get from the prefs!");
-                return;
-            }
-
-        }
-
-        // default is error
-        int returnMessage = MESSAGE_ERROR;
-        long offset = 0;
-
-        // execute action from extra bundle
-        switch (action) {
-        case ACTION_GET_TIME:
-
-            try {
-                offset = NtpSyncUtils.query(ntpHostname);
-                returnMessage = MESSAGE_OKAY;
-            } catch (Exception e) {
-                // send timeout message to ui
-                sendMessageToHandler(MESSAGE_SERVER_TIMEOUT);
-                Log.d(Constants.TAG, "Timeout on server!");
-                // abort directly
-                return;
-            }
-
-            if (data.containsKey(DATA_APPLY_DIRECTLY)) {
-                if (data.getBoolean(DATA_APPLY_DIRECTLY)) {
-                    returnMessage = Utils.setTime(offset);
-                }
-            }
-
-            // return time to ui
-            Bundle messageData = new Bundle();
-
-            // calculate new time
-            Date newTime = new Date(System.currentTimeMillis() + offset);
-
-            messageData.putSerializable(MESSAGE_DATA_TIME, newTime);
-
-            sendMessageToHandler(returnMessage, messageData);
-
-            break;
-
-        case ACTION_SET_TIME_SILENTLY:
             try {
                 // query time
-                offset = NtpSyncUtils.query(ntpHostname);
+                offset = NtpSyncUtils.query(PreferencesHelper.getNtpServer(this));
+
+                Log.d(Constants.TAG, "Offset from NTP server: " + offset);
 
                 // set time
                 returnMessage = Utils.setTime(offset);
@@ -198,31 +137,103 @@ public class NtpSyncService extends IntentService {
 
             Log.d(Constants.TAG, "Time was get and set silently with the following returnMessage: "
                     + returnMessage);
+        } else {
+            /*
+             * GET TIME AND GET DETAILED
+             */
 
-            break;
-
-        case ACTION_GET_DETAILED:
-
-            String output = null;
-            try {
-                output = NtpSyncUtils.detailedQuery(ntpHostname);
-            } catch (Exception e) {
-                // send timeout message to ui
-                sendMessageToHandler(MESSAGE_SERVER_TIMEOUT);
-                Log.d(Constants.TAG, "Timeout on server!");
-                // abort directly
+            // for these actions we get a result back which is send via the messenger and we require
+            // a data bundle
+            if (!(extras.containsKey(EXTRA_DATA) && extras.containsKey(EXTRA_MESSENGER))) {
+                Log.e(Constants.TAG,
+                        "Extra bundle must contain a messenger to send result back to and a data bundle!");
                 return;
+            } else {
+                mData = extras.getBundle(EXTRA_DATA);
+                mMessenger = (Messenger) extras.get(EXTRA_MESSENGER);
             }
 
-            // return time to ui
-            Bundle messageDataDetailedQuery = new Bundle();
-            messageDataDetailedQuery.putSerializable(MESSAGE_DATA_DETAILED_OUTPUT, output);
+            /* NTP server from prefs or from data bundle? */
+            boolean getNtpServerFromPrefs = false;
+            if (mData.containsKey(DATA_GET_NTP_SERVER_FROM_PREFS)) {
+                if (mData.getBoolean(DATA_GET_NTP_SERVER_FROM_PREFS)) {
+                    getNtpServerFromPrefs = true;
+                }
+            }
 
-            sendMessageToHandler(MESSAGE_OKAY, messageDataDetailedQuery);
+            String ntpHostname = null;
+            if (getNtpServerFromPrefs) {
+                ntpHostname = PreferencesHelper.getNtpServer(this);
+            } else {
+                if (mData.containsKey(DATA_NTP_SERVER)) {
+                    ntpHostname = mData.getString(DATA_NTP_SERVER);
+                } else {
+                    Log.e(Constants.TAG,
+                            "Extra bundle must contain a ntp server or a boolean to indicate that the ntp server should be get from the prefs!");
+                    return;
+                }
+            }
 
-            break;
-        default:
-            break;
+            // default values
+            int returnMessage = MESSAGE_ERROR;
+            long offset = 0;
+
+            // execute action from extra bundle
+            switch (action) {
+            case ACTION_GET_TIME:
+
+                try {
+                    offset = NtpSyncUtils.query(ntpHostname);
+                    returnMessage = MESSAGE_OKAY;
+                } catch (Exception e) {
+                    // send timeout message to ui
+                    sendMessageToHandler(MESSAGE_SERVER_TIMEOUT);
+                    Log.d(Constants.TAG, "Timeout on server!");
+                    // abort directly
+                    return;
+                }
+
+                if (mData.containsKey(DATA_APPLY_DIRECTLY)) {
+                    if (mData.getBoolean(DATA_APPLY_DIRECTLY)) {
+                        returnMessage = Utils.setTime(offset);
+                    }
+                }
+
+                // return time to ui
+                Bundle messageData = new Bundle();
+
+                // calculate new time
+                Date newTime = new Date(System.currentTimeMillis() + offset);
+
+                messageData.putSerializable(MESSAGE_DATA_TIME, newTime);
+
+                sendMessageToHandler(returnMessage, messageData);
+
+                break;
+
+            case ACTION_GET_DETAILED:
+
+                String output = null;
+                try {
+                    output = NtpSyncUtils.detailedQuery(ntpHostname);
+                } catch (Exception e) {
+                    // send timeout message to ui
+                    sendMessageToHandler(MESSAGE_SERVER_TIMEOUT);
+                    Log.d(Constants.TAG, "Timeout on server!");
+                    // abort directly
+                    return;
+                }
+
+                // return detailed output to ui
+                Bundle messageDataDetailedQuery = new Bundle();
+                messageDataDetailedQuery.putSerializable(MESSAGE_DATA_DETAILED_OUTPUT, output);
+
+                sendMessageToHandler(MESSAGE_OKAY, messageDataDetailedQuery);
+
+                break;
+            default:
+                break;
+            }
         }
 
         // unlock cpu

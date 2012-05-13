@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.ntpsync"
+    android:installLocation="internalOnly"
     android:versionCode="1"
     android:versionName="0.5" >
 
@@ -19,7 +20,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
-    <!-- Required permission to wake phone up for setting date -->
+    <!-- Required permission to wake phone up for setting time -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <!-- Required permission to use Google Android Market donations -->
     <uses-permission android:name="com.android.vending.BILLING" />
@@ -63,12 +64,13 @@
             android:launchMode="singleTask"
             android:theme="@android:style/Theme.Dialog" />
 
-        <!-- <receiver android:name=".service.BootReceiver" > -->
-        <!-- <intent-filter> -->
-        <!-- <action android:name="android.intent.action.BOOT_COMPLETED" /> -->
-        <!-- </intent-filter> -->
-        <!-- </receiver> -->
+        <receiver android:name=".service.BootReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
 
+        <service android:name=".service.BootService" />
         <service android:name=".service.NtpSyncService" />
     </application>
 

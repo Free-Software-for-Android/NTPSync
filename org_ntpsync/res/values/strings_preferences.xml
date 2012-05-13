@@ -8,6 +8,10 @@
 
     <item name="pref_ntp_server_def" format="string" type="string">pool.ntp.org</item>
 
+    <string name="pref_set_on_boot_key" translate="false">setOnBoot</string>
+
+    <item name="pref_set_on_boot_def" format="boolean" type="string">false</item>
+
     <string name="pref_help_key" translate="false">help</string>
     <string name="pref_about_key" translate="false">about</string>
     <string name="pref_donations_key" translate="false">donations</string>

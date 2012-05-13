@@ -176,14 +176,14 @@ public class NtpSyncUtils {
     }
 
     /**
-     * Queries NTP server using TCP to get offset
+     * Queries NTP server using UDP to get offset
      * 
      * @param ntpServerHostname
      * @return offset
      * @throws IOException
      *             , SocketException
      */
-    public static final long query(String ntpServerHostname) throws IOException, SocketException {
+    public static long query(String ntpServerHostname) throws IOException, SocketException {
         NTPUDPClient client = new NTPUDPClient();
         // We want to timeout if a response takes longer than 10 seconds
         client.setDefaultTimeout(10000);

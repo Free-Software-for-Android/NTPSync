@@ -13,6 +13,12 @@
         android:title="@string/pref_query_and_set" />
 
     <PreferenceCategory android:title="@string/pref_settings" >
+        <CheckBoxPreference
+            android:defaultValue="@string/pref_set_on_boot_def"
+            android:key="@string/pref_set_on_boot_key"
+            android:summary="@string/pref_set_on_boot_summary"
+            android:title="@string/pref_set_on_boot" />
+
         <EditTextPreference
             android:defaultValue="@string/pref_ntp_server_def"
             android:key="@string/pref_ntp_server_key"
