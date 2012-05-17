@@ -84,6 +84,7 @@
 
         <service android:name=".service.BootService" />
         <service android:name=".service.NtpSyncService" />
+
         <!-- Permission checking is handled fine grained in NtpSyncRemoteService -->
         <service android:name=".service.NtpSyncRemoteService" >
             <intent-filter>

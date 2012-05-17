@@ -272,5 +272,4 @@ public class BaseActivity extends PreferenceActivity {
         // unbind from NtpSync
         unbindService(mConnection);
     }
-
 }

@@ -13,6 +13,38 @@
     <!-- Buttons -->
     <string name="button_exit">Exit</string>
 
+    <!-- Detailed query -->
+    <string name="detailed_query_title">Detailed query</string>
+    <string name="detailed_query_unspecified">(Unspecified or Unavailable)</string>
+    <string name="detailed_query_primary_reference">(Primary Reference; e.g., GPS)</string>
+    <string name="detailed_query_secondary_reference">(Secondary Reference; e.g. via NTP or SNTP)</string>
+    <string name="detailed_query_server">Server:</string>
+    <string name="detailed_query_stratum">Stratum:</string>
+    <string name="detailed_query_leap">Leap:</string>
+    <string name="detailed_query_version">Version:</string>
+    <string name="detailed_query_precision">Precision:</string>
+    <string name="detailed_query_mode">Mode:</string>
+    <string name="detailed_query_poll">Poll:</string>
+    <string name="detailed_query_seconds">seconds</string>
+    <string name="detailed_query_rootdelay">Rootdelay:</string>
+    <string name="detailed_query_rootdispersion">Rootdispersion(ms):</string>
+    <string name="detailed_query_reference_identifier">Reference Identifier:</string>
+    <string name="detailed_query_reference_timestamp">Reference Timestamp:</string>
+    <string name="detailed_query_originate_timestamp">Originate Timestamp:</string>
+    <string name="detailed_query_receive_timestamp">Receive Timestamp:</string>
+    <string name="detailed_query_transmit_timestamp">Transmit Timestamp:</string>
+    <string name="detailed_query_destination_timestamp">Destination Timestamp:</string>
+    <string name="detailed_query_computed_offset">Computed offset:</string>
+    <string name="detailed_query_roundtrip_delay">Roundtrip delay(ms):</string>
+    <string name="detailed_query_clock_offset">Clock offset(ms):</string>
+
+    <!-- Return messages -->
+    <string name="return_generic_error">Generic error!</string>
+    <string name="return_timeout">Server timeout!</string>
+    <string name="return_date_util">Date util not found!</string>
+    <string name="return_get_time">NTP Time is</string>
+    <string name="return_set_time">Time was set to</string>
+
     <!-- Preferences -->
     <string name="pref_query">Query!</string>
     <string name="pref_detailed_query">Detailed query!</string>

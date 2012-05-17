@@ -72,7 +72,7 @@ public class BootService extends Service {
                         Intent serviceIntent = new Intent(appContext, NtpSyncService.class);
 
                         serviceIntent.putExtra(NtpSyncService.EXTRA_ACTION,
-                                NtpSyncService.ACTION_QUERY_TIME);
+                                NtpSyncService.ACTION_QUERY);
 
                         // Message is received after saving is done in service
                         Handler resultHandler = new Handler() {
@@ -176,5 +176,4 @@ public class BootService extends Service {
     public IBinder onBind(Intent intent) {
         return null;
     }
-
 }

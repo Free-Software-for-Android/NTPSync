@@ -108,7 +108,7 @@ public class BaseActivity extends PreferenceActivity {
                 // start service with ntp server from preferences
                 Intent intent = new Intent(mActivity, NtpSyncService.class);
 
-                intent.putExtra(NtpSyncService.EXTRA_ACTION, NtpSyncService.ACTION_QUERY_TIME);
+                intent.putExtra(NtpSyncService.EXTRA_ACTION, NtpSyncService.ACTION_QUERY);
 
                 // Message is received after saving is done in service
                 Handler resultHandler = new Handler() {
@@ -119,7 +119,8 @@ public class BaseActivity extends PreferenceActivity {
                         Toast toast = null;
                         switch (message.arg1) {
                         case NtpSyncService.RETURN_GENERIC_ERROR:
-                            toast = Toast.makeText(mActivity, "error", Toast.LENGTH_LONG);
+                            toast = Toast.makeText(mActivity,
+                                    getString(R.string.return_generic_error), Toast.LENGTH_LONG);
                             toast.show();
 
                             break;
@@ -129,14 +130,15 @@ public class BaseActivity extends PreferenceActivity {
                             Date newTime = (Date) returnData
                                     .getSerializable(NtpSyncService.MESSAGE_DATA_TIME);
 
-                            toast = Toast.makeText(mActivity, "NTP Time is " + newTime,
-                                    Toast.LENGTH_LONG);
+                            toast = Toast.makeText(mActivity, getString(R.string.return_get_time)
+                                    + " " + newTime, Toast.LENGTH_LONG);
                             toast.show();
 
                             break;
 
                         case NtpSyncService.RETURN_SERVER_TIMEOUT:
-                            toast = Toast.makeText(mActivity, "server timeout!", Toast.LENGTH_LONG);
+                            toast = Toast.makeText(mActivity, getString(R.string.return_timeout),
+                                    Toast.LENGTH_LONG);
                             toast.show();
 
                             break;
@@ -173,7 +175,7 @@ public class BaseActivity extends PreferenceActivity {
                 // start service with ntp server from preferences
                 Intent intent = new Intent(mActivity, NtpSyncService.class);
 
-                intent.putExtra(NtpSyncService.EXTRA_ACTION, NtpSyncService.ACTION_QUERY_TIME);
+                intent.putExtra(NtpSyncService.EXTRA_ACTION, NtpSyncService.ACTION_QUERY);
 
                 // Message is received after saving is done in service
                 Handler resultHandler = new Handler() {
@@ -184,7 +186,8 @@ public class BaseActivity extends PreferenceActivity {
                         Toast toast = null;
                         switch (message.arg1) {
                         case NtpSyncService.RETURN_GENERIC_ERROR:
-                            toast = Toast.makeText(mActivity, "error", Toast.LENGTH_LONG);
+                            toast = Toast.makeText(mActivity,
+                                    getString(R.string.return_generic_error), Toast.LENGTH_LONG);
                             toast.show();
 
                             break;
@@ -194,14 +197,15 @@ public class BaseActivity extends PreferenceActivity {
                             Date newTime = (Date) returnData
                                     .getSerializable(NtpSyncService.MESSAGE_DATA_TIME);
 
-                            toast = Toast.makeText(mActivity, "Time was set to " + newTime,
-                                    Toast.LENGTH_LONG);
+                            toast = Toast.makeText(mActivity, getString(R.string.return_set_time)
+                                    + " " + newTime, Toast.LENGTH_LONG);
                             toast.show();
 
                             break;
 
                         case NtpSyncService.RETURN_SERVER_TIMEOUT:
-                            toast = Toast.makeText(mActivity, "server timeout!", Toast.LENGTH_LONG);
+                            toast = Toast.makeText(mActivity, getString(R.string.return_timeout),
+                                    Toast.LENGTH_LONG);
                             toast.show();
 
                             break;
@@ -212,7 +216,7 @@ public class BaseActivity extends PreferenceActivity {
                             break;
 
                         case NtpSyncService.RETURN_UTIL_NOT_FOUND:
-                            toast = Toast.makeText(mActivity, "date util not found!",
+                            toast = Toast.makeText(mActivity, getString(R.string.return_date_util),
                                     Toast.LENGTH_LONG);
                             toast.show();
 
@@ -262,7 +266,8 @@ public class BaseActivity extends PreferenceActivity {
                         Toast toast = null;
                         switch (message.arg1) {
                         case NtpSyncService.RETURN_GENERIC_ERROR:
-                            toast = Toast.makeText(mActivity, "error", Toast.LENGTH_LONG);
+                            toast = Toast.makeText(mActivity,
+                                    getString(R.string.return_generic_error), Toast.LENGTH_LONG);
                             toast.show();
 
                             break;
@@ -273,7 +278,7 @@ public class BaseActivity extends PreferenceActivity {
                                     .getString(NtpSyncService.MESSAGE_DATA_DETAILED_OUTPUT);
 
                             AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
-                            builder.setTitle("Detailed information");
+                            builder.setTitle(R.string.detailed_query_title);
                             builder.setMessage(Html.fromHtml(detailedOutput));
                             AlertDialog alert = builder.create();
                             alert.show();
@@ -285,7 +290,8 @@ public class BaseActivity extends PreferenceActivity {
                             break;
 
                         case NtpSyncService.RETURN_SERVER_TIMEOUT:
-                            toast = Toast.makeText(mActivity, "server timeout!", Toast.LENGTH_LONG);
+                            toast = Toast.makeText(mActivity, getString(R.string.return_timeout),
+                                    Toast.LENGTH_LONG);
                             toast.show();
 
                             break;

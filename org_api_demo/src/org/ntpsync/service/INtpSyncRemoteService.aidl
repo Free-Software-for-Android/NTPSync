@@ -20,20 +20,18 @@
 
 package org.ntpsync.service;
 
+/**
+ * Because Exceptions can not be thrown through an IPC call, we use return values.
+ * The methods return values from the following list:
+ *
+ * RETURN_GENERIC_ERROR = 0
+ * RETURN_OKAY = 1
+ * RETURN_SERVER_TIMEOUT = 2
+ * RETURN_NO_ROOT = 3
+ * RETURN_UTIL_NOT_FOUND = 4
+ */
 interface INtpSyncRemoteService {
-	/*
-	 * Because Exceptions can not be thrown through an IPC call, we use return values.
-	 * The methods return a int from the following list:
-	 *
-	 * RETURN_GENERIC_ERROR = 0
-     * RETURN_OKAY = 1
-     * RETURN_SERVER_TIMEOUT = 2
-     * RETURN_NO_ROOT = 3
-     * RETURN_UTIL_NOT_FOUND = 4
-	 */
-	 
-	
-    /*
+    /**
      * Gets current time offset from NTP server.
      * If ntpHostname is null the NTP server from NTPSync preferences is used
      *
@@ -42,7 +40,7 @@ interface INtpSyncRemoteService {
      */
     int getOffset(in String ntpHostname, out Bundle output);
     
-    /*
+    /**
      * Sets the time queried from a NTP server as the Android system time.
      * If no ntpHostname is null the NTP server from NTPSyncs config is used
      *

@@ -22,6 +22,7 @@ package org.ntpsync.service;
 
 import java.util.Date;
 
+import org.apache.commons.net.ntp.TimeInfo;
 import org.ntpsync.util.Constants;
 import org.ntpsync.util.Log;
 import org.ntpsync.util.NtpSyncUtils;
@@ -46,12 +47,11 @@ public class NtpSyncService extends IntentService {
     public static final String EXTRA_DATA = "data";
 
     // possible actions in this service
-    public static final int ACTION_QUERY_TIME = 1;
+    public static final int ACTION_QUERY = 1;
     public static final int ACTION_QUERY_DETAILED = 2;
 
     // keys for data bundle
     public static final String DATA_GET_NTP_SERVER_FROM_PREFS = "use_ntp_server_from_prefs";
-    public static final String DATA_NTP_SERVER = "ntp_server";
     public static final String DATA_APPLY_DIRECTLY = "apply_directly";
 
     // messages that can be send to handler
@@ -125,26 +125,8 @@ public class NtpSyncService extends IntentService {
             mMessenger = (Messenger) extras.get(EXTRA_MESSENGER);
         }
 
-        /* NTP server from prefs or from data bundle? */
-        boolean getNtpServerFromPrefs = false;
-        if (mData.containsKey(DATA_GET_NTP_SERVER_FROM_PREFS)) {
-            if (mData.getBoolean(DATA_GET_NTP_SERVER_FROM_PREFS)) {
-                getNtpServerFromPrefs = true;
-            }
-        }
-
-        String ntpHostname = null;
-        if (getNtpServerFromPrefs) {
-            ntpHostname = PreferencesHelper.getNtpServer(this);
-        } else {
-            if (mData.containsKey(DATA_NTP_SERVER)) {
-                ntpHostname = mData.getString(DATA_NTP_SERVER);
-            } else {
-                Log.e(Constants.TAG,
-                        "Extra bundle must contain a ntp server or a boolean to indicate that the ntp server should be get from the prefs!");
-                return;
-            }
-        }
+        // get NTP server from preferences
+        String ntpHostname = PreferencesHelper.getNtpServer(this);
 
         // default values
         int returnMessage = RETURN_GENERIC_ERROR;
@@ -152,7 +134,7 @@ public class NtpSyncService extends IntentService {
 
         // execute action from extra bundle
         switch (action) {
-        case ACTION_QUERY_TIME:
+        case ACTION_QUERY:
 
             try {
                 offset = NtpSyncUtils.query(ntpHostname);
@@ -187,7 +169,9 @@ public class NtpSyncService extends IntentService {
 
             String output = null;
             try {
-                output = NtpSyncUtils.detailedQuery(ntpHostname);
+                TimeInfo info = NtpSyncUtils.detailedQuery(ntpHostname);
+
+                output = NtpSyncUtils.processResponse(info, this);
             } catch (Exception e) {
                 // send timeout message to ui
                 sendMessageToHandler(RETURN_SERVER_TIMEOUT);
@@ -203,8 +187,10 @@ public class NtpSyncService extends IntentService {
             sendMessageToHandler(RETURN_OKAY, messageDataDetailedQuery);
 
             break;
+
         default:
             break;
+
         }
 
         // unlock cpu
