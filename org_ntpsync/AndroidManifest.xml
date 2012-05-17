@@ -3,7 +3,7 @@
     package="org.ntpsync"
     android:installLocation="internalOnly"
     android:versionCode="1"
-    android:versionName="0.5" >
+    android:versionName="1.0" >
 
     <uses-sdk
         android:minSdkVersion="7"

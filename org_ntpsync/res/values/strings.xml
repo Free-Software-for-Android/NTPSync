@@ -42,6 +42,7 @@
     <string name="return_generic_error">Generic error!</string>
     <string name="return_timeout">Server timeout!</string>
     <string name="return_date_util">Date util not found!</string>
+    <string name="return_no_root">No root access!</string>
     <string name="return_get_time">NTP Time is</string>
     <string name="return_set_time">Time was set to</string>
 

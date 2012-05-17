@@ -22,6 +22,7 @@ package org.ntpsync.service;
 
 import java.util.Date;
 
+import org.ntpsync.R;
 import org.ntpsync.util.Constants;
 import org.ntpsync.util.Log;
 
@@ -80,7 +81,8 @@ public class BootService extends Service {
                                 Toast toast = null;
                                 switch (message.arg1) {
                                 case NtpSyncService.RETURN_GENERIC_ERROR:
-                                    toast = Toast.makeText(appContext, "NTPSync: error",
+                                    toast = Toast.makeText(appContext, getString(R.string.app_name)
+                                            + ": " + getString(R.string.return_generic_error),
                                             Toast.LENGTH_LONG);
                                     toast.show();
 
@@ -91,7 +93,8 @@ public class BootService extends Service {
                                     Date newTime = (Date) returnData
                                             .getSerializable(NtpSyncService.MESSAGE_DATA_TIME);
 
-                                    toast = Toast.makeText(appContext, "NTPSync: Time was set to "
+                                    toast = Toast.makeText(appContext, getString(R.string.app_name)
+                                            + ": " + getString(R.string.return_set_time) + " "
                                             + newTime, Toast.LENGTH_LONG);
                                     toast.show();
 
@@ -101,22 +104,25 @@ public class BootService extends Service {
                                     break;
 
                                 case NtpSyncService.RETURN_SERVER_TIMEOUT:
-                                    toast = Toast.makeText(appContext, "NTPSync: server timeout!",
+                                    toast = Toast.makeText(appContext, getString(R.string.app_name)
+                                            + ": " + getString(R.string.return_timeout),
                                             Toast.LENGTH_LONG);
                                     toast.show();
 
                                     break;
 
                                 case NtpSyncService.RETURN_NO_ROOT:
-                                    toast = Toast.makeText(appContext, "NTPSync: no root!",
+                                    toast = Toast.makeText(appContext, getString(R.string.app_name)
+                                            + ": " + getString(R.string.return_no_root),
                                             Toast.LENGTH_LONG);
                                     toast.show();
 
                                     break;
 
                                 case NtpSyncService.RETURN_UTIL_NOT_FOUND:
-                                    toast = Toast.makeText(appContext,
-                                            "NTPSync: date util not found!", Toast.LENGTH_LONG);
+                                    toast = Toast.makeText(appContext, getString(R.string.app_name)
+                                            + ": " + getString(R.string.return_date_util),
+                                            Toast.LENGTH_LONG);
                                     toast.show();
 
                                     break;
