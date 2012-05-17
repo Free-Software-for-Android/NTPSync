@@ -20,6 +20,8 @@
 
 package org.ntpsync.service;
 
+import java.util.Date;
+
 import org.ntpsync.util.Constants;
 import org.ntpsync.util.Log;
 
@@ -30,7 +32,12 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Message;
+import android.os.Messenger;
+import android.widget.Toast;
 
 public class BootService extends Service {
 
@@ -45,6 +52,9 @@ public class BootService extends Service {
 
                 boolean noConnectivity = intent.getBooleanExtra(
                         ConnectivityManager.EXTRA_NO_CONNECTIVITY, false);
+
+                // be backward compatible
+                @SuppressWarnings("deprecation")
                 NetworkInfo aNetworkInfo = (NetworkInfo) intent
                         .getParcelableExtra(ConnectivityManager.EXTRA_NETWORK_INFO);
 
@@ -53,20 +63,81 @@ public class BootService extends Service {
                     if ((aNetworkInfo.getType() == ConnectivityManager.TYPE_MOBILE)
                             || (aNetworkInfo.getType() == ConnectivityManager.TYPE_WIFI)) {
 
-                        Log.d(Constants.TAG, "Now we have internet! Start NTP sync...");
+                        Log.d(Constants.TAG,
+                                "Now we have internet! Start NTP query and set time...");
 
                         /* Start NTP sync! */
-                        Context appContext = context.getApplicationContext();
-                        // start service and apply silently
+                        final Context appContext = context.getApplicationContext();
+                        // start service with ntp server from preferences
                         Intent serviceIntent = new Intent(appContext, NtpSyncService.class);
 
                         serviceIntent.putExtra(NtpSyncService.EXTRA_ACTION,
-                                NtpSyncService.ACTION_SET_TIME_SILENTLY);
+                                NtpSyncService.ACTION_QUERY_TIME);
+
+                        // Message is received after saving is done in service
+                        Handler resultHandler = new Handler() {
+                            public void handleMessage(Message message) {
+                                Toast toast = null;
+                                switch (message.arg1) {
+                                case NtpSyncService.RETURN_GENERIC_ERROR:
+                                    toast = Toast.makeText(appContext, "NTPSync: error",
+                                            Toast.LENGTH_LONG);
+                                    toast.show();
+
+                                    break;
+
+                                case NtpSyncService.RETURN_OKAY:
+                                    Bundle returnData = message.getData();
+                                    Date newTime = (Date) returnData
+                                            .getSerializable(NtpSyncService.MESSAGE_DATA_TIME);
+
+                                    toast = Toast.makeText(appContext, "NTPSync: Time was set to "
+                                            + newTime, Toast.LENGTH_LONG);
+                                    toast.show();
+
+                                    // stop BootService
+                                    stopSelf();
+
+                                    break;
+
+                                case NtpSyncService.RETURN_SERVER_TIMEOUT:
+                                    toast = Toast.makeText(appContext, "NTPSync: server timeout!",
+                                            Toast.LENGTH_LONG);
+                                    toast.show();
+
+                                    break;
+
+                                case NtpSyncService.RETURN_NO_ROOT:
+                                    toast = Toast.makeText(appContext, "NTPSync: no root!",
+                                            Toast.LENGTH_LONG);
+                                    toast.show();
+
+                                    break;
+
+                                case NtpSyncService.RETURN_UTIL_NOT_FOUND:
+                                    toast = Toast.makeText(appContext,
+                                            "NTPSync: date util not found!", Toast.LENGTH_LONG);
+                                    toast.show();
+
+                                    break;
+
+                                default:
+                                    break;
+                                }
+
+                            };
+                        };
+
+                        // Create a new Messenger for the communication back
+                        Messenger messenger = new Messenger(resultHandler);
+                        serviceIntent.putExtra(NtpSyncService.EXTRA_MESSENGER, messenger);
+
+                        Bundle data = new Bundle();
+                        data.putBoolean(NtpSyncService.DATA_GET_NTP_SERVER_FROM_PREFS, true);
+                        data.putBoolean(NtpSyncService.DATA_APPLY_DIRECTLY, true);
+                        serviceIntent.putExtra(NtpSyncService.EXTRA_DATA, data);
 
                         appContext.startService(serviceIntent);
-
-                        // stop BootService
-                        stopSelf();
                     }
                 }
             }

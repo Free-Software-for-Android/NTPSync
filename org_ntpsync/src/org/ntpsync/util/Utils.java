@@ -144,18 +144,18 @@ public class Utils {
                     Log.d(Constants.TAG, "Date was set successful using 'date -s $time' as root!");
 
                     // it works, thus return true
-                    return NtpSyncService.MESSAGE_OKAY;
+                    return NtpSyncService.RETURN_OKAY;
                 } catch (Exception e) {
                     Log.e(Constants.TAG, "Error while using 'date -s $time' as root!", e);
-                    return NtpSyncService.MESSAGE_ERROR;
+                    return NtpSyncService.RETURN_GENERIC_ERROR;
                 }
             } else {
                 Log.e(Constants.TAG, "Util 'date' could not be found!");
-                return NtpSyncService.MESSAGE_UTIL_NOT_FOUND;
+                return NtpSyncService.RETURN_UTIL_NOT_FOUND;
             }
         } else {
             Log.e(Constants.TAG, "Android is not rooted!");
-            return NtpSyncService.MESSAGE_NO_ROOT;
+            return NtpSyncService.RETURN_NO_ROOT;
         }
     }
 

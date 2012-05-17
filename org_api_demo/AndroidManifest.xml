@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.ntpsync.apidemo"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk android:minSdkVersion="15" />
+
+    <uses-permission android:name="org.ntpsync.permission.GET_TIME" />
+    <uses-permission android:name="org.ntpsync.permission.SET_TIME" />
+
+    <application
+        android:icon="@drawable/icon"
+        android:label="NTPSync API Demo" >
+        <activity
+            android:name=".BaseActivity"
+            android:label="NTPSync API Demo" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

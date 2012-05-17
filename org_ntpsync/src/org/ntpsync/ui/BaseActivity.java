@@ -108,7 +108,7 @@ public class BaseActivity extends PreferenceActivity {
                 // start service with ntp server from preferences
                 Intent intent = new Intent(mActivity, NtpSyncService.class);
 
-                intent.putExtra(NtpSyncService.EXTRA_ACTION, NtpSyncService.ACTION_GET_TIME);
+                intent.putExtra(NtpSyncService.EXTRA_ACTION, NtpSyncService.ACTION_QUERY_TIME);
 
                 // Message is received after saving is done in service
                 Handler resultHandler = new Handler() {
@@ -118,13 +118,13 @@ public class BaseActivity extends PreferenceActivity {
 
                         Toast toast = null;
                         switch (message.arg1) {
-                        case NtpSyncService.MESSAGE_ERROR:
+                        case NtpSyncService.RETURN_GENERIC_ERROR:
                             toast = Toast.makeText(mActivity, "error", Toast.LENGTH_LONG);
                             toast.show();
 
                             break;
 
-                        case NtpSyncService.MESSAGE_OKAY:
+                        case NtpSyncService.RETURN_OKAY:
                             Bundle returnData = message.getData();
                             Date newTime = (Date) returnData
                                     .getSerializable(NtpSyncService.MESSAGE_DATA_TIME);
@@ -135,7 +135,7 @@ public class BaseActivity extends PreferenceActivity {
 
                             break;
 
-                        case NtpSyncService.MESSAGE_SERVER_TIMEOUT:
+                        case NtpSyncService.RETURN_SERVER_TIMEOUT:
                             toast = Toast.makeText(mActivity, "server timeout!", Toast.LENGTH_LONG);
                             toast.show();
 
@@ -173,7 +173,7 @@ public class BaseActivity extends PreferenceActivity {
                 // start service with ntp server from preferences
                 Intent intent = new Intent(mActivity, NtpSyncService.class);
 
-                intent.putExtra(NtpSyncService.EXTRA_ACTION, NtpSyncService.ACTION_GET_TIME);
+                intent.putExtra(NtpSyncService.EXTRA_ACTION, NtpSyncService.ACTION_QUERY_TIME);
 
                 // Message is received after saving is done in service
                 Handler resultHandler = new Handler() {
@@ -183,13 +183,13 @@ public class BaseActivity extends PreferenceActivity {
 
                         Toast toast = null;
                         switch (message.arg1) {
-                        case NtpSyncService.MESSAGE_ERROR:
+                        case NtpSyncService.RETURN_GENERIC_ERROR:
                             toast = Toast.makeText(mActivity, "error", Toast.LENGTH_LONG);
                             toast.show();
 
                             break;
 
-                        case NtpSyncService.MESSAGE_OKAY:
+                        case NtpSyncService.RETURN_OKAY:
                             Bundle returnData = message.getData();
                             Date newTime = (Date) returnData
                                     .getSerializable(NtpSyncService.MESSAGE_DATA_TIME);
@@ -200,19 +200,19 @@ public class BaseActivity extends PreferenceActivity {
 
                             break;
 
-                        case NtpSyncService.MESSAGE_SERVER_TIMEOUT:
+                        case NtpSyncService.RETURN_SERVER_TIMEOUT:
                             toast = Toast.makeText(mActivity, "server timeout!", Toast.LENGTH_LONG);
                             toast.show();
 
                             break;
 
-                        case NtpSyncService.MESSAGE_NO_ROOT:
+                        case NtpSyncService.RETURN_NO_ROOT:
                             Utils.showRootDialog(mActivity);
 
                             break;
 
-                        case NtpSyncService.MESSAGE_UTIL_NOT_FOUND:
-                            toast = Toast.makeText(mActivity, "date Util not found!",
+                        case NtpSyncService.RETURN_UTIL_NOT_FOUND:
+                            toast = Toast.makeText(mActivity, "date util not found!",
                                     Toast.LENGTH_LONG);
                             toast.show();
 
@@ -251,7 +251,7 @@ public class BaseActivity extends PreferenceActivity {
                 // start service with ntp server from preferences
                 Intent intent = new Intent(mActivity, NtpSyncService.class);
 
-                intent.putExtra(NtpSyncService.EXTRA_ACTION, NtpSyncService.ACTION_GET_DETAILED);
+                intent.putExtra(NtpSyncService.EXTRA_ACTION, NtpSyncService.ACTION_QUERY_DETAILED);
 
                 // Message is received after saving is done in service
                 Handler resultHandler = new Handler() {
@@ -261,13 +261,13 @@ public class BaseActivity extends PreferenceActivity {
 
                         Toast toast = null;
                         switch (message.arg1) {
-                        case NtpSyncService.MESSAGE_ERROR:
+                        case NtpSyncService.RETURN_GENERIC_ERROR:
                             toast = Toast.makeText(mActivity, "error", Toast.LENGTH_LONG);
                             toast.show();
 
                             break;
 
-                        case NtpSyncService.MESSAGE_OKAY:
+                        case NtpSyncService.RETURN_OKAY:
                             Bundle returnData = message.getData();
                             String detailedOutput = (String) returnData
                                     .getString(NtpSyncService.MESSAGE_DATA_DETAILED_OUTPUT);
@@ -284,7 +284,7 @@ public class BaseActivity extends PreferenceActivity {
 
                             break;
 
-                        case NtpSyncService.MESSAGE_SERVER_TIMEOUT:
+                        case NtpSyncService.RETURN_SERVER_TIMEOUT:
                             toast = Toast.makeText(mActivity, "server timeout!", Toast.LENGTH_LONG);
                             toast.show();
 
@@ -344,10 +344,6 @@ public class BaseActivity extends PreferenceActivity {
             }
 
         });
-
-        // TODO: TEST
-        // set one hour later
-        // Utils.setTime(new Date(new Date().getTime() + (1000 * 60 * 60)));
 
     }
 }

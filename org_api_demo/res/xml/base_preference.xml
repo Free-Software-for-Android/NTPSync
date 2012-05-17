@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="AIDL IPC" >
+        <Preference
+            android:key="get_time_key"
+            android:title="Get time offset" />
+        <Preference
+            android:key="set_time_key"
+            android:title="Set system time" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

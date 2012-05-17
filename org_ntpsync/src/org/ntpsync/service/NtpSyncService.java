@@ -46,9 +46,8 @@ public class NtpSyncService extends IntentService {
     public static final String EXTRA_DATA = "data";
 
     // possible actions in this service
-    public static final int ACTION_GET_TIME = 1;
-    public static final int ACTION_GET_DETAILED = 2;
-    public static final int ACTION_SET_TIME_SILENTLY = 3;
+    public static final int ACTION_QUERY_TIME = 1;
+    public static final int ACTION_QUERY_DETAILED = 2;
 
     // keys for data bundle
     public static final String DATA_GET_NTP_SERVER_FROM_PREFS = "use_ntp_server_from_prefs";
@@ -56,11 +55,11 @@ public class NtpSyncService extends IntentService {
     public static final String DATA_APPLY_DIRECTLY = "apply_directly";
 
     // messages that can be send to handler
-    public static final int MESSAGE_ERROR = 0;
-    public static final int MESSAGE_OKAY = 1;
-    public static final int MESSAGE_SERVER_TIMEOUT = 2;
-    public static final int MESSAGE_NO_ROOT = 3;
-    public static final int MESSAGE_UTIL_NOT_FOUND = 4;
+    public static final int RETURN_GENERIC_ERROR = 0;
+    public static final int RETURN_OKAY = 1;
+    public static final int RETURN_SERVER_TIMEOUT = 2;
+    public static final int RETURN_NO_ROOT = 3;
+    public static final int RETURN_UTIL_NOT_FOUND = 4;
 
     // returned message data
     public static final String MESSAGE_DATA_TIME = "time";
@@ -115,125 +114,97 @@ public class NtpSyncService extends IntentService {
 
         int action = extras.getInt(EXTRA_ACTION);
 
-        /*
-         * SET TIME SILENTLY
-         */
-        if (action == ACTION_SET_TIME_SILENTLY) {
-            // default values
-            int returnMessage = MESSAGE_ERROR;
-            long offset = 0;
+        // for these actions we get a result back which is send via the messenger and we require
+        // a data bundle
+        if (!(extras.containsKey(EXTRA_DATA) && extras.containsKey(EXTRA_MESSENGER))) {
+            Log.e(Constants.TAG,
+                    "Extra bundle must contain a messenger to send result back to and a data bundle!");
+            return;
+        } else {
+            mData = extras.getBundle(EXTRA_DATA);
+            mMessenger = (Messenger) extras.get(EXTRA_MESSENGER);
+        }
+
+        /* NTP server from prefs or from data bundle? */
+        boolean getNtpServerFromPrefs = false;
+        if (mData.containsKey(DATA_GET_NTP_SERVER_FROM_PREFS)) {
+            if (mData.getBoolean(DATA_GET_NTP_SERVER_FROM_PREFS)) {
+                getNtpServerFromPrefs = true;
+            }
+        }
+
+        String ntpHostname = null;
+        if (getNtpServerFromPrefs) {
+            ntpHostname = PreferencesHelper.getNtpServer(this);
+        } else {
+            if (mData.containsKey(DATA_NTP_SERVER)) {
+                ntpHostname = mData.getString(DATA_NTP_SERVER);
+            } else {
+                Log.e(Constants.TAG,
+                        "Extra bundle must contain a ntp server or a boolean to indicate that the ntp server should be get from the prefs!");
+                return;
+            }
+        }
+
+        // default values
+        int returnMessage = RETURN_GENERIC_ERROR;
+        long offset = 0;
+
+        // execute action from extra bundle
+        switch (action) {
+        case ACTION_QUERY_TIME:
 
             try {
-                // query time
-                offset = NtpSyncUtils.query(PreferencesHelper.getNtpServer(this));
-
-                Log.d(Constants.TAG, "Offset from NTP server: " + offset);
-
-                // set time
-                returnMessage = Utils.setTime(offset);
+                offset = NtpSyncUtils.query(ntpHostname);
+                returnMessage = RETURN_OKAY;
             } catch (Exception e) {
-                returnMessage = MESSAGE_SERVER_TIMEOUT;
-            }
-
-            Log.d(Constants.TAG, "Time was get and set silently with the following returnMessage: "
-                    + returnMessage);
-        } else {
-            /*
-             * GET TIME AND GET DETAILED
-             */
-
-            // for these actions we get a result back which is send via the messenger and we require
-            // a data bundle
-            if (!(extras.containsKey(EXTRA_DATA) && extras.containsKey(EXTRA_MESSENGER))) {
-                Log.e(Constants.TAG,
-                        "Extra bundle must contain a messenger to send result back to and a data bundle!");
+                // send timeout message to ui
+                sendMessageToHandler(RETURN_SERVER_TIMEOUT);
+                Log.d(Constants.TAG, "Timeout on server!");
+                // abort directly
                 return;
-            } else {
-                mData = extras.getBundle(EXTRA_DATA);
-                mMessenger = (Messenger) extras.get(EXTRA_MESSENGER);
             }
 
-            /* NTP server from prefs or from data bundle? */
-            boolean getNtpServerFromPrefs = false;
-            if (mData.containsKey(DATA_GET_NTP_SERVER_FROM_PREFS)) {
-                if (mData.getBoolean(DATA_GET_NTP_SERVER_FROM_PREFS)) {
-                    getNtpServerFromPrefs = true;
+            if (mData.containsKey(DATA_APPLY_DIRECTLY)) {
+                if (mData.getBoolean(DATA_APPLY_DIRECTLY)) {
+                    returnMessage = Utils.setTime(offset);
                 }
             }
 
-            String ntpHostname = null;
-            if (getNtpServerFromPrefs) {
-                ntpHostname = PreferencesHelper.getNtpServer(this);
-            } else {
-                if (mData.containsKey(DATA_NTP_SERVER)) {
-                    ntpHostname = mData.getString(DATA_NTP_SERVER);
-                } else {
-                    Log.e(Constants.TAG,
-                            "Extra bundle must contain a ntp server or a boolean to indicate that the ntp server should be get from the prefs!");
-                    return;
-                }
+            // return time to ui
+            Bundle messageData = new Bundle();
+
+            // calculate new time
+            Date newTime = new Date(System.currentTimeMillis() + offset);
+
+            messageData.putSerializable(MESSAGE_DATA_TIME, newTime);
+
+            sendMessageToHandler(returnMessage, messageData);
+
+            break;
+
+        case ACTION_QUERY_DETAILED:
+
+            String output = null;
+            try {
+                output = NtpSyncUtils.detailedQuery(ntpHostname);
+            } catch (Exception e) {
+                // send timeout message to ui
+                sendMessageToHandler(RETURN_SERVER_TIMEOUT);
+                Log.d(Constants.TAG, "Timeout on server!");
+                // abort directly
+                return;
             }
 
-            // default values
-            int returnMessage = MESSAGE_ERROR;
-            long offset = 0;
+            // return detailed output to ui
+            Bundle messageDataDetailedQuery = new Bundle();
+            messageDataDetailedQuery.putSerializable(MESSAGE_DATA_DETAILED_OUTPUT, output);
 
-            // execute action from extra bundle
-            switch (action) {
-            case ACTION_GET_TIME:
+            sendMessageToHandler(RETURN_OKAY, messageDataDetailedQuery);
 
-                try {
-                    offset = NtpSyncUtils.query(ntpHostname);
-                    returnMessage = MESSAGE_OKAY;
-                } catch (Exception e) {
-                    // send timeout message to ui
-                    sendMessageToHandler(MESSAGE_SERVER_TIMEOUT);
-                    Log.d(Constants.TAG, "Timeout on server!");
-                    // abort directly
-                    return;
-                }
-
-                if (mData.containsKey(DATA_APPLY_DIRECTLY)) {
-                    if (mData.getBoolean(DATA_APPLY_DIRECTLY)) {
-                        returnMessage = Utils.setTime(offset);
-                    }
-                }
-
-                // return time to ui
-                Bundle messageData = new Bundle();
-
-                // calculate new time
-                Date newTime = new Date(System.currentTimeMillis() + offset);
-
-                messageData.putSerializable(MESSAGE_DATA_TIME, newTime);
-
-                sendMessageToHandler(returnMessage, messageData);
-
-                break;
-
-            case ACTION_GET_DETAILED:
-
-                String output = null;
-                try {
-                    output = NtpSyncUtils.detailedQuery(ntpHostname);
-                } catch (Exception e) {
-                    // send timeout message to ui
-                    sendMessageToHandler(MESSAGE_SERVER_TIMEOUT);
-                    Log.d(Constants.TAG, "Timeout on server!");
-                    // abort directly
-                    return;
-                }
-
-                // return detailed output to ui
-                Bundle messageDataDetailedQuery = new Bundle();
-                messageDataDetailedQuery.putSerializable(MESSAGE_DATA_DETAILED_OUTPUT, output);
-
-                sendMessageToHandler(MESSAGE_OKAY, messageDataDetailedQuery);
-
-                break;
-            default:
-                break;
-            }
+            break;
+        default:
+            break;
         }
 
         // unlock cpu

@@ -19,11 +19,23 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <!-- Required permission to wake phone up for setting time -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <!-- Required permission to use Google Android Market donations -->
     <uses-permission android:name="com.android.vending.BILLING" />
+
+    <permission
+        android:name="org.ntpsync.permission.GET_TIME"
+        android:description="@string/permission_get_time_description"
+        android:label="@string/permission_get_time_label"
+        android:permissionGroup="android.permission-group.NETWORK"
+        android:protectionLevel="dangerous" />
+    <permission
+        android:name="org.ntpsync.permission.SET_TIME"
+        android:description="@string/permission_set_time_description"
+        android:label="@string/permission_set_time_label"
+        android:permissionGroup="android.permission-group.SYSTEM_TOOLS"
+        android:protectionLevel="dangerous" />
 
     <!-- - Google Android Market donations -->
     <service android:name="org.donations.google.BillingService" />
@@ -72,6 +84,12 @@
 
         <service android:name=".service.BootService" />
         <service android:name=".service.NtpSyncService" />
+        <!-- Permission checking is handled fine grained in NtpSyncRemoteService -->
+        <service android:name=".service.NtpSyncRemoteService" >
+            <intent-filter>
+                <action android:name="org.ntpsync.service.INtpSyncRemoteService" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

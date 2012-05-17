@@ -27,6 +27,12 @@
     <string name="pref_about">About</string>
     <string name="pref_donations">Donations</string>
 
+    <!-- Permission -->
+    <string name="permission_get_time_description">Allows application to get current time by querying a NTP server.</string>
+    <string name="permission_get_time_label">Get Time from NTP</string>
+    <string name="permission_set_time_description">Allows application to set system time by querying a NTP server.</string>
+    <string name="permission_set_time_label">Set Time from NTP</string>
+
     <!-- About -->
     <string name="about_description">NTPSync is a simple NTP time synchronization app for Android.</string>
     <string name="about_license">License: GPL v3+</string>
