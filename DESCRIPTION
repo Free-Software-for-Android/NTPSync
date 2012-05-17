@@ -1,0 +1,32 @@
+<b>Description</b>
+NTPSync is a simple NTP time synchronization app for Android.
+
+<b>Requirements</b>
+To set system time to NTP time you need root access on your device, to just query the time you don't.
+
+<b>Problems</b>
+• Information can be found in in-app Help screen.
+• If you have other problems please report them in the issue tracker on http://code.google.com/p/ntp-sync/issues
+
+<b>Website with Source code and Issue Tracker</b>
+http://code.google.com/p/ntp-sync
+
+<b>Translations</b>
+Help translating NTPSync on https://www.transifex.net/projects/p/ntpsync
+
+<b>Donate</b>
+You can donate money to support the development in-app with PayPal, Flattr, or Google Play.
+
+<b>License</b>
+GPLv3
+
+<b>Permissions</b>
+• <i>Root access:</i> To set system time
+• <i>Internet access:</i> To query the NTP server
+• <i>Wakelock:</i> To maintain a reliable network connection while querying NTP server
+
+<b>Keywords</b>
+ntp, time, time synchronization, ntp query
+
+<b>Open source alternative to</b>
+ClockSync
