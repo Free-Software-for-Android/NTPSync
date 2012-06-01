@@ -25,7 +25,7 @@ import org.ntpsync.R;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-public class PreferencesHelper {
+public class PreferenceHelper {
     public static boolean getSetOnBoot(Context context) {
         SharedPreferences prefs = context.getSharedPreferences(Constants.PREFS_NAME,
                 Context.MODE_PRIVATE);
@@ -38,6 +38,20 @@ public class PreferencesHelper {
                 Context.MODE_PRIVATE);
         return prefs.getString(context.getString(R.string.pref_ntp_server_key),
                 context.getString(R.string.pref_ntp_server_def));
+    }
+
+    public static boolean getSyncDaily(Context context) {
+        SharedPreferences prefs = context.getSharedPreferences(Constants.PREFS_NAME,
+                Context.MODE_PRIVATE);
+        return prefs.getBoolean(context.getString(R.string.pref_sync_daily_key),
+                Boolean.parseBoolean(context.getString(R.string.pref_sync_daily_def)));
+    }
+
+    public static boolean getSyncOnlyOnWifi(Context context) {
+        SharedPreferences prefs = context.getSharedPreferences(Constants.PREFS_NAME,
+                Context.MODE_PRIVATE);
+        return prefs.getBoolean(context.getString(R.string.pref_sync_only_on_wifi_key),
+                Boolean.parseBoolean(context.getString(R.string.pref_sync_only_on_wifi_def)));
     }
 
 }

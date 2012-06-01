@@ -24,9 +24,13 @@ import java.util.Date;
 
 import org.donations.DonationsActivity;
 import org.ntpsync.R;
+import org.ntpsync.service.DailyListener;
 import org.ntpsync.service.NtpSyncService;
 import org.ntpsync.util.Constants;
+import org.ntpsync.util.PreferenceHelper;
 import org.ntpsync.util.Utils;
+
+import com.commonsware.cwac.wakeful.WakefulIntentService;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -51,6 +55,8 @@ public class BaseActivity extends PreferenceActivity {
     private Preference mQuery;
     private Preference mDetailedQuery;
     private Preference mQueryAndSet;
+
+    private Preference mSyncDailyPref;
 
     private Preference mHelp;
     private Preference mAbout;
@@ -88,12 +94,16 @@ public class BaseActivity extends PreferenceActivity {
 
         mActivity = this;
 
+        // schedule daily sync
+        WakefulIntentService.scheduleAlarms(new DailyListener(), this, false);
+
         getPreferenceManager().setSharedPreferencesName(Constants.PREFS_NAME);
         addPreferencesFromResource(R.xml.preferences);
 
         mQuery = (Preference) findPreference(getString(R.string.pref_query_key));
         mDetailedQuery = (Preference) findPreference(getString(R.string.pref_detailed_query_key));
         mQueryAndSet = (Preference) findPreference(getString(R.string.pref_query_and_set_key));
+        mSyncDailyPref = findPreference(getString(R.string.pref_sync_daily_key));
         mHelp = (Preference) findPreference(getString(R.string.pref_help_key));
         mAbout = (Preference) findPreference(getString(R.string.pref_about_key));
         mDonations = (Preference) findPreference(getString(R.string.pref_donations_key));
@@ -312,6 +322,29 @@ public class BaseActivity extends PreferenceActivity {
                 intent.putExtra(NtpSyncService.EXTRA_DATA, data);
 
                 mActivity.startService(intent);
+
+                return false;
+            }
+
+        });
+
+        /*
+         * Listen on click of update daily pref, register UpdateService if enabled,
+         * setOnPreferenceChangeListener is not used because it is executed before setting the
+         * preference value, this would lead to a false check in UpdateListener
+         */
+        mSyncDailyPref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                if (PreferenceHelper.getSyncDaily(mActivity)) {
+                    WakefulIntentService.scheduleAlarms(new DailyListener(), mActivity, false);
+                } else {
+                    WakefulIntentService.cancelAlarms(mActivity);
+                }
+                
+                //TODO: REMOVE
+                new DailyListener().sendWakefulWork(mActivity);
 
                 return false;
             }

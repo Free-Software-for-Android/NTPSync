@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.ntpsync"
     android:installLocation="internalOnly"
-    android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionCode="2"
+    android:versionName="1.1" >
 
     <uses-sdk
         android:minSdkVersion="7"
@@ -82,7 +82,6 @@
             </intent-filter>
         </receiver>
 
-        <service android:name=".service.BootService" />
         <service android:name=".service.NtpSyncService" />
 
         <!-- Permission checking is handled fine grained in NtpSyncRemoteService -->
@@ -91,6 +90,24 @@
                 <action android:name="org.ntpsync.service.INtpSyncRemoteService" />
             </intent-filter>
         </service>
+        <service android:name=".service.BackgroundService" />
+
+        <receiver android:name="com.commonsware.cwac.wakeful.AlarmReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+
+            <meta-data
+                android:name="com.commonsware.cwac.wakeful"
+                android:resource="@xml/wakeful" />
+        </receiver>
+        <receiver
+            android:name=".service.ConnectivityReceiver"
+            android:enabled="false" >
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

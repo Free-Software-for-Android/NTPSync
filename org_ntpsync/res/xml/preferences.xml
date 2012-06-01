@@ -13,18 +13,28 @@
         android:title="@string/pref_query_and_set" />
 
     <PreferenceCategory android:title="@string/pref_settings" >
+        <EditTextPreference
+            android:defaultValue="@string/pref_ntp_server_def"
+            android:key="@string/pref_ntp_server_key"
+            android:summary="@string/pref_ntp_server_summary"
+            android:title="@string/pref_ntp_server" />
+
         <CheckBoxPreference
             android:defaultValue="@string/pref_set_on_boot_def"
             android:key="@string/pref_set_on_boot_key"
             android:summary="@string/pref_set_on_boot_summary"
             android:title="@string/pref_set_on_boot" />
-
-        <EditTextPreference
-            android:defaultValue="@string/pref_ntp_server_def"
-            android:key="@string/pref_ntp_server_key"
-            android:summary="@string/pref_ntp_server_summary"
-            android:title="@string/pref_ntp_server" >
-        </EditTextPreference>
+        <CheckBoxPreference
+            android:defaultValue="@string/pref_sync_daily_def"
+            android:key="@string/pref_sync_daily_key"
+            android:summary="@string/pref_sync_daily_summary"
+            android:title="@string/pref_sync_daily" />
+        <CheckBoxPreference
+            android:defaultValue="@string/pref_sync_only_on_wifi_def"
+            android:dependency="@string/pref_sync_daily_key"
+            android:key="@string/pref_sync_only_on_wifi_key"
+            android:summary="@string/pref_sync_only_on_wifi_summary"
+            android:title="@string/pref_sync_only_on_wifi" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/pref_help" >
         <Preference

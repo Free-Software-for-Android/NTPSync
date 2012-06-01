@@ -50,11 +50,15 @@ public final class Log {
     }
 
     public static void i(String tag, String msg) {
-        android.util.Log.i(tag, msg);
+        if (Constants.DEBUG) {
+            android.util.Log.i(tag, msg);
+        }
     }
 
     public static void i(String tag, String msg, Throwable tr) {
-        android.util.Log.i(tag, msg, tr);
+        if (Constants.DEBUG) {
+            android.util.Log.i(tag, msg, tr);
+        }
     }
 
     public static void w(String tag, String msg) {

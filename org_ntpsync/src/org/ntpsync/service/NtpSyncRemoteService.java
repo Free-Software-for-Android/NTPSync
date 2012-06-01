@@ -23,7 +23,7 @@ package org.ntpsync.service;
 import org.ntpsync.util.Constants;
 import org.ntpsync.util.Log;
 import org.ntpsync.util.NtpSyncUtils;
-import org.ntpsync.util.PreferencesHelper;
+import org.ntpsync.util.PreferenceHelper;
 import org.ntpsync.util.Utils;
 
 import android.app.Service;
@@ -75,7 +75,7 @@ public class NtpSyncRemoteService extends Service {
 
                 // get hostname from prefs if not defined
                 if (ntpHostname == null) {
-                    ntpHostname = PreferencesHelper.getNtpServer(NtpSyncRemoteService.this);
+                    ntpHostname = PreferenceHelper.getNtpServer(NtpSyncRemoteService.this);
                 }
 
                 int returnMessage;
@@ -111,7 +111,7 @@ public class NtpSyncRemoteService extends Service {
 
                 // get hostname from prefs if not defined
                 if (ntpHostname == null) {
-                    ntpHostname = PreferencesHelper.getNtpServer(NtpSyncRemoteService.this);
+                    ntpHostname = PreferenceHelper.getNtpServer(NtpSyncRemoteService.this);
                 }
 
                 int returnMessage;

@@ -22,7 +22,7 @@ package org.ntpsync.service;
 
 import org.ntpsync.util.Constants;
 import org.ntpsync.util.Log;
-import org.ntpsync.util.PreferencesHelper;
+import org.ntpsync.util.PreferenceHelper;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -32,15 +32,13 @@ public class BootReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         if (Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction())) {
-            Log.d(Constants.TAG, "BootReceiver invoked, starting BootService...");
+            Log.d(Constants.TAG, "BootReceiver invoked, execute sendWakefulWork of DailyListener...");
 
             Context appContext = context.getApplicationContext();
 
             // if set on boot is enabled
-            if (PreferencesHelper.getSetOnBoot(appContext)) {
-                // start BootService which handles the rest
-                Intent myIntent = new Intent(appContext, BootService.class);
-                appContext.startService(myIntent);
+            if (PreferenceHelper.getSetOnBoot(appContext)) {
+                new DailyListener().sendWakefulWork(appContext);
             }
         }
     }

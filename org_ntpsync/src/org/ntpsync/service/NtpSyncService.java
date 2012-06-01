@@ -26,7 +26,7 @@ import org.apache.commons.net.ntp.TimeInfo;
 import org.ntpsync.util.Constants;
 import org.ntpsync.util.Log;
 import org.ntpsync.util.NtpSyncUtils;
-import org.ntpsync.util.PreferencesHelper;
+import org.ntpsync.util.PreferenceHelper;
 import org.ntpsync.util.Utils;
 
 import android.app.IntentService;
@@ -126,7 +126,7 @@ public class NtpSyncService extends IntentService {
         }
 
         // get NTP server from preferences
-        String ntpHostname = PreferencesHelper.getNtpServer(this);
+        String ntpHostname = PreferenceHelper.getNtpServer(this);
 
         // default values
         int returnMessage = RETURN_GENERIC_ERROR;
