@@ -342,9 +342,6 @@ public class BaseActivity extends PreferenceActivity {
                 } else {
                     WakefulIntentService.cancelAlarms(mActivity);
                 }
-                
-                //TODO: REMOVE
-                new DailyListener().sendWakefulWork(mActivity);
 
                 return false;
             }

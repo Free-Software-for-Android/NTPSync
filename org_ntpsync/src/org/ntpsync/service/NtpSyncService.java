@@ -20,9 +20,11 @@
 
 package org.ntpsync.service;
 
+import java.io.IOException;
 import java.util.Date;
 
 import org.apache.commons.net.ntp.TimeInfo;
+import org.ntpsync.R;
 import org.ntpsync.util.Constants;
 import org.ntpsync.util.Log;
 import org.ntpsync.util.NtpSyncUtils;
@@ -33,11 +35,14 @@ import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.os.Messenger;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.os.RemoteException;
+import android.widget.Toast;
 
 public class NtpSyncService extends IntentService {
 
@@ -116,12 +121,18 @@ public class NtpSyncService extends IntentService {
 
         // for these actions we get a result back which is send via the messenger and we require
         // a data bundle
-        if (!(extras.containsKey(EXTRA_DATA) && extras.containsKey(EXTRA_MESSENGER))) {
-            Log.e(Constants.TAG,
-                    "Extra bundle must contain a messenger to send result back to and a data bundle!");
+        if (!(extras.containsKey(EXTRA_DATA))) {
+            Log.e(Constants.TAG, "Extra bundle must contain a data bundle!");
             return;
         } else {
             mData = extras.getBundle(EXTRA_DATA);
+        }
+
+        boolean noMessenger = false;
+        if (!(extras.containsKey(EXTRA_MESSENGER))) {
+            Log.e(Constants.TAG, "No messenger present, using default result handling!");
+            noMessenger = true;
+        } else {
             mMessenger = (Messenger) extras.get(EXTRA_MESSENGER);
         }
 
@@ -136,55 +147,65 @@ public class NtpSyncService extends IntentService {
         switch (action) {
         case ACTION_QUERY:
 
+            // return time to ui
+            Bundle messageData = new Bundle();
             try {
                 offset = NtpSyncUtils.query(ntpHostname);
                 returnMessage = RETURN_OKAY;
-            } catch (Exception e) {
-                // send timeout message to ui
-                sendMessageToHandler(RETURN_SERVER_TIMEOUT);
-                Log.d(Constants.TAG, "Timeout on server!");
-                // abort directly
-                return;
-            }
 
-            if (mData.containsKey(DATA_APPLY_DIRECTLY)) {
-                if (mData.getBoolean(DATA_APPLY_DIRECTLY)) {
-                    returnMessage = Utils.setTime(offset);
+                // calculate new time
+                Date newTime = new Date(System.currentTimeMillis() + offset);
+
+                messageData.putSerializable(MESSAGE_DATA_TIME, newTime);
+
+                if (mData.containsKey(DATA_APPLY_DIRECTLY)) {
+                    if (mData.getBoolean(DATA_APPLY_DIRECTLY)) {
+                        returnMessage = Utils.setTime(offset);
+                    }
                 }
+            } catch (IOException e) {
+                returnMessage = RETURN_SERVER_TIMEOUT;
+                Log.d(Constants.TAG, "Timeout on server!");
             }
 
-            // return time to ui
-            Bundle messageData = new Bundle();
-
-            // calculate new time
-            Date newTime = new Date(System.currentTimeMillis() + offset);
-
-            messageData.putSerializable(MESSAGE_DATA_TIME, newTime);
-
-            sendMessageToHandler(returnMessage, messageData);
+            if (noMessenger) {
+                Message msg = Message.obtain();
+                msg.arg1 = returnMessage;
+                msg.setData(messageData);
+                handleResult(msg);
+            } else {
+                sendMessageToHandler(returnMessage, messageData);
+            }
 
             break;
 
         case ACTION_QUERY_DETAILED:
 
             String output = null;
+            Bundle messageDataDetailedQuery = null;
             try {
                 TimeInfo info = NtpSyncUtils.detailedQuery(ntpHostname);
 
                 output = NtpSyncUtils.processResponse(info, this);
-            } catch (Exception e) {
-                // send timeout message to ui
-                sendMessageToHandler(RETURN_SERVER_TIMEOUT);
+
+                // return detailed output to ui
+                messageDataDetailedQuery = new Bundle();
+                messageDataDetailedQuery.putSerializable(MESSAGE_DATA_DETAILED_OUTPUT, output);
+
+                returnMessage = RETURN_OKAY;
+            } catch (IOException e) {
+                returnMessage = RETURN_SERVER_TIMEOUT;
                 Log.d(Constants.TAG, "Timeout on server!");
-                // abort directly
-                return;
             }
 
-            // return detailed output to ui
-            Bundle messageDataDetailedQuery = new Bundle();
-            messageDataDetailedQuery.putSerializable(MESSAGE_DATA_DETAILED_OUTPUT, output);
-
-            sendMessageToHandler(RETURN_OKAY, messageDataDetailedQuery);
+            if (noMessenger) {
+                Message msg = Message.obtain();
+                msg.arg1 = returnMessage;
+                msg.setData(messageDataDetailedQuery);
+                handleResult(msg);
+            } else {
+                sendMessageToHandler(returnMessage, messageDataDetailedQuery);
+            }
 
             break;
 
@@ -195,6 +216,71 @@ public class NtpSyncService extends IntentService {
 
         // unlock cpu
         unlock();
+    }
+
+    private void handleResult(final Message message) {
+        Log.d(Constants.TAG, "Handle message directly in NtpSyncService...");
+
+        // we need a looper to get toasts displayed from service!
+        Handler handler = new Handler(Looper.getMainLooper());
+
+        handler.post(new Runnable() {
+            public void run() {
+
+                switch (message.arg1) {
+                case NtpSyncService.RETURN_GENERIC_ERROR:
+                    Toast.makeText(
+                            getApplicationContext(),
+                            getString(R.string.app_name) + ": "
+                                    + getString(R.string.return_generic_error), Toast.LENGTH_LONG)
+                            .show();
+
+                    break;
+
+                case NtpSyncService.RETURN_OKAY:
+
+                    Bundle returnData = message.getData();
+                    final Date newTime = (Date) returnData
+                            .getSerializable(NtpSyncService.MESSAGE_DATA_TIME);
+
+                    Toast.makeText(
+                            getApplicationContext(),
+                            getString(R.string.app_name) + ": "
+                                    + getString(R.string.return_set_time) + " " + newTime,
+                            Toast.LENGTH_LONG).show();
+
+                    break;
+
+                case NtpSyncService.RETURN_SERVER_TIMEOUT:
+                    Toast.makeText(
+                            getApplicationContext(),
+                            getString(R.string.app_name) + ": "
+                                    + getString(R.string.return_timeout), Toast.LENGTH_LONG).show();
+
+                    break;
+
+                case NtpSyncService.RETURN_NO_ROOT:
+                    Toast.makeText(
+                            getApplicationContext(),
+                            getString(R.string.app_name) + ": "
+                                    + getString(R.string.return_no_root), Toast.LENGTH_LONG).show();
+
+                    break;
+
+                case NtpSyncService.RETURN_UTIL_NOT_FOUND:
+                    Toast.makeText(
+                            getApplicationContext(),
+                            getString(R.string.app_name) + ": "
+                                    + getString(R.string.return_date_util), Toast.LENGTH_LONG)
+                            .show();
+
+                    break;
+
+                default:
+                    break;
+                }
+            }
+        });
     }
 
     private void sendMessageToHandler(Integer arg1, Integer arg2, Bundle messageData) {

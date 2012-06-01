@@ -20,21 +20,12 @@
 
 package org.ntpsync.service;
 
-import java.util.Date;
-import java.util.Timer;
-import java.util.TimerTask;
-
-import org.ntpsync.R;
 import org.ntpsync.util.Constants;
 import org.ntpsync.util.Log;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.os.Messenger;
-import android.widget.Toast;
 
 import com.commonsware.cwac.wakeful.WakefulIntentService;
 
@@ -57,67 +48,6 @@ public class BackgroundService extends WakefulIntentService {
         Intent serviceIntent = new Intent(appContext, NtpSyncService.class);
 
         serviceIntent.putExtra(NtpSyncService.EXTRA_ACTION, NtpSyncService.ACTION_QUERY);
-
-        // stop service by notifying it
-        // Message is received after saving is done in service
-        Handler resultHandler = new Handler() {
-            public void handleMessage(Message message) {
-                Log.d(Constants.TAG, "Handle message...");
-
-                Toast toast = null;
-                switch (message.arg1) {
-                case NtpSyncService.RETURN_GENERIC_ERROR:
-                    toast = Toast.makeText(appContext, getString(R.string.app_name) + ": "
-                            + getString(R.string.return_generic_error), Toast.LENGTH_LONG);
-                    toast.show();
-
-                    break;
-
-                case NtpSyncService.RETURN_OKAY:
-                    Bundle returnData = message.getData();
-                    Date newTime = (Date) returnData
-                            .getSerializable(NtpSyncService.MESSAGE_DATA_TIME);
-
-                    toast = Toast.makeText(appContext, getString(R.string.app_name) + ": "
-                            + getString(R.string.return_set_time) + " " + newTime,
-                            Toast.LENGTH_LONG);
-                    toast.show();
-
-                    break;
-
-                case NtpSyncService.RETURN_SERVER_TIMEOUT:
-                    toast = Toast.makeText(appContext, getString(R.string.app_name) + ": "
-                            + getString(R.string.return_timeout), Toast.LENGTH_LONG);
-                    toast.show();
-
-                    break;
-
-                case NtpSyncService.RETURN_NO_ROOT:
-                    toast = Toast.makeText(appContext, getString(R.string.app_name) + ": "
-                            + getString(R.string.return_no_root), Toast.LENGTH_LONG);
-                    toast.show();
-
-                    break;
-
-                case NtpSyncService.RETURN_UTIL_NOT_FOUND:
-                    toast = Toast.makeText(appContext, getString(R.string.app_name) + ": "
-                            + getString(R.string.return_date_util), Toast.LENGTH_LONG);
-                    toast.show();
-
-                    break;
-
-                default:
-                    break;
-                }
-
-            };
-        };
-
-        // Create a new Messenger for the communication back
-        Messenger messenger = new Messenger(resultHandler);
-        serviceIntent.putExtra(NtpSyncService.EXTRA_MESSENGER, messenger);
-        
-        // TODO: handler is never called because service is dead when message comes back!
 
         Bundle data = new Bundle();
         data.putBoolean(NtpSyncService.DATA_GET_NTP_SERVER_FROM_PREFS, true);
