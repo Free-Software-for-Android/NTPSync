@@ -25,7 +25,8 @@ public class DonationsConfiguration {
     /** Flattr */
 
     public static final String FLATTR_PROJECT_URL = "http://code.google.com/p/ntp-sync/";
-    public static final String FLATTR_URL = "http://flattr.com/thing/669294/NTPSync";
+    // without http:// !
+    public static final String FLATTR_URL = "flattr.com/thing/669294/NTPSync";
 
     /** PayPal */
 
