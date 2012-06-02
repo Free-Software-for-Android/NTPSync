@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Activities-->
+  <string name="activity_help">Помощь</string>
+  <string name="activity_about">О программе</string>
+  <string name="activity_donations">Пожертвования</string>
+  <!--Dialogs-->
+  <string name="no_root_description">Не найден исполняемый файл su, либо вы не разрешили root-доступ для FasterGPS.\n\nЭто может случиться, если на вашем устройстве не разблокированы права суперпользователя (root).\nВы можете найти информацию о том, как их получить на www.cyanogenmod.com и других сайтах, посвященных Android.</string>
+  <string name="no_root_title">Необходим Android с root-доступом</string>
+  <!--Buttons-->
+  <string name="button_exit">Выход</string>
+  <!--Detailed query-->
+  <string name="detailed_query_title">Подробный запрос</string>
+  <string name="detailed_query_unspecified">(неопределено или недоступно)</string>
+  <string name="detailed_query_primary_reference">(первичный источник; например, GPS)</string>
+  <string name="detailed_query_secondary_reference">(вторичный источник; например, NTP или SNTP)</string>
+  <string name="detailed_query_server">Сервер:</string>
+  <string name="detailed_query_stratum">Слой:</string>
+  <string name="detailed_query_leap">Прыжок:</string>
+  <string name="detailed_query_version">Версия:</string>
+  <string name="detailed_query_precision">Точность:</string>
+  <string name="detailed_query_mode">Режим:</string>
+  <string name="detailed_query_poll">Опрос:</string>
+  <string name="detailed_query_seconds">сек.</string>
+  <string name="detailed_query_rootdelay">Root-задержка:</string>
+  <string name="detailed_query_rootdispersion">Root-разброс (мс):</string>
+  <string name="detailed_query_reference_identifier">Идентификатор источника:</string>
+  <string name="detailed_query_reference_timestamp">Временная метка источника:</string>
+  <string name="detailed_query_originate_timestamp">Начальная временная метка:</string>
+  <string name="detailed_query_receive_timestamp">Полученная временная метка:</string>
+  <string name="detailed_query_transmit_timestamp">Временная метка передачи:</string>
+  <string name="detailed_query_destination_timestamp">Временная метка назначения:</string>
+  <string name="detailed_query_computed_offset">Вычисленный сдвиг:</string>
+  <string name="detailed_query_roundtrip_delay">Задержка в пути (мс):</string>
+  <string name="detailed_query_clock_offset">Сдвиг часов (мс):</string>
+  <!--Return messages-->
+  <string name="return_generic_error">Общая ошибка!</string>
+  <string name="return_timeout">Задержка ответа сервера!</string>
+  <string name="return_date_util">Утилита date не найдена!</string>
+  <string name="return_no_root">Нет root-доступа!</string>
+  <string name="return_get_time">Время NTP:</string>
+  <string name="return_set_time">Время установлено:</string>
+  <!--Preferences-->
+  <string name="pref_query">Запрос!</string>
+  <string name="pref_detailed_query">Подробный запрос!</string>
+  <string name="pref_query_and_set">Запрос и установка времени!</string>
+  <string name="pref_query_and_set_summary">Требует прав суперпользователя!</string>
+  <string name="pref_settings">Настройки</string>
+  <string name="pref_ntp_server">Сервер NTP</string>
+  <string name="pref_ntp_server_summary">Выберите сервер NTP</string>
+  <string name="pref_set_on_boot">Устанавливать время при запуске</string>
+  <string name="pref_set_on_boot_summary">Требует прав суперпользователя!</string>
+  <string name="pref_sync_daily">Daily sync</string>
+  <string name="pref_sync_daily_summary">Sync automatically once a day\nNeeds root access!</string>
+  <string name="pref_sync_only_on_wifi">Sync only on Wifi</string>
+  <string name="pref_sync_only_on_wifi_summary">Execute background sync only when connected to a wifi network.</string>
+  <string name="pref_help">Помощь</string>
+  <string name="pref_about">О программе</string>
+  <string name="pref_donations">Пожертвования</string>
+  <!--Permission-->
+  <string name="permission_get_time_description">Позволяет приложению определить точное время путем опроса NTP-сервера.</string>
+  <string name="permission_get_time_label">Получить точное время через серверы NTP</string>
+  <string name="permission_set_time_description">Позволяет приложению установить системное время путем опроса NTP-сервера.</string>
+  <string name="permission_set_time_label">Установить системное время через серверы NTP</string>
+  <!--About-->
+  <string name="about_description">NTPSync - это простая программа NTP-синхронизации времени для Android.</string>
+  <string name="about_license">Лицензия: GPL v3+</string>
+  <string name="about_version">Версия:</string>
+  <string name="about_developer">Разработчик:</string>
+  <string name="about_translators">Переводчики:</string>
+  <string name="about_libs">NTPSync использует \'RootTools\' (лицензия: GPL v2) для получения root-доступа и \'Apache Commons Net\' (лицензия: Apache License v2) для опроса NTP-серверов.</string>
+</resources>

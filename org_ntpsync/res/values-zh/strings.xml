@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Activities-->
+  <string name="activity_help">帮助</string>
+  <string name="activity_about">关于</string>
+  <string name="activity_donations">捐款</string>
+  <!--Dialogs-->
+  <string name="no_root_description">没有找到 su 命令或您不允许 root 权限给 FasterGPS。\n\n当您设备没有被 rooted 就会出现这种情况。\n您可以访问 www.cyanogenmod.com 或其他安卓网站了解如何 root 您的设备。</string>
+  <string name="no_root_title">需重启安卓系统</string>
+  <!--Buttons-->
+  <string name="button_exit">退出</string>
+  <!--Detailed query-->
+  <string name="detailed_query_title">详细查询</string>
+  <string name="detailed_query_unspecified">(未指定或不可用)</string>
+  <string name="detailed_query_primary_reference">(主基准; 例如 GPS)</string>
+  <string name="detailed_query_secondary_reference">(次基准; 例如通过 NTP 或 SNTP)</string>
+  <string name="detailed_query_server">服务器:</string>
+  <string name="detailed_query_stratum">等级:</string>
+  <string name="detailed_query_leap">Leap:</string>
+  <string name="detailed_query_version">版本:</string>
+  <string name="detailed_query_precision">精度:</string>
+  <string name="detailed_query_mode">模式:</string>
+  <string name="detailed_query_poll">监测:</string>
+  <string name="detailed_query_seconds">秒</string>
+  <string name="detailed_query_rootdelay">根延迟:</string>
+  <string name="detailed_query_rootdispersion">根差量(毫秒):</string>
+  <string name="detailed_query_reference_identifier">基准标识:</string>
+  <string name="detailed_query_reference_timestamp">基准时间:</string>
+  <string name="detailed_query_originate_timestamp">源处时间:</string>
+  <string name="detailed_query_receive_timestamp">接受时间:</string>
+  <string name="detailed_query_transmit_timestamp">传送时间:</string>
+  <string name="detailed_query_destination_timestamp">目标时间:</string>
+  <string name="detailed_query_computed_offset">计算的偏移量:</string>
+  <string name="detailed_query_roundtrip_delay">往返延迟(毫秒):</string>
+  <string name="detailed_query_clock_offset">时钟偏移量(毫秒):</string>
+  <!--Return messages-->
+  <string name="return_generic_error">一般错误!</string>
+  <string name="return_timeout">服务器超时!</string>
+  <string name="return_date_util">没有找到 Date util!</string>
+  <string name="return_no_root">没有 root 权限!</string>
+  <string name="return_get_time">NTP 时间是</string>
+  <string name="return_set_time">时间设置为</string>
+  <!--Preferences-->
+  <string name="pref_query">查询!</string>
+  <string name="pref_detailed_query">详细查询!</string>
+  <string name="pref_query_and_set">查询并设置时间!</string>
+  <string name="pref_query_and_set_summary">需要 root 权限!</string>
+  <string name="pref_settings">设置</string>
+  <string name="pref_ntp_server">NTP 服务器</string>
+  <string name="pref_ntp_server_summary">选择 NTP 服务器</string>
+  <string name="pref_set_on_boot">在引导时设置时间</string>
+  <string name="pref_set_on_boot_summary">需要 root 权限!</string>
+  <string name="pref_sync_daily">Daily sync</string>
+  <string name="pref_sync_daily_summary">Sync automatically once a day\nNeeds root access!</string>
+  <string name="pref_sync_only_on_wifi">Sync only on Wifi</string>
+  <string name="pref_sync_only_on_wifi_summary">Execute background sync only when connected to a wifi network.</string>
+  <string name="pref_help">帮助</string>
+  <string name="pref_about">关于</string>
+  <string name="pref_donations">捐款</string>
+  <!--Permission-->
+  <string name="permission_get_time_description">允许应用查询 NTP 服务器以获取当前时间。</string>
+  <string name="permission_get_time_label">从 NTP 服务器获取当前时间</string>
+  <string name="permission_set_time_description">允许应用通过查询 NTP 服务器来设置系统时间。</string>
+  <string name="permission_set_time_label">根据 NTP 服务器设置系统时间</string>
+  <!--About-->
+  <string name="about_description">NTPSync 是一个简单的为安卓系统的 NTP 时间同步应用。</string>
+  <string name="about_license">许可证: GPL v3+</string>
+  <string name="about_version">版本:</string>
+  <string name="about_developer">开发人员:</string>
+  <string name="about_translators">翻译人员:</string>
+  <string name="about_libs">NTPSync 使用 \'RootTools\' (许可证: GPL v2) 行使 root 权限和 \'Apache Commons Net\' (许可证: Apache 许可证 v2) 查询 NTP 服务器。</string>
+</resources>

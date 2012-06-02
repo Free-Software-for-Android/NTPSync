@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Activities-->
+  <string name="activity_help">Aide</string>
+  <string name="activity_about">A propos</string>
+  <string name="activity_donations">Dons</string>
+  <!--Dialogs-->
+  <string name="no_root_description">Soit le programme su n\'a pas été trouvé, soit vous n\'avez pas autorisé l\'accès root pour FasterGPS\n\nCeci arrive lorsque l\'appareil n\'est pas rooté.\nVous trouverez plus d\'information a propos de l\'accès root sur www.cyanogenmod.com ou d\'autres sites web pour Androîd.</string>
+  <string name="no_root_title">Accès Root obligatoire</string>
+  <!--Buttons-->
+  <string name="button_exit">Quitter</string>
+  <!--Detailed query-->
+  <string name="detailed_query_title">Details de la requête</string>
+  <string name="detailed_query_unspecified">(Non spécifié ou Indisponible)</string>
+  <string name="detailed_query_primary_reference">(Référence principale: e.g GPS)</string>
+  <string name="detailed_query_secondary_reference">(Référence secondaire: e.g. via NTP or SNTP)</string>
+  <string name="detailed_query_server">Serveur:</string>
+  <string name="detailed_query_stratum">Stratum:</string>
+  <string name="detailed_query_leap">temps intercalaire:</string>
+  <string name="detailed_query_version">Version:</string>
+  <string name="detailed_query_precision">Précision:</string>
+  <string name="detailed_query_mode">Mode:</string>
+  <string name="detailed_query_poll">Intervalle entre requêtes:</string>
+  <string name="detailed_query_seconds">Secondes:</string>
+  <string name="detailed_query_rootdelay">Délais Root:</string>
+  <string name="detailed_query_rootdispersion">Dispersion Root:</string>
+  <string name="detailed_query_reference_identifier">identifiant de référence:</string>
+  <string name="detailed_query_reference_timestamp">Horodatage de référence:</string>
+  <string name="detailed_query_originate_timestamp">Horodatage d\'origine:</string>
+  <string name="detailed_query_receive_timestamp">Horodatage de reception:</string>
+  <string name="detailed_query_transmit_timestamp">Horodatage de transmission:</string>
+  <string name="detailed_query_destination_timestamp">Horodatage de destination:</string>
+  <string name="detailed_query_computed_offset">Décalage calculé:</string>
+  <string name="detailed_query_roundtrip_delay">Temps de trajet(ms):</string>
+  <string name="detailed_query_clock_offset">décalage d\'horloge(ms):</string>
+  <!--Return messages-->
+  <string name="return_generic_error">erreur générique</string>
+  <string name="return_timeout">serveur hors délais</string>
+  <string name="return_date_util">utilitaire Date non trouvé.</string>
+  <string name="return_no_root">Pas d\'accès Root!</string>
+  <string name="return_get_time">l\'heure NTP est </string>
+  <string name="return_set_time">L\'heure a été définie à</string>
+  <!--Preferences-->
+  <string name="pref_query">Requête!</string>
+  <string name="pref_detailed_query">Requête détaillée!</string>
+  <string name="pref_query_and_set">Interroge et régle l\'heure!</string>
+  <string name="pref_query_and_set_summary">Besoin de l\'accès root!</string>
+  <string name="pref_settings">Réglages</string>
+  <string name="pref_ntp_server">Serveur NTP</string>
+  <string name="pref_ntp_server_summary">Choisir le serveur NTP</string>
+  <string name="pref_set_on_boot">Définir l\'heure système au démarrage.</string>
+  <string name="pref_set_on_boot_summary">Besoin de l\'accès root!</string>
+  <string name="pref_sync_daily">Synchro quotidienne</string>
+  <string name="pref_sync_daily_summary">Synchro automatique quotidienne.\nAccès root exigé.</string>
+  <string name="pref_sync_only_on_wifi">Synchro par Wifi uniqement</string>
+  <string name="pref_sync_only_on_wifi_summary">Synchro en tache de fond seulement en connexion wifi</string>
+  <string name="pref_help">Aide</string>
+  <string name="pref_about">A propos</string>
+  <string name="pref_donations">Dons</string>
+  <!--Permission-->
+  <string name="permission_get_time_description">Permet a l\'application d\'obtenir l\'heure actuelle en interrogeant un serveur NTP.</string>
+  <string name="permission_get_time_label">Retourne l\'heure actuelle à partir de serveurs NTP</string>
+  <string name="permission_set_time_description">Permet a l\'application de définir la date système via des requêtes sur un serveur NTP.</string>
+  <string name="permission_set_time_label">Régler le temps du système depuis les serveurs NTP</string>
+  <!--About-->
+  <string name="about_description">NTPSync est un simple client de synchronisation NTP de temps pour Android.</string>
+  <string name="about_license">License: GPL v3+</string>
+  <string name="about_version">Version:</string>
+  <string name="about_developer">Developeur:</string>
+  <string name="about_translators">Traducteurs:</string>
+  <string name="about_libs">NTPSync utilise \'RootTools\' (License: GPL v2) pour gérer l\'accès root et \'Apache Commons Net\' (License: Apache License v2) pour les requetes sur les serveurs NTP</string>
+</resources>
