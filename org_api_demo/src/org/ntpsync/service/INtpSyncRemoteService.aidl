@@ -21,7 +21,7 @@
 package org.ntpsync.service;
 
 /**
- * Because Exceptions can not be thrown through an IPC call, we use return values.
+ * Because Exceptions can't be thrown through an IPC call, we use return values.
  * The methods return values from the following list:
  *
  * RETURN_GENERIC_ERROR = 0

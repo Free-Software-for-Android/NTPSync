@@ -129,7 +129,7 @@ public class BaseActivity extends PreferenceActivity {
                             e.printStackTrace();
                         }
 
-                        // return nothing as type is Void
+                        // return result to onPostExecute
                         return result;
                     }
 
@@ -200,7 +200,7 @@ public class BaseActivity extends PreferenceActivity {
                             e.printStackTrace();
                         }
 
-                        // return nothing as type is Void
+                        // return result to onPostExecute
                         return result;
                     }
 
