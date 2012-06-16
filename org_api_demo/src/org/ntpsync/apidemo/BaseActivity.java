@@ -58,10 +58,10 @@ public class BaseActivity extends PreferenceActivity {
     private Preference mSetTime;
 
     /** The primary interface we will be calling on the service. */
-    INtpSyncRemoteService mService = null;
+    INtpSyncRemoteService mNtpSyncService = null;
 
     /**
-     * Class for interacting with the main interface of the service.
+     * Class for interacting with the main interface of NTPSync service.
      */
     private ServiceConnection mConnection = new ServiceConnection() {
 
@@ -72,7 +72,7 @@ public class BaseActivity extends PreferenceActivity {
             // interact with the service. We are communicating with our
             // service through an IDL interface, so get a client-side
             // representation of that from the raw service object.
-            mService = INtpSyncRemoteService.Stub.asInterface(service);
+            mNtpSyncService = INtpSyncRemoteService.Stub.asInterface(service);
 
             Log.d(TAG, "We are now connected to NtpSyncRemoteService!");
         }
@@ -81,7 +81,7 @@ public class BaseActivity extends PreferenceActivity {
         public void onServiceDisconnected(ComponentName className) {
             // This is called when the connection with the service has been
             // unexpectedly disconnected -- that is, its process crashed.
-            mService = null;
+            mNtpSyncService = null;
 
             Log.d(TAG, "We disconnected from NtpSyncRemoteService!");
         }
@@ -97,6 +97,10 @@ public class BaseActivity extends PreferenceActivity {
 
         mActivity = this;
 
+        // bind to NtpSync
+        bindService(new Intent(INtpSyncRemoteService.class.getName()), mConnection,
+                Context.BIND_AUTO_CREATE);
+
         // load preferences from xml
         addPreferencesFromResource(R.xml.base_preference);
 
@@ -108,71 +112,7 @@ public class BaseActivity extends PreferenceActivity {
             @Override
             public boolean onPreferenceClick(Preference preference) {
 
-                // IPC calls via AIDL are synchronous in Android!!!
-                // Because of that we need to call the methods from AsyncTask or IntentService to
-                // not block the UI
-                AsyncTask<Void, Void, Integer> getTimeTask = new AsyncTask<Void, Void, Integer>() {
-                    long offset;
-
-                    @Override
-                    protected Integer doInBackground(Void... unused) {
-                        int result = RETURN_GENERIC_ERROR;
-
-                        try {
-                            Bundle output = new Bundle();
-                            result = mService.getOffset(null, output);
-
-                            offset = output.getLong(OUTPUT_OFFSET);
-
-                            Log.d(TAG, "Result: " + result);
-                        } catch (RemoteException e) {
-                            e.printStackTrace();
-                        }
-
-                        // return result to onPostExecute
-                        return result;
-                    }
-
-                    @Override
-                    protected void onPreExecute() {
-                        super.onPreExecute();
-                    }
-
-                    @Override
-                    protected void onPostExecute(Integer result) {
-                        super.onPostExecute(result);
-
-                        Toast toast = null;
-                        switch (result) {
-                        case RETURN_GENERIC_ERROR:
-                            toast = Toast.makeText(mActivity, "Error", Toast.LENGTH_LONG);
-                            toast.show();
-
-                            break;
-
-                        case RETURN_OKAY:
-                            // calculate new time
-                            Date newTime = new Date(System.currentTimeMillis() + offset);
-
-                            toast = Toast.makeText(mActivity, "NTP offset is " + offset + " ("
-                                    + newTime + ")", Toast.LENGTH_LONG);
-                            toast.show();
-
-                            break;
-
-                        case RETURN_SERVER_TIMEOUT:
-                            toast = Toast.makeText(mActivity, "Server timeout!", Toast.LENGTH_LONG);
-                            toast.show();
-
-                            break;
-
-                        default:
-                            break;
-                        }
-                    }
-                };
-
-                getTimeTask.execute();
+                getTime();
 
                 return false;
             }
@@ -181,90 +121,17 @@ public class BaseActivity extends PreferenceActivity {
         mSetTime.setOnPreferenceClickListener(new OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                // IPC calls via AIDL are synchronous in Android!!!
-                // Because of that we need to call the methods from AsyncTask or IntentService to
-                // not block the UI
-                AsyncTask<Void, Void, Integer> setTimeTask = new AsyncTask<Void, Void, Integer>() {
-                    long offset;
 
-                    @Override
-                    protected Integer doInBackground(Void... unused) {
-                        int result = RETURN_GENERIC_ERROR;
+                setTime();
 
-                        try {
-                            Bundle output = new Bundle();
-                            result = mService.setTime(null, output);
-
-                            Log.d(TAG, "Result: " + result);
-                        } catch (RemoteException e) {
-                            e.printStackTrace();
-                        }
-
-                        // return result to onPostExecute
-                        return result;
-                    }
-
-                    @Override
-                    protected void onPreExecute() {
-                        super.onPreExecute();
-                    }
-
-                    @Override
-                    protected void onPostExecute(Integer result) {
-                        super.onPostExecute(result);
-
-                        Toast toast = null;
-                        switch (result) {
-                        case RETURN_GENERIC_ERROR:
-                            toast = Toast.makeText(mActivity, "Error!", Toast.LENGTH_LONG);
-                            toast.show();
-
-                            break;
-
-                        case RETURN_OKAY:
-                            // calculate new time
-                            Date newTime = new Date(System.currentTimeMillis() + offset);
-
-                            toast = Toast.makeText(mActivity, "Time was set to " + newTime,
-                                    Toast.LENGTH_LONG);
-                            toast.show();
-
-                            break;
-
-                        case RETURN_SERVER_TIMEOUT:
-                            toast = Toast.makeText(mActivity, "Server timeout!", Toast.LENGTH_LONG);
-                            toast.show();
-
-                            break;
-
-                        case RETURN_NO_ROOT:
-                            toast = Toast.makeText(mActivity, "No Root!", Toast.LENGTH_LONG);
-                            toast.show();
-                            break;
-
-                        case RETURN_UTIL_NOT_FOUND:
-                            toast = Toast.makeText(mActivity, "Date util not found!",
-                                    Toast.LENGTH_LONG);
-                            toast.show();
-
-                            break;
-
-                        default:
-                            break;
-                        }
-                    }
-                };
-
-                setTimeTask.execute();
                 return false;
             }
         });
-
-        // bind to NtpSync
-        bindService(new Intent(INtpSyncRemoteService.class.getName()), mConnection,
-                Context.BIND_AUTO_CREATE);
     }
 
+    /**
+     * Unbind from NTPSync when activity gets destroyed
+     */
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -272,4 +139,156 @@ public class BaseActivity extends PreferenceActivity {
         // unbind from NtpSync
         unbindService(mConnection);
     }
+
+    /**
+     * Gets time using NTPSync
+     * 
+     * IPC calls via AIDL are synchronous in Android!!! Because of that we need to call the methods
+     * from AsyncTask or IntentService to not block the UI
+     */
+    private void getTime() {
+        AsyncTask<Void, Void, Integer> getTimeTask = new AsyncTask<Void, Void, Integer>() {
+            long offset;
+
+            @Override
+            protected Integer doInBackground(Void... unused) {
+                int result = RETURN_GENERIC_ERROR;
+
+                try {
+                    Bundle output = new Bundle();
+                    result = mNtpSyncService.getOffset(null, output);
+
+                    offset = output.getLong(OUTPUT_OFFSET);
+
+                    Log.d(TAG, "Result: " + result);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+
+                // return result to onPostExecute
+                return result;
+            }
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+            }
+
+            @Override
+            protected void onPostExecute(Integer result) {
+                super.onPostExecute(result);
+
+                Toast toast = null;
+                switch (result) {
+                case RETURN_GENERIC_ERROR:
+                    toast = Toast.makeText(mActivity, "Error", Toast.LENGTH_LONG);
+                    toast.show();
+
+                    break;
+
+                case RETURN_OKAY:
+                    // calculate new time
+                    Date newTime = new Date(System.currentTimeMillis() + offset);
+
+                    toast = Toast.makeText(mActivity, "NTP offset is " + offset + " (" + newTime
+                            + ")", Toast.LENGTH_LONG);
+                    toast.show();
+
+                    break;
+
+                case RETURN_SERVER_TIMEOUT:
+                    toast = Toast.makeText(mActivity, "Server timeout!", Toast.LENGTH_LONG);
+                    toast.show();
+
+                    break;
+
+                default:
+                    break;
+                }
+            }
+        };
+
+        getTimeTask.execute();
+    }
+
+    /**
+     * Sets time using NTPSync
+     * 
+     * IPC calls via AIDL are synchronous in Android!!! Because of that we need to call the methods
+     * from AsyncTask or IntentService to not block the UI
+     */
+    private void setTime() {
+        AsyncTask<Void, Void, Integer> setTimeTask = new AsyncTask<Void, Void, Integer>() {
+            long offset;
+
+            @Override
+            protected Integer doInBackground(Void... unused) {
+                int result = RETURN_GENERIC_ERROR;
+
+                try {
+                    Bundle output = new Bundle();
+                    result = mNtpSyncService.setTime(null, output);
+
+                    Log.d(TAG, "Result: " + result);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+
+                // return result to onPostExecute
+                return result;
+            }
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+            }
+
+            @Override
+            protected void onPostExecute(Integer result) {
+                super.onPostExecute(result);
+
+                Toast toast = null;
+                switch (result) {
+                case RETURN_GENERIC_ERROR:
+                    toast = Toast.makeText(mActivity, "Error!", Toast.LENGTH_LONG);
+                    toast.show();
+
+                    break;
+
+                case RETURN_OKAY:
+                    // calculate new time
+                    Date newTime = new Date(System.currentTimeMillis() + offset);
+
+                    toast = Toast.makeText(mActivity, "Time was set to " + newTime,
+                            Toast.LENGTH_LONG);
+                    toast.show();
+
+                    break;
+
+                case RETURN_SERVER_TIMEOUT:
+                    toast = Toast.makeText(mActivity, "Server timeout!", Toast.LENGTH_LONG);
+                    toast.show();
+
+                    break;
+
+                case RETURN_NO_ROOT:
+                    toast = Toast.makeText(mActivity, "No Root!", Toast.LENGTH_LONG);
+                    toast.show();
+                    break;
+
+                case RETURN_UTIL_NOT_FOUND:
+                    toast = Toast.makeText(mActivity, "Date util not found!", Toast.LENGTH_LONG);
+                    toast.show();
+
+                    break;
+
+                default:
+                    break;
+                }
+            }
+        };
+
+        setTimeTask.execute();
+    }
+
 }
