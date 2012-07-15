@@ -46,13 +46,13 @@ public class NtpSyncRemoteService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.d(Constants.TAG, "onCreate()");
+        Log.d(Constants.TAG, "NtpSyncRemoteService, onCreate()");
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.d(Constants.TAG, "onDestroy()");
+        Log.d(Constants.TAG, "NtpSyncRemoteService, onDestroy()");
     }
 
     @Override

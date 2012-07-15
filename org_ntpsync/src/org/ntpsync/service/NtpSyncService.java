@@ -302,10 +302,6 @@ public class NtpSyncService extends IntentService {
         }
     }
 
-    private void sendMessageToHandler(Integer arg1) {
-        sendMessageToHandler(arg1, null, null);
-    }
-
     private void sendMessageToHandler(Integer arg1, Bundle messageData) {
         sendMessageToHandler(arg1, null, messageData);
     }
