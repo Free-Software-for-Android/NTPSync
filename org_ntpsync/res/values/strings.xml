@@ -41,7 +41,6 @@
     <!-- Return messages -->
     <string name="return_generic_error">Generic error!</string>
     <string name="return_timeout">Server timeout!</string>
-    <string name="return_date_util">Date util not found!</string>
     <string name="return_no_root">No root access!</string>
     <string name="return_get_time">NTP Time is</string>
     <string name="return_set_time">Time was set to</string>
@@ -76,6 +75,6 @@
     <string name="about_version">Version:</string>
     <string name="about_developer">Developer:</string>
     <string name="about_translators">Translators:</string>
-    <string name="about_libs">NTPSync uses \'RootTools\' (License: GPL v2) to handle root access and \'Apache Commons Net\' (License: Apache License v2) to query NTP servers.</string>
+    <string name="about_libs">NTPSync uses \'RootCommands\' (License: Apache License v2) to handle root access and \'Apache Commons Net\' (License: Apache License v2) to query NTP servers.</string>
 
 </resources>
