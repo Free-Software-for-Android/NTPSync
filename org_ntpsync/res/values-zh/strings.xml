@@ -50,10 +50,10 @@
   <string name="pref_ntp_server_summary">选择 NTP 服务器</string>
   <string name="pref_set_on_boot">在引导时设置时间</string>
   <string name="pref_set_on_boot_summary">需要 root 权限!</string>
-  <string name="pref_sync_daily">Daily sync</string>
-  <string name="pref_sync_daily_summary">Sync automatically once a day\nNeeds root access!</string>
-  <string name="pref_sync_only_on_wifi">Sync only on Wifi</string>
-  <string name="pref_sync_only_on_wifi_summary">Execute background sync only when connected to a wifi network.</string>
+  <string name="pref_sync_daily">每天同步</string>
+  <string name="pref_sync_daily_summary">每天一次的自动同步需要 root 权限!</string>
+  <string name="pref_sync_only_on_wifi">仅在WLAN连接时同步</string>
+  <string name="pref_sync_only_on_wifi_summary">仅在连接到WLAN网络时才执行后台同步。</string>
   <string name="pref_help">帮助</string>
   <string name="pref_about">关于</string>
   <string name="pref_donations">捐款</string>

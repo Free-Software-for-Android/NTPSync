@@ -50,10 +50,10 @@
   <string name="pref_ntp_server_summary">Выберите сервер NTP</string>
   <string name="pref_set_on_boot">Устанавливать время при запуске</string>
   <string name="pref_set_on_boot_summary">Требует прав суперпользователя!</string>
-  <string name="pref_sync_daily">Daily sync</string>
-  <string name="pref_sync_daily_summary">Sync automatically once a day\nNeeds root access!</string>
-  <string name="pref_sync_only_on_wifi">Sync only on Wifi</string>
-  <string name="pref_sync_only_on_wifi_summary">Execute background sync only when connected to a wifi network.</string>
+  <string name="pref_sync_daily">Ежедневная синхронизация</string>
+  <string name="pref_sync_daily_summary">Синхронизировать автоматически раз в день\nТребует прав суперпользователя!</string>
+  <string name="pref_sync_only_on_wifi">Синхронизировать только по Wi-Fi</string>
+  <string name="pref_sync_only_on_wifi_summary">Выполнять фоновую синхронизацию только при подключении через Wi-Fi.</string>
   <string name="pref_help">Помощь</string>
   <string name="pref_about">О программе</string>
   <string name="pref_donations">Пожертвования</string>
