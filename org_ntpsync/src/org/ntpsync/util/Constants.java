@@ -38,6 +38,4 @@ public class Constants {
     public static final String TAG = "NTPSync";
     public static final String PREFS_NAME = "preferences";
 
-    public static final String COMMAND_DATE = "date";
-
 }

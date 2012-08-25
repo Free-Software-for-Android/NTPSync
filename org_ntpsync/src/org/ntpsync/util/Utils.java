@@ -90,7 +90,7 @@ public class Utils {
             }
             raw.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.e(Constants.TAG, "Problem reading resource!", e);
         }
         return stream.toString();
     }
