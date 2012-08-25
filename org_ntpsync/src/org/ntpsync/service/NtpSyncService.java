@@ -64,7 +64,6 @@ public class NtpSyncService extends IntentService {
     public static final int RETURN_OKAY = 1;
     public static final int RETURN_SERVER_TIMEOUT = 2;
     public static final int RETURN_NO_ROOT = 3;
-    public static final int RETURN_UTIL_NOT_FOUND = 4;
 
     // returned message data
     public static final String MESSAGE_DATA_TIME = "time";
@@ -264,15 +263,6 @@ public class NtpSyncService extends IntentService {
                             getApplicationContext(),
                             getString(R.string.app_name) + ": "
                                     + getString(R.string.return_no_root), Toast.LENGTH_LONG).show();
-
-                    break;
-
-                case NtpSyncService.RETURN_UTIL_NOT_FOUND:
-                    Toast.makeText(
-                            getApplicationContext(),
-                            getString(R.string.app_name) + ": "
-                                    + getString(R.string.return_date_util), Toast.LENGTH_LONG)
-                            .show();
 
                     break;
 

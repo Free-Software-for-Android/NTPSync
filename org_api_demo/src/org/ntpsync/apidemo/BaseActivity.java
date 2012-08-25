@@ -48,7 +48,6 @@ public class BaseActivity extends PreferenceActivity {
     public static final int RETURN_OKAY = 1;
     public static final int RETURN_SERVER_TIMEOUT = 2;
     public static final int RETURN_NO_ROOT = 3;
-    public static final int RETURN_UTIL_NOT_FOUND = 4;
 
     public static final String OUTPUT_OFFSET = "offset";
 
@@ -274,12 +273,6 @@ public class BaseActivity extends PreferenceActivity {
                 case RETURN_NO_ROOT:
                     toast = Toast.makeText(mActivity, "No Root!", Toast.LENGTH_LONG);
                     toast.show();
-                    break;
-
-                case RETURN_UTIL_NOT_FOUND:
-                    toast = Toast.makeText(mActivity, "Date util not found!", Toast.LENGTH_LONG);
-                    toast.show();
-
                     break;
 
                 default:

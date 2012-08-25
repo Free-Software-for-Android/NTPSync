@@ -20,24 +20,24 @@
 
 package org.ntpsync.util;
 
-import com.stericson.RootTools.RootTools;
+import org.rootcommands.RootCommands;
 
 public class Constants {
 
     /*
-     * DEBUG enables Log.d outputs, wrapped in org.adaway.util.Log and RootTools Debug Mode
+     * DEBUG enables Log.d outputs, wrapped in org.ntpsync.util.Log and RootCommands Debug Mode
      */
     public static final boolean DEBUG = false;
     public static final boolean DEBUG_DISABLE_ROOT_CHECK = false;
 
-    // set RootTools to debug mode based on AdAway
+    // set RootCommands to debug mode based on NTPSync
     static {
-        RootTools.debugMode = DEBUG;
+        RootCommands.DEBUG = DEBUG;
     }
 
     public static final String TAG = "NTPSync";
     public static final String PREFS_NAME = "preferences";
-    
+
     public static final String COMMAND_DATE = "date";
 
 }

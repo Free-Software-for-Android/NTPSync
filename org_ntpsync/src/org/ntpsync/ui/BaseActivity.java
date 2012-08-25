@@ -49,7 +49,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class BaseActivity extends PreferenceActivity {
-
     Activity mActivity;
 
     private Preference mQuery;
@@ -222,13 +221,6 @@ public class BaseActivity extends PreferenceActivity {
 
                         case NtpSyncService.RETURN_NO_ROOT:
                             Utils.showRootDialog(mActivity);
-
-                            break;
-
-                        case NtpSyncService.RETURN_UTIL_NOT_FOUND:
-                            toast = Toast.makeText(mActivity, getString(R.string.return_date_util),
-                                    Toast.LENGTH_LONG);
-                            toast.show();
 
                             break;
 

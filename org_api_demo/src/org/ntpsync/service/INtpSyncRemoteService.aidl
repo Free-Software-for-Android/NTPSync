@@ -28,7 +28,6 @@ package org.ntpsync.service;
  * RETURN_OKAY = 1
  * RETURN_SERVER_TIMEOUT = 2
  * RETURN_NO_ROOT = 3
- * RETURN_UTIL_NOT_FOUND = 4
  */
 interface INtpSyncRemoteService {
     /**

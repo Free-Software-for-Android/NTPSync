@@ -22,11 +22,15 @@ package org.ntpsync.util;
 
 import org.ntpsync.R;
 import org.ntpsync.service.NtpSyncService;
+import org.rootcommands.RootCommands;
+import org.rootcommands.Shell;
+import org.rootcommands.Toolbox;
+import org.rootcommands.util.RootAccessDeniedException;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.SimpleDateFormat;
+import java.util.concurrent.TimeoutException;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -35,11 +39,7 @@ import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import com.stericson.RootTools.RootTools;
-
 public class Utils {
-
-    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyyMMdd.HHmmss");
 
     /**
      * Check if Android is rooted, check for su binary and display possible solutions if they are
@@ -57,12 +57,11 @@ public class Utils {
         } else {
             // check for root on device and call su binary
             try {
-                if (RootTools.isAccessGiven()) {
+                if (RootCommands.rootAccessGiven()) {
                     rootAvailable = true;
                 }
             } catch (Exception e) {
-                e.printStackTrace();
-                rootAvailable = false;
+                Log.e(Constants.TAG, "Exception while checking for root!", e);
             }
         }
 
@@ -125,37 +124,33 @@ public class Utils {
     }
 
     /**
-     * Sets time in Android using "date -s $time" on command line as root
+     * Sets time in Android using RootCommands library
      * 
      * @param offset
      * @return true if it succeeded
      */
     public static int setTime(long offset) {
-        if (isAndroidRooted()) {
-            // check if binary is available and has right permissions
-            if (RootTools.checkUtil(Constants.COMMAND_DATE)) {
-                try {
-                    // calculate new time based on system time and offset
-                    long newTime = System.currentTimeMillis() + offset;
+        try {
+            Shell rootShell = Shell.startRootShell();
+            Toolbox tb = new Toolbox(rootShell);
 
-                    // set time using date command
-                    RootTools.sendShell(
-                            Constants.COMMAND_DATE + " -s " + DATE_FORMAT.format(newTime), -1);
-                    Log.d(Constants.TAG, "Date was set successful using 'date -s $time' as root!");
+            tb.adjustSystemClock(offset);
 
-                    // it works, thus return true
-                    return NtpSyncService.RETURN_OKAY;
-                } catch (Exception e) {
-                    Log.e(Constants.TAG, "Error while using 'date -s $time' as root!", e);
-                    return NtpSyncService.RETURN_GENERIC_ERROR;
-                }
-            } else {
-                Log.e(Constants.TAG, "Util 'date' could not be found!");
-                return NtpSyncService.RETURN_UTIL_NOT_FOUND;
-            }
-        } else {
-            Log.e(Constants.TAG, "Android is not rooted!");
+            rootShell.close();
+
+            Log.d(Constants.TAG, "Date was set successful using RootCommands library!");
+
+            // it works, thus return true
+            return NtpSyncService.RETURN_OKAY;
+        } catch (RootAccessDeniedException e) {
+            Log.e(Constants.TAG, "Android is not rooted or root access was denied!", e);
             return NtpSyncService.RETURN_NO_ROOT;
+        } catch (IOException e) {
+            Log.e(Constants.TAG, "IOException!", e);
+            return NtpSyncService.RETURN_GENERIC_ERROR;
+        } catch (TimeoutException e) {
+            Log.e(Constants.TAG, "Timeout of root command!", e);
+            return NtpSyncService.RETURN_GENERIC_ERROR;
         }
     }
 
