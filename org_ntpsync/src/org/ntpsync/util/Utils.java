@@ -22,7 +22,6 @@ package org.ntpsync.util;
 
 import org.ntpsync.R;
 import org.ntpsync.service.NtpSyncService;
-import org.rootcommands.RootCommands;
 import org.rootcommands.Shell;
 import org.rootcommands.Toolbox;
 import org.rootcommands.util.RootAccessDeniedException;
@@ -40,33 +39,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 public class Utils {
-
-    /**
-     * Check if Android is rooted, check for su binary and display possible solutions if they are
-     * not available
-     * 
-     * @param activity
-     * @return true if phone is rooted
-     */
-    public static boolean isAndroidRooted() {
-        boolean rootAvailable = false;
-
-        // root check can be disabled for debugging in emulator
-        if (Constants.DEBUG_DISABLE_ROOT_CHECK) {
-            rootAvailable = true;
-        } else {
-            // check for root on device and call su binary
-            try {
-                if (RootCommands.rootAccessGiven()) {
-                    rootAvailable = true;
-                }
-            } catch (Exception e) {
-                Log.e(Constants.TAG, "Exception while checking for root!", e);
-            }
-        }
-
-        return rootAvailable;
-    }
 
     /**
      * Show dialog how to root Android
@@ -138,7 +110,7 @@ public class Utils {
 
             rootShell.close();
 
-            Log.d(Constants.TAG, "Date was set successful using RootCommands library!");
+            Log.d(Constants.TAG, "Date was set using RootCommands library!");
 
             // it works, thus return true
             return NtpSyncService.RETURN_OKAY;
