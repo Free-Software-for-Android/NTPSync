@@ -36,7 +36,6 @@
   <!--Return messages-->
   <string name="return_generic_error">Общая ошибка!</string>
   <string name="return_timeout">Задержка ответа сервера!</string>
-  <string name="return_date_util">Утилита date не найдена!</string>
   <string name="return_no_root">Нет root-доступа!</string>
   <string name="return_get_time">Время NTP:</string>
   <string name="return_set_time">Время установлено:</string>

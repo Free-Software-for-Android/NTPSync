@@ -36,7 +36,6 @@
   <!--Return messages-->
   <string name="return_generic_error">一般错误!</string>
   <string name="return_timeout">服务器超时!</string>
-  <string name="return_date_util">没有找到 Date util!</string>
   <string name="return_no_root">没有 root 权限!</string>
   <string name="return_get_time">NTP 时间是</string>
   <string name="return_set_time">时间设置为</string>

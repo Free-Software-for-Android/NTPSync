@@ -46,17 +46,17 @@
     <string name="return_set_time">Time was set to</string>
 
     <!-- Preferences -->
-    <string name="pref_query">Query!</string>
-    <string name="pref_detailed_query">Detailed query!</string>
-    <string name="pref_query_and_set">Query and set time!</string>
-    <string name="pref_query_and_set_summary">Needs root access!</string>
+    <string name="pref_query">Query</string>
+    <string name="pref_detailed_query">Detailed query</string>
+    <string name="pref_query_and_set">Query and set time</string>
+    <string name="pref_query_and_set_summary">(Needs root access)</string>
     <string name="pref_settings">Settings</string>
     <string name="pref_ntp_server">NTP server</string>
     <string name="pref_ntp_server_summary">Choose NTP server</string>
     <string name="pref_set_on_boot">Set time on boot</string>
-    <string name="pref_set_on_boot_summary">Needs root access!</string>
+    <string name="pref_set_on_boot_summary">(Needs root access)</string>
     <string name="pref_sync_daily">Daily sync</string>
-    <string name="pref_sync_daily_summary">Sync automatically once a day\nNeeds root access!</string>
+    <string name="pref_sync_daily_summary">Sync automatically once a day\n(Needs root access)</string>
     <string name="pref_sync_only_on_wifi">Sync only on Wifi</string>
     <string name="pref_sync_only_on_wifi_summary">Execute background sync only when connected to a wifi network.</string>
     <string name="pref_help">Help</string>

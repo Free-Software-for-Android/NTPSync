@@ -36,7 +36,6 @@
   <!--Return messages-->
   <string name="return_generic_error">erreur générique</string>
   <string name="return_timeout">serveur hors délais</string>
-  <string name="return_date_util">utilitaire Date non trouvé.</string>
   <string name="return_no_root">Pas d\'accès Root!</string>
   <string name="return_get_time">l\'heure NTP est </string>
   <string name="return_set_time">L\'heure a été définie à</string>
