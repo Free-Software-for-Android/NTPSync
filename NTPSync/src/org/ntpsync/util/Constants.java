@@ -27,7 +27,7 @@ public class Constants {
     /*
      * DEBUG enables Log.d outputs, wrapped in org.ntpsync.util.Log and RootCommands Debug Mode
      */
-    public static final boolean DEBUG = false;
+    public static final boolean DEBUG = true;
     public static final boolean DEBUG_DISABLE_ROOT_CHECK = false;
 
     // set RootCommands to debug mode based on NTPSync
