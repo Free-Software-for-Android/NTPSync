@@ -41,14 +41,6 @@
             android:key="@string/pref_help_key"
             android:persistent="false"
             android:title="@string/pref_help" />
-        <Preference
-            android:key="@string/pref_about_key"
-            android:persistent="false"
-            android:title="@string/pref_about" />
-        <Preference
-            android:key="@string/pref_donations_key"
-            android:persistent="false"
-            android:title="@string/pref_donations" />
     </PreferenceCategory>
 
 </PreferenceScreen>

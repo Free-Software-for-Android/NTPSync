@@ -22,7 +22,6 @@ package org.ntpsync.ui;
 
 import java.util.Date;
 
-import org.donations.DonationsActivity;
 import org.ntpsync.R;
 import org.ntpsync.service.DailyListener;
 import org.ntpsync.service.NtpSyncService;
@@ -58,8 +57,6 @@ public class BaseActivity extends PreferenceActivity {
     private Preference mSyncDailyPref;
 
     private Preference mHelp;
-    private Preference mAbout;
-    private Preference mDonations;
 
     private boolean progressEnabled;
 
@@ -104,8 +101,6 @@ public class BaseActivity extends PreferenceActivity {
         mQueryAndSet = (Preference) findPreference(getString(R.string.pref_query_and_set_key));
         mSyncDailyPref = findPreference(getString(R.string.pref_sync_daily_key));
         mHelp = (Preference) findPreference(getString(R.string.pref_help_key));
-        mAbout = (Preference) findPreference(getString(R.string.pref_about_key));
-        mDonations = (Preference) findPreference(getString(R.string.pref_donations_key));
 
         mQuery.setOnPreferenceClickListener(new OnPreferenceClickListener() {
 
@@ -345,28 +340,6 @@ public class BaseActivity extends PreferenceActivity {
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 startActivity(new Intent(mActivity, HelpActivity.class));
-
-                return false;
-            }
-
-        });
-
-        mAbout.setOnPreferenceClickListener(new OnPreferenceClickListener() {
-
-            @Override
-            public boolean onPreferenceClick(Preference preference) {
-                startActivity(new Intent(mActivity, AboutActivity.class));
-
-                return false;
-            }
-
-        });
-
-        mDonations.setOnPreferenceClickListener(new OnPreferenceClickListener() {
-
-            @Override
-            public boolean onPreferenceClick(Preference preference) {
-                startActivity(new Intent(mActivity, DonationsActivity.class));
 
                 return false;
             }

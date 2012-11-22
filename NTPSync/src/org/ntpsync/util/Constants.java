@@ -20,8 +20,6 @@
 
 package org.ntpsync.util;
 
-import org.rootcommands.RootCommands;
-
 public class Constants {
 
     /*
@@ -29,11 +27,6 @@ public class Constants {
      */
     public static final boolean DEBUG = true;
     public static final boolean DEBUG_DISABLE_ROOT_CHECK = false;
-
-    // set RootCommands to debug mode based on NTPSync
-    static {
-        RootCommands.DEBUG = DEBUG;
-    }
 
     public static final String TAG = "NTPSync";
     public static final String PREFS_NAME = "preferences";
