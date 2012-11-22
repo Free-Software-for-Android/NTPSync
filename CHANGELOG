@@ -1,6 +1,10 @@
 Please report bugs on the following website instead of writing bad reviews:
 http://code.google.com/p/ntp-sync/issues
 
+1.3
+* Fixes for RootCommands
+* Google forced me to remove the possibility to donate via Flattr and PayPal
+
 1.2
 * New root library: RootCommands
 * Better way to change system time with root access
