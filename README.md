@@ -74,3 +74,48 @@ See http://source.android.com/source/code-style.html
 * XML: Indent using spaces with Indention size 4 (Eclipse: Properties -> XML -> XML Files -> Editor)
 
 See http://www.androidpolice.com/2009/11/04/auto-formatting-android-xml-files-with-eclipse/
+
+# Licenses
+NTPSync is licensed under the GPLv3+.  
+The file COPYING includes the full license text.
+
+## Details
+NTPSync is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+NTPSync is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with NTPSync.  If not, see <http://www.gnu.org/licenses/>.
+
+## Libraries
+* Android Donations Lib  
+  https://github.com/dschuermann/android-donations-lib  
+  Apache License v2
+
+* RootCommands  
+  https://github.com/dschuermann/root-commands  
+  Apache License v2
+
+* HTMLCleaner  
+  http://htmlcleaner.sourceforge.net/  
+  BSD License
+
+* HtmlSpanner  
+  Apache License v2
+
+* Apache Commons Net  
+  http://commons.apache.org/net/  
+  Apache License v2
+
+## Images
+
+* icon.svg  
+  Based on Tango Icon Library  
+  http://tango.freedesktop.org/  
+  Public Domain
