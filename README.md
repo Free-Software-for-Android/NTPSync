@@ -7,11 +7,16 @@ For more information visit http://code.google.com/p/ntp-sync/
 
 # Build using Ant
 
-1. Add a file ``local.properties`` in the folder ``NTPSync`` and ``NTPSync/android-libs/Donations`` with the following lines:
-``sdk.dir=/opt/android-sdk``. Alter these lines to your locations of the Android SDK!
-2. Execute ```ant clear```
-3. Execute ```ant debug -Dtemplates=other```
-4. To disable Flattr and PayPal (not allowed in Google Play), execute ```ant debug -Dtemplates=google```
+1. Have Android SDK "tools" directory in your PATH (http://developer.android.com/sdk/index.html)
+2. Change to "NTPSync" directory with ``cd NTPSync``
+3. Execute ``android update project -p .`` and ``android update project -p android-libs/Donations``
+4. Execute ``ant clean``
+5. Execute ``ant debug -Ddonations=all``
+
+## More build information
+
+* To disable Flattr and PayPal (not allowed in Google Play), execute ``ant debug -Ddonations=google``
+* To disable Google (only working when the apk is signed with my private key), execute ``ant debug -Ddonations=other``
 
 # Contribute
 
@@ -19,7 +24,7 @@ Fork NTPSync and do a Pull Request. I will merge your changes back into the main
 
 # Libraries
 
-All JAR-Libraries are provided in this repository under ``libs``, all Android Library projects are under ``android-libs``.
+All JAR-Libraries are provided in this repository under "libs", all Android Library projects are under "android-libs".
 
 ## Build Apache Commons Net
 
@@ -28,7 +33,7 @@ All JAR-Libraries are provided in this repository under ``libs``, all Android Li
  * remove src/test
  * remove src/main/java/examples
  * in src/main/java/org/apache/commons/net remove every folder except io, util, ntp
-3. execute "mvn package" to build jar in target directory
+3. execute ``mvn package`` to build jar in target directory
 
 # Use NTPSync in your Android application
 You want to query NTP servers from your Android app or set the system clock to NTP time?
@@ -48,12 +53,12 @@ See https://github.com/dschuermann/ntp-sync/tree/master/org_api_demo for a compl
 
 # Translations
 
-Translations are hosted on Transifex, which is configured by ``.tx/config``
+Translations are hosted on Transifex, which is configured by ".tx/config"
 
-1. To pull newest translations install transifex client (e.g. aptitude install transifex-client)
-2. Config Transifex client with ``~/.transifexrc``
+1. To pull newest translations install transifex client (e.g. ``apt-get install transifex-client``)
+2. Config Transifex client with "~/.transifexrc"
 3. Go into root folder of git repo
-4. execute ```tx pull``` (```tx pull -a``` to get all languages)
+4. execute ``tx pull`` (``tx pull -a`` to get all languages)
 
 see http://help.transifex.net/features/client/index.html#user-client
 
