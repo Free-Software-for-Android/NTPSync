@@ -40,7 +40,7 @@ You want to query NTP servers from your Android app or set the system clock to N
 
 This can be done very easy using interprocess communication (IPC) in Android with AIDL. NTPSync provides you with an Interface where your application can connect to.
 
-See https://github.com/dschuermann/ntp-sync/tree/master/org_api_demo for a complete example.
+See https://github.com/dschuermann/ntp-sync/tree/master/API-Demo for a complete example.
 
 * You need the following permissions in your Android Manifest, adapted to your needs:
 ```xml
@@ -48,8 +48,8 @@ See https://github.com/dschuermann/ntp-sync/tree/master/org_api_demo for a compl
 <uses-permission android:name="org.ntpsync.permission.SET_TIME" />
 ```
 
-* copy the following file with the correct path to your project: https://github.com/dschuermann/ntp-sync/tree/master/org_api_demo/src/org/ntpsync/service/INtpSyncRemoteService.aidl
-* Connect to NTPSyncs service like shown in https://github.com/dschuermann/ntp-sync/tree/master/org_api_demo/src/org/ntpsync/apidemo/BaseActivity.java
+* copy the following file with the correct path to your project: https://github.com/dschuermann/ntp-sync/tree/master/API-Demo/src/org/ntpsync/service/INtpSyncRemoteService.aidl
+* Connect to NTPSyncs service like shown in https://github.com/dschuermann/ntp-sync/tree/master/API-Demo/src/org/ntpsync/apidemo/BaseActivity.java
 
 # Translations
 
