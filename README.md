@@ -1,6 +1,6 @@
 # NTPSync
 
-NTPSync is an open source ad blocker for Android using the hosts file. 
+NTPSync is a simple NTP time synchronization app for Android. 
 
 For more information visit http://code.google.com/p/ntp-sync/
 
