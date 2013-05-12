@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Activities-->
+  <string name="activity_help">Допомога</string>
+  <!--Help-->
+  <string name="help_help">Допомога</string>
+  <string name="help_donations">Пожертви</string>
+  <string name="help_about_version">Версія:</string>
+  <!--Dialogs-->
+  <string name="no_root_description">Не знайдений виконуваний файл su, або ви не дозволили root-доступ для FasterGPS. \n\nЦе може статися, якщо на вашому пристрої не розблоковані права суперкористувача (root). Ви можете знайти інформацію про те, як їх отримати на www.cyanogenmod.com та інших сайтах, присвячених Android.</string>
+  <string name="no_root_title">Необхідний Android з root-доступом</string>
+  <!--Buttons-->
+  <string name="button_exit">Вихід</string>
+  <!--Detailed query-->
+  <string name="detailed_query_title">Детальний запит</string>
+  <string name="detailed_query_unspecified">(невизначено або недоступно)</string>
+  <string name="detailed_query_primary_reference">(первинне джерело, наприклад, GPS)</string>
+  <string name="detailed_query_secondary_reference">(вторинне джерело, наприклад, NTP або SNTP)</string>
+  <string name="detailed_query_server"> Сервер:</string>
+  <string name="detailed_query_stratum">Шар:</string>
+  <string name="detailed_query_leap">Стрибок:</string>
+  <string name="detailed_query_version">Версія:</string>
+  <string name="detailed_query_precision">Точність:</string>
+  <string name="detailed_query_mode">Режим:</string>
+  <string name="detailed_query_poll">Опитування:</string>
+  <string name="detailed_query_seconds">секунд</string>
+  <string name="detailed_query_rootdelay">Затримка root:</string>
+  <string name="detailed_query_rootdispersion">Root-відхилення(мс)</string>
+  <string name="detailed_query_reference_identifier">Ідентифікатор джерела:</string>
+  <string name="detailed_query_reference_timestamp">Часова мітка джерела:</string>
+  <string name="detailed_query_originate_timestamp">Початкова часова мітка:</string>
+  <string name="detailed_query_receive_timestamp">Отримана часова мітка</string>
+  <string name="detailed_query_transmit_timestamp">Часова мітка передачі:</string>
+  <string name="detailed_query_destination_timestamp">Часова мітка призначення:</string>
+  <string name="detailed_query_computed_offset">Обчислений зсув:</string>
+  <string name="detailed_query_roundtrip_delay">Затримка у шляху (мс):</string>
+  <string name="detailed_query_clock_offset">Зсув годинників (мс):</string>
+  <!--Return messages-->
+  <string name="return_generic_error">Загальна помилка!</string>
+  <string name="return_timeout">Затримка відповіді сервера!</string>
+  <string name="return_no_root">Нема прав root!</string>
+  <string name="return_get_time">Час NTP:</string>
+  <string name="return_set_time">Час встановлено</string>
+  <!--Preferences-->
+  <string name="pref_query">Запит</string>
+  <string name="pref_detailed_query">Детальний запит</string>
+  <string name="pref_query_and_set">Запит і установка часу!</string>
+  <string name="pref_query_and_set_summary">(Вимагає прав root)</string>
+  <string name="pref_settings">Параметри</string>
+  <string name="pref_ntp_server">Сервер NTP</string>
+  <string name="pref_ntp_server_summary">Виберіть сервер NTP</string>
+  <string name="pref_set_on_boot">Встановлювати час при запуску</string>
+  <string name="pref_set_on_boot_summary">(Вимагає прав root)</string>
+  <string name="pref_sync_daily">Щоденна синхронізація</string>
+  <string name="pref_sync_daily_summary">Синхронізувати автоматично щодня \n(Вимагає прав root)</string>
+  <string name="pref_sync_only_on_wifi">Синхронізувати тільки по Wi-Fi</string>
+  <string name="pref_sync_only_on_wifi_summary">Виконувати фонову синхронізацію тільки при підключенні через Wi-Fi.</string>
+  <string name="pref_help">Допомога</string>
+  <!--Permission-->
+  <string name="permission_get_time_description">Дозволяє програмі встановити поточний час шляхом опитування NTP-сервера.</string>
+  <string name="permission_get_time_label">Отримати поточний час через NTP-сервери</string>
+  <string name="permission_set_time_description">Дозволяє програмі встановити системний час шляхом опитування NTP-сервера.</string>
+  <string name="permission_set_time_label">Встановити системний час через сервери NTP</string>
+</resources>

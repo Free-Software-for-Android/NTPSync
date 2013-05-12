@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Activities-->
+  <string name="activity_help">Hilfe</string>
+  <!--Help-->
+  <string name="help_help">Hilfe</string>
+  <string name="help_donations">Spenden</string>
+  <string name="help_about_version">Version:</string>
+  <!--Dialogs-->
+  <string name="no_root_title">Gerootetes Android benötigt</string>
+  <!--Buttons-->
+  <string name="button_exit">Beenden</string>
+  <!--Detailed query-->
+  <string name="detailed_query_server">Server:</string>
+  <string name="detailed_query_version">Version:</string>
+  <string name="detailed_query_mode">Modus:</string>
+  <string name="detailed_query_seconds">Sekunden</string>
+  <!--Return messages-->
+  <string name="return_no_root">Kein Root-Zugriff!</string>
+  <string name="return_get_time">NTP Zeit ist</string>
+  <!--Preferences-->
+  <string name="pref_query">Abfrage</string>
+  <string name="pref_detailed_query">Detailierte Abfrage</string>
+  <string name="pref_settings">Einstellungen</string>
+  <string name="pref_ntp_server">NTP Server</string>
+  <string name="pref_set_on_boot">Zeit bei Systemstart einstellen.</string>
+  <string name="pref_sync_daily">Täglicher Abgleich</string>
+  <string name="pref_sync_only_on_wifi">Nur im Wifi synchronisieren</string>
+  <string name="pref_sync_only_on_wifi_summary">Hintergrundabgleich nur bei WiFi-Netzwerkverbindung durchführen.</string>
+  <string name="pref_help">Hilfe</string>
+  <!--Permission-->
+  <string name="permission_get_time_label">Aktuelle Zeit von NTP-Servern abrufen</string>
+</resources>

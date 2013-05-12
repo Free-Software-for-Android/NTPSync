@@ -2,8 +2,7 @@
 <resources>
   <!--Activities-->
   <string name="activity_help">Aide</string>
-  <string name="activity_about">A propos</string>
-  <string name="activity_donations">Dons</string>
+  <!--Help-->
   <!--Dialogs-->
   <string name="no_root_description">Soit le programme su n\'a pas été trouvé, soit vous n\'avez pas autorisé l\'accès root pour FasterGPS\n\nCeci arrive lorsque l\'appareil n\'est pas rooté.\nVous trouverez plus d\'information a propos de l\'accès root sur www.cyanogenmod.com ou d\'autres sites web pour Androîd.</string>
   <string name="no_root_title">Accès Root obligatoire</string>
@@ -54,18 +53,9 @@
   <string name="pref_sync_only_on_wifi">Synchro par Wifi uniqement</string>
   <string name="pref_sync_only_on_wifi_summary">Synchro en tache de fond seulement en connexion wifi</string>
   <string name="pref_help">Aide</string>
-  <string name="pref_about">A propos</string>
-  <string name="pref_donations">Dons</string>
   <!--Permission-->
   <string name="permission_get_time_description">Permet a l\'application d\'obtenir l\'heure actuelle en interrogeant un serveur NTP.</string>
   <string name="permission_get_time_label">Retourne l\'heure actuelle à partir de serveurs NTP</string>
   <string name="permission_set_time_description">Permet a l\'application de définir la date système via des requêtes sur un serveur NTP.</string>
   <string name="permission_set_time_label">Régler le temps du système depuis les serveurs NTP</string>
-  <!--About-->
-  <string name="about_description">NTPSync est un simple client de synchronisation NTP de temps pour Android.</string>
-  <string name="about_license">License: GPL v3+</string>
-  <string name="about_version">Version:</string>
-  <string name="about_developer">Developeur:</string>
-  <string name="about_translators">Traducteurs:</string>
-  <string name="about_libs">NTPSync utilise \'RootTools\' (License: GPL v2) pour gérer l\'accès root et \'Apache Commons Net\' (License: Apache License v2) pour les requetes sur les serveurs NTP</string>
 </resources>

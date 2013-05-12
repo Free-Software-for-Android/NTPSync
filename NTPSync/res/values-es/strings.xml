@@ -2,8 +2,7 @@
 <resources>
   <!--Activities-->
   <string name="activity_help">Ayuda</string>
-  <string name="activity_about">Sobre</string>
-  <string name="activity_donations">Donaciones</string>
+  <!--Help-->
   <!--Dialogs-->
   <string name="no_root_description">El binario de SU no se encuentra o no tienes permiso de root para FasterGPS. Esto puede ocurrir cuando tu dispositivo no está rooteado. Puedes encontrar información en www.cyanogenmod.com o en otros websites sobre Android.</string>
   <string name="no_root_title">Android rooteado equerido</string>
@@ -54,18 +53,9 @@
   <string name="pref_sync_only_on_wifi">Sincronizar sólo en Wifi</string>
   <string name="pref_sync_only_on_wifi_summary">Ejecutar sincronización en segundo plano cuando se conecte a una red wifi.</string>
   <string name="pref_help">Ayuda</string>
-  <string name="pref_about">Sobre</string>
-  <string name="pref_donations">Donaciones</string>
   <!--Permission-->
   <string name="permission_get_time_description">Permite a las aplicaciones conseguir la hora consultando al servidor NTP.</string>
   <string name="permission_get_time_label">Conseguir hora actual desde servidores NTP</string>
   <string name="permission_set_time_description">Permite a las aplicaciones conseguir la hora consultando al servidor NTP.</string>
   <string name="permission_set_time_label">Fija la hora del sistema desde los servidores NTP</string>
-  <!--About-->
-  <string name="about_description">NTPSync es una sencilla aplicación de Android  para la sincronización de la hora vía NTP</string>
-  <string name="about_license">Licencia: GPL v3+</string>
-  <string name="about_version">Version:</string>
-  <string name="about_developer">Desarrollador:</string>
-  <string name="about_translators">Traductores:</string>
-  <string name="about_libs">NTPSync utiliza \'RootCommands\' (Licencia: Apache v2) para manejar lso accesos de root y \'Apache Commons Net\' (Licencia: Apache License v2) para las consultas a servidores NTP</string>
 </resources>

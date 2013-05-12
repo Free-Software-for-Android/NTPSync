@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Activities-->
+  <string name="activity_help">Pomoc</string>
+  <!--Help-->
+  <string name="help_help">Pomoc</string>
+  <string name="help_donations">Wsparcie</string>
+  <string name="help_about_version">Wersja:</string>
+  <!--Dialogs-->
+  <string name="no_root_description">Albo nie znaleziono biblioteki su albo nie przyznałeś praw roota dla FasterGPS.\n\nTo może być spowodowane tym, że Twoje urządzenie nie jest zrootowane.\nInformacje na temat rootowania Twojego urządzenia możesz znaleźć na www.cyanogenmod.com lub innych stronach o tematyce Androida.</string>
+  <string name="no_root_title">Wymagany root</string>
+  <!--Buttons-->
+  <string name="button_exit">Wyjdź</string>
+  <!--Detailed query-->
+  <string name="detailed_query_title">Szczegółowe zapytanie</string>
+  <string name="detailed_query_unspecified">(niepodane lub niedostępne)</string>
+  <string name="detailed_query_primary_reference">(główne źródło, np. GPS)</string>
+  <string name="detailed_query_secondary_reference">(podrzędne źródło, np. serwer NTP)</string>
+  <string name="detailed_query_server">Serwer:</string>
+  <string name="detailed_query_stratum">Warstwa stratum:</string>
+  <string name="detailed_query_leap">Przeskok:</string>
+  <string name="detailed_query_version">Wersja:</string>
+  <string name="detailed_query_precision">Precyzja:</string>
+  <string name="detailed_query_mode">Tryb:</string>
+  <string name="detailed_query_poll">Czas zapytania:</string>
+  <string name="detailed_query_seconds">sekund(y)</string>
+  <string name="detailed_query_rootdelay">Opóźnienie źródła:</string>
+  <string name="detailed_query_rootdispersion">Rozrzut pomiarów (ms):</string>
+  <string name="detailed_query_reference_identifier">Identyfikator źródła:</string>
+  <string name="detailed_query_reference_timestamp">Timestamp źródła:</string>
+  <string name="detailed_query_originate_timestamp">Timestamp zegara systemowego:</string>
+  <string name="detailed_query_receive_timestamp">Timestamp podczas odbioru:</string>
+  <string name="detailed_query_transmit_timestamp">Timestamp podczas transmisji:</string>
+  <string name="detailed_query_destination_timestamp">Timestamp serwera:</string>
+  <string name="detailed_query_computed_offset">Obliczona różnica czasów:</string>
+  <string name="detailed_query_roundtrip_delay">Opóźnienie transmisji (ms):</string>
+  <string name="detailed_query_clock_offset">Różnica zegara systemowego względem wzorca (ms):</string>
+  <!--Return messages-->
+  <string name="return_generic_error">Błąd!</string>
+  <string name="return_timeout">Przekroczono limit czasu serwera!</string>
+  <string name="return_no_root">Brak dostępu do konta root!</string>
+  <string name="return_get_time">Czas NTP to</string>
+  <string name="return_set_time">Czas został ustawiony na</string>
+  <!--Preferences-->
+  <string name="pref_query">Zapytanie</string>
+  <string name="pref_detailed_query">Szczegółowe zapytanie</string>
+  <string name="pref_query_and_set">Wykonaj zapytanie i ustaw czas</string>
+  <string name="pref_query_and_set_summary">(wymaga uprawnień root)</string>
+  <string name="pref_settings">Ustawienia</string>
+  <string name="pref_ntp_server">Serwer NTP</string>
+  <string name="pref_ntp_server_summary">Zmień serwer NTP</string>
+  <string name="pref_set_on_boot">Ustaw czas przy uruchamianiu</string>
+  <string name="pref_set_on_boot_summary">(wymaga uprawnień root)</string>
+  <string name="pref_sync_daily">Synchronizacja dzienna</string>
+  <string name="pref_sync_daily_summary">Synchronizuj automatycznie raz dziennie\n(wymaga uprawnień root)</string>
+  <string name="pref_sync_only_on_wifi">Synchronizuj tylko przez Wifi</string>
+  <string name="pref_sync_only_on_wifi_summary">Wywołuje synchronizację w tle tylko podczas połączenia z siecią Wifi</string>
+  <string name="pref_help">Pomoc</string>
+  <!--Permission-->
+  <string name="permission_get_time_description">Zezwala aplikacji na pobranie czasu poprzez wykonanie zapytania do serwera NTP.</string>
+  <string name="permission_get_time_label">Pobieranie czasu z serwerów NTP</string>
+  <string name="permission_set_time_description">Zezwala aplikacji na pobranie czasu poprzez wykonanie zapytania do serwera NTP.</string>
+  <string name="permission_set_time_label">Ustawianie zegara systemowego za pomocą serwerów NTP</string>
+</resources>
