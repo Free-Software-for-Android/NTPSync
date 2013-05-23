@@ -1,7 +1,7 @@
 package org.ntpsync;
 
 import org.ntpsync.util.Constants;
-import org.rootcommands.RootCommands;
+import org.sufficientlysecure.rootcommands.RootCommands;
 
 import android.app.Application;
 

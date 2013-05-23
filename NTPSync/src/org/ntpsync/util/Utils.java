@@ -22,9 +22,9 @@ package org.ntpsync.util;
 
 import org.ntpsync.R;
 import org.ntpsync.service.NtpSyncService;
-import org.rootcommands.Shell;
-import org.rootcommands.Toolbox;
-import org.rootcommands.util.RootAccessDeniedException;
+import org.sufficientlysecure.rootcommands.Shell;
+import org.sufficientlysecure.rootcommands.Toolbox;
+import org.sufficientlysecure.rootcommands.util.RootAccessDeniedException;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
