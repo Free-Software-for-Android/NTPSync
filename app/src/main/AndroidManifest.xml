@@ -59,9 +59,9 @@
             android:label="@string/activity_help" />
 
         <!-- - Google Play Store donations -->
-        <service android:name="org.donations.google.BillingService" />
+        <service android:name="org.sufficientlysecure.donations.google.BillingService" />
 
-        <receiver android:name="org.donations.google.BillingReceiver" >
+        <receiver android:name="org.sufficientlysecure.donations.google.BillingReceiver" >
             <intent-filter>
                 <action android:name="com.android.vending.billing.IN_APP_NOTIFY" />
                 <action android:name="com.android.vending.billing.RESPONSE_CODE" />
