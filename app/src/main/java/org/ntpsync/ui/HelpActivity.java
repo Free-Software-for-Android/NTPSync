@@ -65,9 +65,11 @@ public class HelpActivity extends FragmentActivity {
 
         DonationsFragment donationsFragment;
         if (BuildConfig.DONATIONS_GOOGLE) {
-            donationsFragment = DonationsFragment.newInstance(true, GOOGLE_PUBKEY, GOOGLE_CATALOG, false, null, null, null, false, null, null);
+            donationsFragment = DonationsFragment.newInstance(true, GOOGLE_PUBKEY, GOOGLE_CATALOG, false, null, null,
+                    null, false, null, null);
         } else {
-            donationsFragment = DonationsFragment.newInstance(false, null, null, true, PAYPAL_USER, PAYPAL_CURRENCY_CODE, getString(R.string.pref_paypal_donation_item), true, FLATTR_PROJECT_URL, FLATTR_URL);
+            donationsFragment = DonationsFragment.newInstance(false, null, null, true, PAYPAL_USER,
+                    PAYPAL_CURRENCY_CODE, getString(R.string.pref_paypal_donation_item), true, FLATTR_PROJECT_URL, FLATTR_URL);
         }
 
         ft.replace(R.id.help_donations_container, donationsFragment);
