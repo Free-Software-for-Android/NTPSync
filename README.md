@@ -10,8 +10,7 @@ For more information visit http://code.google.com/p/ntp-sync/
 1. Have Android SDK "tools", "platform-tools", and "build-tools" directories in your PATH (http://developer.android.com/sdk/index.html)
 2. Export ANDROID_HOME pointing to your Android SDK
 3. Install Gradle (Minimum version: 1.6)
-4. TODO: needed? Execute ``android update project -p .`` and ``android update project -p android-libs/Donations``
-5. Execute ``gradle assemble``
+4. Execute ``gradle assemble``
 
 ## More build information
 
