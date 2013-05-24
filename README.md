@@ -5,18 +5,16 @@ NTPSync is a simple NTP time synchronization app for Android.
 For more information visit http://code.google.com/p/ntp-sync/
 
 
-# Build using Ant
+# Build using Gradle
 
-1. Have Android SDK "tools" directory in your PATH (http://developer.android.com/sdk/index.html)
-2. Change to "NTPSync" directory with ``cd NTPSync``
-3. Execute ``android update project -p .`` and ``android update project -p android-libs/Donations``
-4. Execute ``ant clean``
-5. Execute ``ant debug -Ddonations=all``
+1. Have Android SDK "tools", "platform-tools", and "build-tools" directories in your PATH (http://developer.android.com/sdk/index.html)
+2. Install Gradle (Minimum version: 1.6)
+3. TODO: needed? Execute ``android update project -p .`` and ``android update project -p android-libs/Donations``
+4. Execute ``gradle assemble``
 
 ## More build information
 
-* To disable Flattr and PayPal (not allowed in Google Play), execute ``ant debug -Ddonations=google``
-* To disable Google (only working when the apk is signed with my private key), execute ``ant debug -Ddonations=other``
+Two productFlavors are build with gradle. One for Google Play (without Paypal and Flattr Donations) and one for F-Droid (without Google Play Donations).
 
 # Contribute
 
@@ -24,7 +22,7 @@ Fork NTPSync and do a Pull Request. I will merge your changes back into the main
 
 # Libraries
 
-All JAR-Libraries are provided in this repository under "libs", all Android Library projects are under "android-libs".
+All JAR-Libraries are provided in this repository under "app/libs", all Android Library projects are under "libraries".
 
 ## Build Apache Commons Net
 
