@@ -47,7 +47,7 @@ See https://github.com/dschuermann/ntp-sync/tree/master/API-Demo for a complete 
 <uses-permission android:name="org.ntpsync.permission.SET_TIME" />
 ```
 
-* copy the following file with the correct path to your project: https://github.com/dschuermann/ntp-sync/tree/master/API-Demo/src/main/java/org/ntpsync/service/INtpSyncRemoteService.aidl
+* copy the following file with the correct path to your project: https://github.com/dschuermann/ntp-sync/tree/master/API-Demo/src/main/aidl/org/ntpsync/service/INtpSyncRemoteService.aidl
 * Connect to NTPSyncs service like shown in https://github.com/dschuermann/ntp-sync/tree/master/API-Demo/src/main/java/org/ntpsync/apidemo/BaseActivity.java
 
 # Translations
