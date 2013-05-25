@@ -1,1 +1,1 @@
-include ':app', ':libraries:Donations'
+include ':NTPSync', ':libraries:Donations'
