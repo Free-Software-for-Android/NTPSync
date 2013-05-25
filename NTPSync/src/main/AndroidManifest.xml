@@ -21,8 +21,6 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <!-- Required permission to wake phone up for setting time -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <!-- Required permission to use Google Android Market donations -->
-    <uses-permission android:name="com.android.vending.BILLING" />
     <!-- Used by Koush's new Superuser app -->
     <uses-permission android:name="android.permission.ACCESS_SUPERUSER" />
 
@@ -58,16 +56,6 @@
             android:name=".ui.HelpActivity"
             android:label="@string/activity_help" />
 
-        <!-- - Google Play Store donations -->
-        <service android:name="org.sufficientlysecure.donations.google.BillingService" />
-
-        <receiver android:name="org.sufficientlysecure.donations.google.BillingReceiver" >
-            <intent-filter>
-                <action android:name="com.android.vending.billing.IN_APP_NOTIFY" />
-                <action android:name="com.android.vending.billing.RESPONSE_CODE" />
-                <action android:name="com.android.vending.billing.PURCHASE_STATE_CHANGED" />
-            </intent-filter>
-        </receiver>
         <receiver android:name=".service.BootReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
