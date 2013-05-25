@@ -8,7 +8,16 @@
     <string name="help_help">Help</string>
     <string name="help_donations">Donations</string>
     <string name="help_about_version">Version:</string>
-    
+    <string name="help_donation_paypal_item">NTPSync Donation</string>
+    <string-array name="help_donation_google_catalog_values">
+        <item>1 Euro</item>
+        <item>2 Euros</item>
+        <item>3 Euros</item>
+        <item>5 Euros</item>
+        <item>8 Euros</item>
+        <item>13 Euros</item>
+    </string-array>
+
     <!-- Dialogs -->
     <string name="no_root_description">Either the su binary could not be found or you did not allow root permission for FasterGPS.\n\nThis can happen when your device is not rooted.\nYou can find information about how to root your device on www.cyanogenmod.com or other Android websites.</string>
     <string name="no_root_title">Rooted Android required</string>
@@ -63,7 +72,6 @@
     <string name="pref_sync_only_on_wifi">Sync only on Wifi</string>
     <string name="pref_sync_only_on_wifi_summary">Execute background sync only when connected to a wifi network.</string>
     <string name="pref_help">Help</string>
-    <string name="pref_paypal_donation_item">NTPSync Donation</string>
 
     <!-- Permission -->
     <string name="permission_get_time_description">Allows application to get current time by querying a NTP server.</string>
