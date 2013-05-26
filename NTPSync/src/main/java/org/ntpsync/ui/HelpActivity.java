@@ -20,6 +20,9 @@
 
 package org.ntpsync.ui;
 
+import android.content.Intent;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import org.ntpsync.BuildConfig;
 import org.ntpsync.R;
@@ -53,28 +56,46 @@ public class HelpActivity extends FragmentActivity {
     private static final String FLATTR_URL = "flattr.com/thing/669294/NTPSync";
 
     /**
-     * Instantiate View for this Activity
+     * Called when the activity is first created.
      */
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.help_activity);
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-
         DonationsFragment donationsFragment;
         if (BuildConfig.DONATIONS_GOOGLE) {
-            donationsFragment = DonationsFragment.newInstance(true, GOOGLE_PUBKEY, GOOGLE_CATALOG,
+            donationsFragment = DonationsFragment.newInstance(BuildConfig.DEBUG, true, GOOGLE_PUBKEY, GOOGLE_CATALOG,
                     getResources().getStringArray(R.array.help_donation_google_catalog_values), false, null, null,
                     null, false, null, null);
         } else {
-            donationsFragment = DonationsFragment.newInstance(false, null, null, null, true, PAYPAL_USER,
+            donationsFragment = DonationsFragment.newInstance(BuildConfig.DEBUG, false, null, null, null, true, PAYPAL_USER,
                     PAYPAL_CURRENCY_CODE, getString(R.string.help_donation_paypal_item), true, FLATTR_PROJECT_URL, FLATTR_URL);
         }
 
-        ft.replace(R.id.help_donations_container, donationsFragment);
+        ft.replace(R.id.help_donations_container, donationsFragment, "donationsFragment");
         ft.commit();
+    }
+
+    /**
+     * Needed for Google Play In-app Billing. It uses startIntentSenderForResult(). The result is not propagated to
+     * the Fragment like in startActivityForResult(). Thus we need to propagate manually to our Fragment.
+     *
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        Fragment fragment = fragmentManager.findFragmentByTag("donationsFragment");
+        if (fragment != null) {
+            ((DonationsFragment) fragment).onActivityResult(requestCode, resultCode, data);
+        }
     }
 
 }
