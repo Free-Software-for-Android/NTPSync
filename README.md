@@ -2,7 +2,7 @@
 
 NTPSync is a simple NTP time synchronization app for Android. 
 
-For more information visit http://code.google.com/p/ntp-sync/
+For more information visit http://sufficientlysecure.org/index.php/android-apps/
 
 
 # Build with Gradle
