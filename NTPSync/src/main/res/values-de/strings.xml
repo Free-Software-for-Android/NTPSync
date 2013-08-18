@@ -6,28 +6,55 @@
   <string name="help_help">Hilfe</string>
   <string name="help_donations">Spenden</string>
   <string name="help_about_version">Version:</string>
+  <string name="help_donation_paypal_item">NTPSync Spende</string>
+  <string-array name="help_donation_google_catalog_values">
+    <item>1 Euro</item>
+    <item>2 Euro</item>
+    <item>3 Euro</item>
+    <item>5 Euro</item>
+    <item>8 Euro</item>
+    <item>13 Euro</item>
+  </string-array>
   <!--Dialogs-->
+  <string name="no_root_description">Entweder konnte die su-Binery nicht gefunden werden, oder du hast die Root-Zugriffsrechte für FasterGPS verweigert.\n\nDer Grund kann sein dass dein Gerät nicht gerootet ist.\nInformationen wie du dein Gerät rootest findest du auf www.cyanogenmod.com oder anderen Internetseiten zum Thema Android. </string>
   <string name="no_root_title">Gerootetes Android benötigt</string>
   <!--Buttons-->
   <string name="button_exit">Beenden</string>
   <!--Detailed query-->
+  <string name="detailed_query_title">Detaillierte Abfrage</string>
   <string name="detailed_query_server">Server:</string>
+  <string name="detailed_query_stratum">Stratum:</string>
   <string name="detailed_query_version">Version:</string>
+  <string name="detailed_query_precision">Genauigkeit:</string>
   <string name="detailed_query_mode">Modus:</string>
   <string name="detailed_query_seconds">Sekunden</string>
+  <string name="detailed_query_rootdelay">Root-Verzögerung:</string>
+  <string name="detailed_query_computed_offset">Errechnete Abweichung:</string>
+  <string name="detailed_query_clock_offset">Zeitabweichung (ms):</string>
   <!--Return messages-->
+  <string name="return_generic_error">Unspezifischer Fehler!</string>
+  <string name="return_timeout">Zeitüberschreitung der Serververbindung</string>
   <string name="return_no_root">Kein Root-Zugriff!</string>
   <string name="return_get_time">NTP Zeit ist</string>
+  <string name="return_set_time">Die Zeit wurde auf #timestamp here# gestellt</string>
   <!--Preferences-->
   <string name="pref_query">Abfrage</string>
   <string name="pref_detailed_query">Detailierte Abfrage</string>
+  <string name="pref_query_and_set">Zeit abfragen und einstellen</string>
+  <string name="pref_query_and_set_summary">(Benötigt Root-Rechte)</string>
   <string name="pref_settings">Einstellungen</string>
   <string name="pref_ntp_server">NTP Server</string>
+  <string name="pref_ntp_server_summary">Wähle einen NTP Server</string>
   <string name="pref_set_on_boot">Zeit bei Systemstart einstellen.</string>
+  <string name="pref_set_on_boot_summary">(Root Zugriff benötigt)</string>
   <string name="pref_sync_daily">Täglicher Abgleich</string>
-  <string name="pref_sync_only_on_wifi">Nur im Wifi synchronisieren</string>
+  <string name="pref_sync_daily_summary">Jeden Tag automatisch abgleichen\n(benötigt Root-Rechte)</string>
+  <string name="pref_sync_only_on_wifi">Nur im Wlan synchronisieren</string>
   <string name="pref_sync_only_on_wifi_summary">Hintergrundabgleich nur bei WiFi-Netzwerkverbindung durchführen.</string>
   <string name="pref_help">Hilfe</string>
   <!--Permission-->
+  <string name="permission_get_time_description">Der Anwendung erlaufen die aktuelle Zeit über eine Abfrage des NTP Servers zu ermitteln.</string>
   <string name="permission_get_time_label">Aktuelle Zeit von NTP-Servern abrufen</string>
+  <string name="permission_set_time_description">Der Anwendung erlauben die Systemzeit über eine Abfrage beim NTP Server einzustellen.</string>
+  <string name="permission_set_time_label">Die Zeit des NTP Servers einstellen</string>
 </resources>

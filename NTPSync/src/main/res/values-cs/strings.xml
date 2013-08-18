@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Activities-->
+  <string name="activity_help">Nápověda</string>
+  <!--Help-->
+  <string name="help_about_version">Verze:</string>
+  <string name="help_donation_paypal_item">NTPSync příspěvky</string>
+  <string-array name="help_donation_google_catalog_values">
+    <item>1 Euro</item>
+    <item>2 Eura</item>
+    <item>3 Eura</item>
+    <item>5 Eur</item>
+    <item>8 Eur</item>
+    <item>13 Eur</item>
+  </string-array>
+  <!--Dialogs-->
+  <string name="no_root_description">Nebyl nalezen spustitelný soubor su či jste nepovolili rootovské oprávnění programu FasterGPS.\n\nTo se může stát, pokud vaše zařízení není rootováno.\nInformace o rootování zařízení najdete na www.cyanogenmod.com či na dalších stránkách o systému Android.</string>
+  <string name="no_root_title">Vyžaduje rootovaný Android</string>
+  <!--Buttons-->
+  <string name="button_exit">Konec</string>
+  <!--Detailed query-->
+  <string name="detailed_query_title">Podrobný dotaz</string>
+  <string name="detailed_query_unspecified">(Nezadáno či nedostupné)</string>
+  <string name="detailed_query_primary_reference">(Primární reference: atomové hodiny, GPS)</string>
+  <string name="detailed_query_secondary_reference">(Sekundární reference: NTP či SNTP)</string>
+  <string name="detailed_query_server">Server:</string>
+  <string name="detailed_query_stratum">Stratum:</string>
+  <string name="detailed_query_leap">Přeestupné sekundy:</string>
+  <string name="detailed_query_version">Verze:</string>
+  <string name="detailed_query_precision">Přesnost:</string>
+  <string name="detailed_query_mode">Režim:</string>
+  <string name="detailed_query_poll">Dotaz:</string>
+  <string name="detailed_query_seconds">sekundy</string>
+  <!--Return messages-->
+  <string name="return_generic_error">Obecná chyba!</string>
+  <string name="return_timeout">Vypršel čas na odpověď serveru!</string>
+  <string name="return_no_root">Chybí root přístup!</string>
+  <string name="return_get_time">NTP čas je</string>
+  <!--Preferences-->
+  <string name="pref_settings">Nastavení</string>
+  <string name="pref_ntp_server">NTP server</string>
+  <string name="pref_ntp_server_summary">Vyberte NTP server</string>
+  <string name="pref_set_on_boot">Nastavit při startu zařízení</string>
+  <string name="pref_help">Nápověda</string>
+  <!--Permission-->
+</resources>

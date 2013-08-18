@@ -6,6 +6,15 @@
   <string name="help_help">Допомога</string>
   <string name="help_donations">Пожертви</string>
   <string name="help_about_version">Версія:</string>
+  <string name="help_donation_paypal_item">Пожертва NTPSync</string>
+  <string-array name="help_donation_google_catalog_values">
+    <item>1 Євро</item>
+    <item>2 Євро</item>
+    <item>3 Євро</item>
+    <item>5 Євро</item>
+    <item>8 Євро</item>
+    <item>13 Євро</item>
+  </string-array>
   <!--Dialogs-->
   <string name="no_root_description">Не знайдений виконуваний файл su, або ви не дозволили root-доступ для FasterGPS. \n\nЦе може статися, якщо на вашому пристрої не розблоковані права суперкористувача (root). Ви можете знайти інформацію про те, як їх отримати на www.cyanogenmod.com та інших сайтах, присвячених Android.</string>
   <string name="no_root_title">Необхідний Android з root-доступом</string>

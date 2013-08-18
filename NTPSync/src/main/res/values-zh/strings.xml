@@ -6,6 +6,15 @@
   <string name="help_help">帮助</string>
   <string name="help_donations">捐款</string>
   <string name="help_about_version">版本:</string>
+  <string name="help_donation_paypal_item">NTPSync 捐赠</string>
+  <string-array name="help_donation_google_catalog_values">
+    <item>1 欧元</item>
+    <item>2 欧元</item>
+    <item>3 欧元</item>
+    <item>5 欧元</item>
+    <item>8 欧元</item>
+    <item>13 欧元</item>
+  </string-array>
   <!--Dialogs-->
   <string name="no_root_description">没有找到 su 命令或您不允许 root 权限给 FasterGPS。\n\n当您设备没有被 rooted 就会出现这种情况。\n您可以访问 www.cyanogenmod.com 或其他安卓网站了解如何 root 您的设备。</string>
   <string name="no_root_title">需重启安卓系统</string>
