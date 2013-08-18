@@ -61,7 +61,8 @@ public class ConnectivityReceiver extends BroadcastReceiver {
 
                         // if we have mobile or wifi connectivity...
                         if (((netInfo.getType() == ConnectivityManager.TYPE_MOBILE) && updateOnlyOnWifi == false)
-                                || (netInfo.getType() == ConnectivityManager.TYPE_WIFI)) {
+                                || (netInfo.getType() == ConnectivityManager.TYPE_WIFI)
+                                || (netInfo.getType() == ConnectivityManager.TYPE_ETHERNET)) {
                             Log.d(Constants.TAG,
                                     "We have internet, start sync and disable receiver!");
 

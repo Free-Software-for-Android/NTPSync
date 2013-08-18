@@ -2,7 +2,7 @@
 
 NTPSync is a simple NTP time synchronization app for Android. 
 
-For more information visit http://sufficientlysecure.org/index.php/android-apps/
+For more information visit http://sufficientlysecure.org/android-apps/
 
 
 # Build with Gradle
@@ -81,7 +81,7 @@ See http://www.androidpolice.com/2009/11/04/auto-formatting-android-xml-files-wi
 
 # Licenses
 NTPSync is licensed under the GPLv3+.  
-The file COPYING includes the full license text.
+The file LICENSE includes the full license text.
 
 ## Details
 NTPSync is free software: you can redistribute it and/or modify
