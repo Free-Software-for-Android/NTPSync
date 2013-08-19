@@ -21,6 +21,7 @@
 package org.ntpsync.service;
 
 import java.io.IOException;
+import java.text.DateFormat;
 import java.util.Date;
 
 import org.apache.commons.net.ntp.TimeInfo;
