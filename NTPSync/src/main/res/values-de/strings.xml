@@ -41,16 +41,16 @@
   <string name="pref_query">Abfrage</string>
   <string name="pref_detailed_query">Detailierte Abfrage</string>
   <string name="pref_query_and_set">Zeit abfragen und einstellen</string>
-  <string name="pref_query_and_set_summary">(Benötigt Root-Rechte)</string>
+  <string name="pref_query_and_set_summary">(Benötigt Root-Zugriff)</string>
   <string name="pref_settings">Einstellungen</string>
   <string name="pref_ntp_server">NTP-Server</string>
   <string name="pref_ntp_server_summary">Wähle einen NTP-Server</string>
   <string name="pref_set_on_boot">Zeit bei Systemstart einstellen.</string>
-  <string name="pref_set_on_boot_summary">(Root Zugriff benötigt)</string>
+  <string name="pref_set_on_boot_summary">(Benötigt Root-Zugriff)</string>
   <string name="pref_sync_daily">Täglicher Abgleich</string>
-  <string name="pref_sync_daily_summary">Jeden Tag automatisch abgleichen\n(benötigt Root-Rechte)</string>
+  <string name="pref_sync_daily_summary">Einmal am Tag automatisch abgleichen\n(Benötigt Root-Zugriff)</string>
   <string name="pref_sync_only_on_wifi">Nur im WLAN synchronisieren</string>
-  <string name="pref_sync_only_on_wifi_summary">Hintergrundabgleich nur bei WiFi-Netzwerkverbindung durchführen.</string>
+  <string name="pref_sync_only_on_wifi_summary">Hintergrundabgleich nur bei WLAN-Verbindung durchführen.</string>
   <string name="pref_help">Hilfe</string>
   <!--Permission-->
   <string name="permission_get_time_description">Erlaubt die aktuelle Zeit über eine Anfrage an ein NTP-Server zu ermitteln.</string>
