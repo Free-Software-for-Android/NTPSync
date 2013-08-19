@@ -225,6 +225,7 @@ public class NtpSyncService extends IntentService {
 
         handler.post(new Runnable() {
             public void run() {
+                DateFormat df = DateFormat.getDateTimeInstance();
 
                 switch (message.arg1) {
                 case NtpSyncService.RETURN_GENERIC_ERROR:
@@ -245,7 +246,7 @@ public class NtpSyncService extends IntentService {
                     Toast.makeText(
                             getApplicationContext(),
                             getString(R.string.app_name) + ": "
-                                    + getString(R.string.return_set_time) + " " + newTime,
+                                    + getString(R.string.return_set_time) + " " + df.format(newTime),
                             Toast.LENGTH_LONG).show();
 
                     break;

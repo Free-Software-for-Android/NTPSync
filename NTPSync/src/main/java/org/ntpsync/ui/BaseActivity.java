@@ -20,6 +20,7 @@
 
 package org.ntpsync.ui;
 
+import java.text.DateFormat;
 import java.util.Date;
 
 import org.ntpsync.R;
@@ -67,7 +68,7 @@ public class BaseActivity extends PreferenceActivity {
 
     /**
      * Retain activity on rotate and set back progress indicator
-     * 
+     *
      * @param newConfig
      */
     @Override
@@ -77,7 +78,9 @@ public class BaseActivity extends PreferenceActivity {
         setIndeterminateProgress(progressEnabled);
     }
 
-    /** Called when the activity is first created. */
+    /**
+     * Called when the activity is first created.
+     */
     @SuppressWarnings("deprecation")
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -122,36 +125,39 @@ public class BaseActivity extends PreferenceActivity {
 
                         Toast toast = null;
                         switch (message.arg1) {
-                        case NtpSyncService.RETURN_GENERIC_ERROR:
-                            toast = Toast.makeText(mActivity,
-                                    getString(R.string.return_generic_error), Toast.LENGTH_LONG);
-                            toast.show();
+                            case NtpSyncService.RETURN_GENERIC_ERROR:
+                                toast = Toast.makeText(mActivity,
+                                        getString(R.string.return_generic_error), Toast.LENGTH_LONG);
+                                toast.show();
 
-                            break;
+                                break;
 
-                        case NtpSyncService.RETURN_OKAY:
-                            Bundle returnData = message.getData();
-                            Date newTime = (Date) returnData
-                                    .getSerializable(NtpSyncService.MESSAGE_DATA_TIME);
+                            case NtpSyncService.RETURN_OKAY:
+                                Bundle returnData = message.getData();
+                                DateFormat df = DateFormat.getDateTimeInstance();
+                                Date newTime = (Date) returnData
+                                        .getSerializable(NtpSyncService.MESSAGE_DATA_TIME);
 
-                            toast = Toast.makeText(mActivity, getString(R.string.return_get_time)
-                                    + " " + newTime, Toast.LENGTH_LONG);
-                            toast.show();
+                                toast = Toast.makeText(mActivity, getString(R.string.return_get_time)
+                                        + " " + df.format(newTime), Toast.LENGTH_LONG);
+                                toast.show();
 
-                            break;
+                                break;
 
-                        case NtpSyncService.RETURN_SERVER_TIMEOUT:
-                            toast = Toast.makeText(mActivity, getString(R.string.return_timeout),
-                                    Toast.LENGTH_LONG);
-                            toast.show();
+                            case NtpSyncService.RETURN_SERVER_TIMEOUT:
+                                toast = Toast.makeText(mActivity, getString(R.string.return_timeout),
+                                        Toast.LENGTH_LONG);
+                                toast.show();
 
-                            break;
+                                break;
 
-                        default:
-                            break;
+                            default:
+                                break;
                         }
 
-                    };
+                    }
+
+                    ;
                 };
 
                 // Create a new Messenger for the communication back
@@ -189,41 +195,44 @@ public class BaseActivity extends PreferenceActivity {
 
                         Toast toast = null;
                         switch (message.arg1) {
-                        case NtpSyncService.RETURN_GENERIC_ERROR:
-                            toast = Toast.makeText(mActivity,
-                                    getString(R.string.return_generic_error), Toast.LENGTH_LONG);
-                            toast.show();
+                            case NtpSyncService.RETURN_GENERIC_ERROR:
+                                toast = Toast.makeText(mActivity,
+                                        getString(R.string.return_generic_error), Toast.LENGTH_LONG);
+                                toast.show();
 
-                            break;
+                                break;
 
-                        case NtpSyncService.RETURN_OKAY:
-                            Bundle returnData = message.getData();
-                            Date newTime = (Date) returnData
-                                    .getSerializable(NtpSyncService.MESSAGE_DATA_TIME);
+                            case NtpSyncService.RETURN_OKAY:
+                                Bundle returnData = message.getData();
+                                DateFormat df = DateFormat.getDateTimeInstance();
+                                Date newTime = (Date) returnData
+                                        .getSerializable(NtpSyncService.MESSAGE_DATA_TIME);
 
-                            toast = Toast.makeText(mActivity, getString(R.string.return_set_time)
-                                    + " " + newTime, Toast.LENGTH_LONG);
-                            toast.show();
+                                toast = Toast.makeText(mActivity, getString(R.string.return_set_time)
+                                        + " " + df.format(newTime), Toast.LENGTH_LONG);
+                                toast.show();
 
-                            break;
+                                break;
 
-                        case NtpSyncService.RETURN_SERVER_TIMEOUT:
-                            toast = Toast.makeText(mActivity, getString(R.string.return_timeout),
-                                    Toast.LENGTH_LONG);
-                            toast.show();
+                            case NtpSyncService.RETURN_SERVER_TIMEOUT:
+                                toast = Toast.makeText(mActivity, getString(R.string.return_timeout),
+                                        Toast.LENGTH_LONG);
+                                toast.show();
 
-                            break;
+                                break;
 
-                        case NtpSyncService.RETURN_NO_ROOT:
-                            Utils.showRootDialog(mActivity);
+                            case NtpSyncService.RETURN_NO_ROOT:
+                                Utils.showRootDialog(mActivity);
 
-                            break;
+                                break;
 
-                        default:
-                            break;
+                            default:
+                                break;
                         }
 
-                    };
+                    }
+
+                    ;
                 };
 
                 // Create a new Messenger for the communication back
@@ -262,42 +271,44 @@ public class BaseActivity extends PreferenceActivity {
 
                         Toast toast = null;
                         switch (message.arg1) {
-                        case NtpSyncService.RETURN_GENERIC_ERROR:
-                            toast = Toast.makeText(mActivity,
-                                    getString(R.string.return_generic_error), Toast.LENGTH_LONG);
-                            toast.show();
+                            case NtpSyncService.RETURN_GENERIC_ERROR:
+                                toast = Toast.makeText(mActivity,
+                                        getString(R.string.return_generic_error), Toast.LENGTH_LONG);
+                                toast.show();
 
-                            break;
+                                break;
 
-                        case NtpSyncService.RETURN_OKAY:
-                            Bundle returnData = message.getData();
-                            String detailedOutput = (String) returnData
-                                    .getString(NtpSyncService.MESSAGE_DATA_DETAILED_OUTPUT);
+                            case NtpSyncService.RETURN_OKAY:
+                                Bundle returnData = message.getData();
+                                String detailedOutput = (String) returnData
+                                        .getString(NtpSyncService.MESSAGE_DATA_DETAILED_OUTPUT);
 
-                            AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
-                            builder.setTitle(R.string.detailed_query_title);
-                            builder.setMessage(Html.fromHtml(detailedOutput));
-                            AlertDialog alert = builder.create();
-                            alert.show();
+                                AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
+                                builder.setTitle(R.string.detailed_query_title);
+                                builder.setMessage(Html.fromHtml(detailedOutput));
+                                AlertDialog alert = builder.create();
+                                alert.show();
 
-                            TextView txtAlertMsg = (TextView) alert
-                                    .findViewById(android.R.id.message);
-                            txtAlertMsg.setTextSize(13);
+                                TextView txtAlertMsg = (TextView) alert
+                                        .findViewById(android.R.id.message);
+                                txtAlertMsg.setTextSize(13);
 
-                            break;
+                                break;
 
-                        case NtpSyncService.RETURN_SERVER_TIMEOUT:
-                            toast = Toast.makeText(mActivity, getString(R.string.return_timeout),
-                                    Toast.LENGTH_LONG);
-                            toast.show();
+                            case NtpSyncService.RETURN_SERVER_TIMEOUT:
+                                toast = Toast.makeText(mActivity, getString(R.string.return_timeout),
+                                        Toast.LENGTH_LONG);
+                                toast.show();
 
-                            break;
+                                break;
 
-                        default:
-                            break;
+                            default:
+                                break;
                         }
 
-                    };
+                    }
+
+                    ;
                 };
 
                 // Create a new Messenger for the communication back
