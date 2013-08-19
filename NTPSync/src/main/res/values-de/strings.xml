@@ -35,8 +35,8 @@
   <string name="return_generic_error">Unspezifischer Fehler!</string>
   <string name="return_timeout">Zeitüberschreitung der Serververbindung</string>
   <string name="return_no_root">Kein Root-Zugriff!</string>
-  <string name="return_get_time">NTP Zeit ist</string>
-  <string name="return_set_time">Die Zeit wurde auf #timestamp here# gestellt</string>
+  <string name="return_get_time">NTP-Zeit ist</string>
+  <string name="return_set_time">Die Systemzeit wurde umgestellt auf</string>
   <!--Preferences-->
   <string name="pref_query">Abfrage</string>
   <string name="pref_detailed_query">Detailierte Abfrage</string>
