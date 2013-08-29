@@ -1,1 +1,4 @@
-include ':NTPSync', ':libraries:Donations'
+include ':NTPSync'
+include ':libraries:Donations'
+include ':libraries:HtmlSpanner'
+include ':libraries:RootCommands'

@@ -26,9 +26,9 @@ import java.io.InputStream;
 import org.ntpsync.R;
 import org.ntpsync.util.Constants;
 import org.ntpsync.util.Log;
+import org.ntpsync.util.JellyBeanSpanFixTextView;
 
 import net.nightwhistler.htmlspanner.HtmlSpanner;
-import net.nightwhistler.htmlspanner.JellyBeanSpanFixTextView;
 
 import android.app.Activity;
 import android.os.Bundle;
