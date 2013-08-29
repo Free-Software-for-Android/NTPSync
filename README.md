@@ -11,7 +11,7 @@ For more information visit http://sufficientlysecure.org/android-apps/
 2. Export ANDROID_HOME pointing to your Android SDK
 3. Install gradle
 4. Execute ``gradle wrapper`` (http://www.gradle.org/docs/current/userguide/gradle_wrapper.html)
-5. Execute ``./gradlew assemble``
+5. Execute ``./gradlew build``
 
 ## More build information
 
@@ -21,18 +21,15 @@ Two productFlavors are build with gradle. One for Google Play (without Paypal an
 
 Fork NTPSync and do a Pull Request. I will merge your changes back into the main project.
 
-# Libraries
-
-All JAR-Libraries are provided in this repository under "app/libs", all Android Library projects are under "libraries".
-
 ## Build Apache Commons Net
+
+current version: 3.3
 
 1. Download Source zip file from http://commons.apache.org/net/download_net.cgi
 2. Strip it down to NTP only:
- * remove src/test
  * remove src/main/java/examples
  * in src/main/java/org/apache/commons/net remove every folder except io, util, ntp
-3. execute ``mvn package`` to build jar in target directory
+3. copy src/main/java/* to NTPSync/src/main/java/
 
 # Use NTPSync in your Android application
 You want to query NTP servers from your Android app or set the system clock to NTP time?
