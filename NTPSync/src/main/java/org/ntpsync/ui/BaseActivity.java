@@ -319,6 +319,9 @@ public class BaseActivity extends PreferenceActivity {
                 data.putBoolean(NtpSyncService.DATA_GET_NTP_SERVER_FROM_PREFS, true);
                 intent.putExtra(NtpSyncService.EXTRA_DATA, data);
 
+
+                intent.
+
                 mActivity.startService(intent);
 
                 return false;
