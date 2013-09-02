@@ -3,7 +3,7 @@ apply plugin: 'android'
 dependencies {
     compile 'com.android.support:support-v4:18.0.+'
     compile project(':libraries:Donations')
-    compile project(':libraries:HtmlSpanner')
+    compile project(':libraries:HtmlTextView')
     compile project(':libraries:RootCommands')
 }
 

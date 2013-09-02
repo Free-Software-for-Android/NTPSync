@@ -20,20 +20,12 @@
 
 package org.ntpsync.ui;
 
-import java.io.IOException;
-import java.io.InputStream;
-
 import org.ntpsync.R;
-import org.ntpsync.util.Constants;
-import org.ntpsync.util.Log;
-import org.ntpsync.util.JellyBeanSpanFixTextView;
-
-import net.nightwhistler.htmlspanner.HtmlSpanner;
+import org.sufficientlysecure.htmltextview.HtmlTextView;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.method.LinkMovementMethod;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,15 +48,11 @@ public class HelpHtmlFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        // load html from html file from /res/raw
-        InputStream inputStreamText = this.getActivity().getResources().openRawResource(R.raw.help);
-
         mActivity = getActivity();
 
         LinearLayout layout = new LinearLayout(mActivity);
 
-        JellyBeanSpanFixTextView text = new JellyBeanSpanFixTextView(mActivity);
+        HtmlTextView text = new HtmlTextView(mActivity);
 
         // padding
         int padding = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 16, mActivity
@@ -74,16 +62,7 @@ public class HelpHtmlFragment extends Fragment {
         layout.addView(text);
 
         // load html into textview
-        HtmlSpanner htmlSpanner = new HtmlSpanner();
-        htmlSpanner.setStripExtraWhiteSpace(true);
-        try {
-            text.setText(htmlSpanner.fromHtml(inputStreamText));
-        } catch (IOException e) {
-            Log.e(Constants.TAG, "Error while reading raw resources as stream", e);
-        }
-
-        // make links work
-        text.setMovementMethod(LinkMovementMethod.getInstance());
+        text.setHtmlFromRawResource(mActivity, R.raw.help);
 
         // no flickering when clicking textview for Android < 4
         text.setTextColor(getResources().getColor(android.R.color.secondary_text_dark_nodisable));

@@ -1,6 +1,9 @@
 Please report bugs on the following website instead of writing bad reviews:
 http://sufficientlysecure.org/android-apps/
 
+1.8
+* Reduce apk size by switching from HtmlSpanner to HtmlTextView library
+
 1.7
 * Improved build for F-Droid
 

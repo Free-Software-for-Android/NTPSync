@@ -111,11 +111,8 @@ along with NTPSync.  If not, see <http://www.gnu.org/licenses/>.
   https://github.com/dschuermann/root-commands  
   Apache License v2
 
-* HTMLCleaner  
-  http://htmlcleaner.sourceforge.net/  
-  BSD License
-
-* HtmlSpanner  
+* HtmlTextView  
+  https://github.com/dschuermann/html-textview  
   Apache License v2
 
 * Apache Commons Net  
