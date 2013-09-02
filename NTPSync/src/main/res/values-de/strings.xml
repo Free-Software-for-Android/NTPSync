@@ -22,8 +22,12 @@
   <string name="button_exit">Beenden</string>
   <!--Detailed query-->
   <string name="detailed_query_title">Detaillierte Abfrage</string>
+  <string name="detailed_query_unspecified">(nicht definiert oder nicht vorhanden)</string>
+  <string name="detailed_query_primary_reference">(Primäre Zeitreferenz; zB. GPS)</string>
+  <string name="detailed_query_secondary_reference">(Sekundäre Zeitreferenz; zB. über NTP oder SNTP)</string>
   <string name="detailed_query_server">Server:</string>
   <string name="detailed_query_stratum">Stratum:</string>
+  <string name="detailed_query_leap">Schaltsekunde:</string>
   <string name="detailed_query_version">Version:</string>
   <string name="detailed_query_precision">Genauigkeit:</string>
   <string name="detailed_query_mode">Modus:</string>
