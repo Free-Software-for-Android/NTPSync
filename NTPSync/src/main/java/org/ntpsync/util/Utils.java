@@ -69,33 +69,6 @@ public class Utils {
     }
 
     /**
-     * Reads html files from /res/raw/example.html to output them as string. See
-     * http://www.monocube.com/2011/02/08/android-tutorial-html-file-in-webview/
-     * 
-     * @param context
-     *            current context
-     * @param resourceID
-     *            of html file to read
-     * @return content of html file with formatting
-     */
-    public static String readContentFromResource(Context context, int resourceID) {
-        InputStream raw = context.getResources().openRawResource(resourceID);
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        int i;
-        try {
-            i = raw.read();
-            while (i != -1) {
-                stream.write(i);
-                i = raw.read();
-            }
-            raw.close();
-        } catch (IOException e) {
-            Log.e(Constants.TAG, "Problem reading resource!", e);
-        }
-        return stream.toString();
-    }
-
-    /**
      * Sets time in Android using RootCommands library
      * 
      * @param offset

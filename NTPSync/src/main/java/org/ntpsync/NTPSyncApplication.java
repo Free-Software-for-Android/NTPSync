@@ -9,7 +9,7 @@ public class NTPSyncApplication extends Application {
 
     // set RootCommands to debug mode based on NTPSync
     static {
-        RootCommands.DEBUG = Constants.DEBUG;
+        RootCommands.DEBUG = BuildConfig.DEBUG;
     }
 
 }
