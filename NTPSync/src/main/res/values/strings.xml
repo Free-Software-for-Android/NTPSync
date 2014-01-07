@@ -19,7 +19,7 @@
     </string-array>
 
     <!-- Dialogs -->
-    <string name="no_root_description">Either the su binary could not be found or you did not allow root permission for FasterGPS.\n\nThis can happen when your device is not rooted.\nYou can find information about how to root your device on www.cyanogenmod.com or other Android websites.</string>
+    <string name="no_root_description">Either the su binary could not be found or you did not allow root permission for NTPSync.\n\nThis can happen when your device is not rooted.\nYou can find information about how to root your device on www.cyanogenmod.com or other Android websites.</string>
     <string name="no_root_title">Rooted Android required</string>
 
     <!-- Buttons -->
