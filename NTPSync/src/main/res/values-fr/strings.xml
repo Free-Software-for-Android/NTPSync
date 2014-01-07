@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Activities-->
+  <string name="activity_help">Aide</string>
+  <!--Help-->
+  <string name="help_help">Aide</string>
+  <string name="help_donations">Dons</string>
+  <string name="help_about_version">Version :</string>
+  <string name="help_donation_paypal_item">Don à NTPSync</string>
+  <string-array name="help_donation_google_catalog_values">
+    <item>1 Euro</item>
+    <item>2 Euros</item>
+    <item>3 Euros</item>
+    <item>5 Euros</item>
+    <item>8 Euros</item>
+    <item>13 Euros</item>
+  </string-array>
+  <!--Dialogs-->
+  <string name="no_root_description">Soit le binaire su n\'a pas été trouvé, soit vous n\'avez pas donné la permission\n« root » à NTPSync.\n\nCeci peut arrivé quand votre appareil n\'est pas rooté.\nVous pouvez trouvez de l\'information sur comment rooter votre appareil sur www.cyanogenmod.com ou d\'autres sites Web Android.\n</string>
+  <string name="no_root_title">Android rooté exigé</string>
+  <!--Buttons-->
+  <string name="button_exit">Quitter</string>
+  <!--Detailed query-->
+  <string name="detailed_query_title">Requête détaillée</string>
+  <string name="detailed_query_unspecified">(Non spécifiée ou Indisponible)</string>
+  <string name="detailed_query_primary_reference">(Référence principale : par exemple, GPS)</string>
+  <string name="detailed_query_secondary_reference">(Référence secondaire : par exemple, par NTP ou SNTP)</string>
+  <string name="detailed_query_server">Serveur :</string>
+  <string name="detailed_query_stratum">Stratum :</string>
+  <string name="detailed_query_leap">Saut :</string>
+  <string name="detailed_query_version">Version :</string>
+  <string name="detailed_query_precision">Précision :</string>
+  <string name="detailed_query_mode">Mode :</string>
+  <string name="detailed_query_poll">Poll :</string>
+  <string name="detailed_query_seconds">secondes :</string>
+  <string name="detailed_query_rootdelay">Délai de racine :</string>
+  <string name="detailed_query_rootdispersion">Dispersion de racine :</string>
+  <string name="detailed_query_reference_identifier">identifiant de référence :</string>
+  <string name="detailed_query_reference_timestamp">Horodatage de référence :</string>
+  <string name="detailed_query_originate_timestamp">Horodatage d\'origine :</string>
+  <string name="detailed_query_receive_timestamp">Horodatage reçu :</string>
+  <string name="detailed_query_transmit_timestamp">Horodatage transmis :</string>
+  <string name="detailed_query_destination_timestamp">Horodatage de destination :</string>
+  <string name="detailed_query_computed_offset">Décalage calculé :</string>
+  <string name="detailed_query_roundtrip_delay">Délai d\'aller-retour (ms) :</string>
+  <string name="detailed_query_clock_offset">décalage d\'horloge (ms) :</string>
+  <!--Return messages-->
+  <string name="return_generic_error">Erreur générique !</string>
+  <string name="return_timeout">Serveur hors délai !</string>
+  <string name="return_no_root">Pas d\'accès root !</string>
+  <string name="return_get_time">L\'heure NTP est </string>
+  <string name="return_set_time">L\'heure a été définie à</string>
+  <!--Preferences-->
+  <string name="pref_query">Requête</string>
+  <string name="pref_detailed_query">Requête détaillée</string>
+  <string name="pref_query_and_set">Interroger et régler l\'heure</string>
+  <string name="pref_query_and_set_summary">(Besoin de l\'accès root)</string>
+  <string name="pref_settings">Paramètres</string>
+  <string name="pref_ntp_server">Serveur NTP</string>
+  <string name="pref_ntp_server_summary">Choisir un serveur NTP</string>
+  <string name="pref_set_on_boot">Définir l\'heure au démarrage</string>
+  <string name="pref_set_on_boot_summary">(Besoin de l\'accès root)</string>
+  <string name="pref_sync_daily">Synchro quotidienne</string>
+  <string name="pref_sync_daily_summary">Synchro automatique une fois par jour\n(Besoin de l\'accès root)</string>
+  <string name="pref_sync_only_on_wifi">Synchro Wi-Fi uniqement</string>
+  <string name="pref_sync_only_on_wifi_summary">Synchro en tache d\'arrière-plan seulement lorsque connecté à un réseau Wi-Fi.</string>
+  <string name="pref_help">Aide</string>
+  <!--Permission-->
+  <string name="permission_get_time_description">Permet à l\'application d\'obtenir l\'heure actuelle en interrogeant un serveur NTP.</string>
+  <string name="permission_get_time_label">Obtenir l\'heure actuelle des serveurs NTP</string>
+  <string name="permission_set_time_description">Permet à l\'application de définir l\'heure système en interrogeant un serveur NTP.</string>
+  <string name="permission_set_time_label">Régler l\'heure du système depuis les serveurs NTP</string>
+</resources>

@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Activities-->
+  <string name="activity_help">Ajuda</string>
+  <!--Help-->
+  <string name="help_help">Ajuda</string>
+  <string name="help_donations">Donativos</string>
+  <string name="help_about_version">Versão:</string>
+  <string name="help_donation_paypal_item">Donativos NTPSync</string>
+  <string-array name="help_donation_google_catalog_values">
+    <item>1 euro</item>
+    <item>2 euros</item>
+    <item>3 euros</item>
+    <item>5 euros</item>
+    <item>8 euros</item>
+    <item>13 euros</item>
+  </string-array>
+  <!--Dialogs-->
+  <string name="no_root_description">É possível que o binário su não tenha sido encontrado ou que você não tenha permissões root\npara o FasterGPS.\n\nIsto pode ocorrer se o seu dispositivo não tiver root.\nPode saber mais informações com como fazer root \nao seu telefone em www.cyanogenmod.com ou outros.</string>
+  <string name="no_root_title">Requer acesso root</string>
+  <!--Buttons-->
+  <string name="button_exit">Sair</string>
+  <!--Detailed query-->
+  <string name="detailed_query_title">Consulta detalhada</string>
+  <string name="detailed_query_unspecified">(Não especificado ou indisponível)</string>
+  <string name="detailed_query_primary_reference">(Referência primária; ex.: GPS)</string>
+  <string name="detailed_query_secondary_reference">(Referência secundária; ex.:  NTP ou SNTP)</string>
+  <string name="detailed_query_server">Servidor:</string>
+  <string name="detailed_query_stratum">Distância:</string>
+  <string name="detailed_query_leap">Salto:</string>
+  <string name="detailed_query_version">Versão:</string>
+  <string name="detailed_query_precision">Precisão:</string>
+  <string name="detailed_query_mode">Modo:</string>
+  <string name="detailed_query_poll">Pesquisa:</string>
+  <string name="detailed_query_seconds">segundos</string>
+  <string name="detailed_query_rootdelay">Atraso:</string>
+  <string name="detailed_query_rootdispersion">Dispersão (ms):</string>
+  <string name="detailed_query_reference_identifier">Identificador de referência:</string>
+  <string name="detailed_query_reference_timestamp">Timestamp da referência:</string>
+  <string name="detailed_query_originate_timestamp">Timestamp originária:</string>
+  <string name="detailed_query_receive_timestamp">Timestamp recebida:</string>
+  <string name="detailed_query_transmit_timestamp">Timestamp transmitida:</string>
+  <string name="detailed_query_destination_timestamp">Timestamp destinatária:</string>
+  <string name="detailed_query_computed_offset">Erro calculado:</string>
+  <string name="detailed_query_roundtrip_delay">Atraso roundtrip(ms):</string>
+  <string name="detailed_query_clock_offset">Erro relógio (ms):</string>
+  <!--Return messages-->
+  <string name="return_generic_error">Erro genérico!</string>
+  <string name="return_timeout">Ligação expirada!</string>
+  <string name="return_no_root">Sem acesso root!</string>
+  <string name="return_get_time">Hora NTP é</string>
+  <string name="return_set_time">Hora definida para</string>
+  <!--Preferences-->
+  <string name="pref_query">Consulta</string>
+  <string name="pref_detailed_query">Consulta detalhada</string>
+  <string name="pref_query_and_set">Consultar e definir</string>
+  <string name="pref_query_and_set_summary">(Requer acesso root)</string>
+  <string name="pref_settings">Definições</string>
+  <string name="pref_ntp_server">Servidor NTP</string>
+  <string name="pref_ntp_server_summary">Escolha o servidor NTP</string>
+  <string name="pref_set_on_boot">Aplicar ao arrancar</string>
+  <string name="pref_set_on_boot_summary">(Requer acesso root)</string>
+  <string name="pref_sync_daily">Sincronização diária</string>
+  <string name="pref_sync_daily_summary">Sincronização diária automática\n(Requer acesso root)</string>
+  <string name="pref_sync_only_on_wifi">Sincronizar apenas por Wifi</string>
+  <string name="pref_sync_only_on_wifi_summary">Executar sincronização em segundo plano se ligado a Wifi.</string>
+  <string name="pref_help">Ajuda</string>
+  <!--Permission-->
+  <string name="permission_get_time_description">Permite que aplicação obtenha a hora atual analisando um servidor NTP.</string>
+  <string name="permission_get_time_label">Obter hora atual dos servidores NTP</string>
+  <string name="permission_set_time_description">Permite que a aplicação defina a hora do sistema através de um servidor NTP.</string>
+  <string name="permission_set_time_label">Definir como hora do sistema a dos servidores NTP</string>
+</resources>
