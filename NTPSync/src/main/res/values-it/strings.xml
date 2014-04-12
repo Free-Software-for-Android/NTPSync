@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Activities -->
+    <string name="activity_help">Aiuto</string>
+
+    <!-- Help -->
+    <string name="help_help">Aiuto</string>
+    <string name="help_donations">Donazioni</string>
+    <string name="help_about_version">Versione:</string>
+    <string name="help_donation_paypal_item">Donazione NTPSync</string>
+    <string-array name="help_donation_google_catalog_values">
+        <item>1 Euro</item>
+        <item>2 Euro</item>
+        <item>3 Euro</item>
+        <item>5 Euro</item>
+        <item>8 Euro</item>
+        <item>13 Euro</item>
+    </string-array>
+
+    <!-- Dialogs -->
+    <string name="no_root_description">Impossibile trovare su, oppure non sono stati concessi i diritti di root a NTPSync.\n\nPuò succedere se il dispositivo non è rootato.\nE\' possibile reperire informazioni su come rootare il dispositivo su www.cyanogenmod.com o altri siti Android.</string>
+    <string name="no_root_title">Root richiesto</string>
+
+    <!-- Buttons -->
+    <string name="button_exit">Esci</string>
+
+    <!-- Detailed query -->
+    <string name="detailed_query_title">Query dettagliata</string>
+    <string name="detailed_query_unspecified">(non specificato o non disponibile)</string>
+    <string name="detailed_query_primary_reference">(rif. principale; es. GPS)</string>
+    <string name="detailed_query_secondary_reference">(rif. secondario; es. via NTP o SNTP)</string>
+    <string name="detailed_query_server">Server:</string>
+    <string name="detailed_query_stratum">Strato:</string>
+    <string name="detailed_query_leap">Secondo intercalare:</string>
+    <string name="detailed_query_version">Versione:</string>
+    <string name="detailed_query_precision">Precisione:</string>
+    <string name="detailed_query_mode">Modalità:</string>
+    <string name="detailed_query_poll">Interrogazione:</string>
+    <string name="detailed_query_seconds">secondi</string>
+    <string name="detailed_query_rootdelay">Ritardo base:</string>
+    <string name="detailed_query_rootdispersion">Errore nominale (ms):</string>
+    <string name="detailed_query_reference_identifier">Id sorgente riferimento:</string>
+    <string name="detailed_query_reference_timestamp">Orario di riferimento:</string>
+    <string name="detailed_query_originate_timestamp">Orario invio richiesta:</string>
+    <string name="detailed_query_receive_timestamp">Orario ricezione richiesta:</string>
+    <string name="detailed_query_transmit_timestamp">Orario invio risposta:</string>
+    <string name="detailed_query_destination_timestamp">Orario ricezione risposta:</string>
+    <string name="detailed_query_computed_offset">Scostamento calcolato:</string>
+    <string name="detailed_query_roundtrip_delay">Ritardo dovuto alla rete (ms):</string>
+    <string name="detailed_query_clock_offset">Scostamento orologio (ms):</string>
+
+    <!-- Return messages -->
+    <string name="return_generic_error">Errore generico!</string>
+    <string name="return_timeout">Tempo scaduto in attesa della risposta!</string>
+    <string name="return_no_root">Accesso root non riuscito!</string>
+    <string name="return_get_time">L\'orario NTP è</string>
+    <string name="return_set_time">Orologio impostato a</string>
+
+    <!-- Preferences -->
+    <string name="pref_query">Richiesta</string>
+    <string name="pref_detailed_query">Richiesta dettagliata</string>
+    <string name="pref_query_and_set">Richiesta e impostazione orario</string>
+    <string name="pref_query_and_set_summary">(Richiede root)</string>
+    <string name="pref_settings">Impostazioni</string>
+    <string name="pref_ntp_server">Server NTP</string>
+    <string name="pref_ntp_server_summary">Seleziona il server NTP</string>
+    <string name="pref_set_on_boot">Imposta orario all\'avvio</string>
+    <string name="pref_set_on_boot_summary">(Richiede root)</string>
+    <string name="pref_sync_daily">Sincronizzazione giornaliera</string>
+    <string name="pref_sync_daily_summary">Sincronizza automaticamente una volta al giorno (richiede root)</string>
+    <string name="pref_sync_only_on_wifi">Sincronizza solo con Wifi</string>
+    <string name="pref_sync_only_on_wifi_summary">Esegui la sincronizzazione automatica solo quando collegato ad una rete wifi.</string>
+    <string name="pref_show_sync_toast">Mostra risultato</string>
+    <string name="pref_show_sync_toast_summary">Mostra un messaggio con il risultato della sincronizzazione</string>
+    <string name="pref_help">Aiuto</string>
+
+    <!-- Permission -->
+    <string name="permission_get_time_description">Permette all\'applicazione di ottenere l\'orario corrente inviando una richiesta ad un server NTP.</string>
+    <string name="permission_get_time_label">Richiesta orario da server NTP</string>
+    <string name="permission_set_time_description">Permette all\'applicazione di impostare l\'orario di sistema sincronizzandosi con un server NTP.</string>
+    <string name="permission_set_time_label">Imposta orario attraverso server NTP</string>
+
+</resources>

@@ -168,7 +168,7 @@ public class NtpSyncService extends IntentService {
                 Log.d(Constants.TAG, "Timeout on server!");
             }
 
-            if (noMessenger) {
+            if (noMessenger && PreferenceHelper.getShowSyncToast(this)) {
                 Message msg = Message.obtain();
                 msg.arg1 = returnMessage;
                 msg.setData(messageData);
@@ -198,7 +198,7 @@ public class NtpSyncService extends IntentService {
                 Log.d(Constants.TAG, "Timeout on server!");
             }
 
-            if (noMessenger) {
+            if (noMessenger && PreferenceHelper.getShowSyncToast(this)) {
                 Message msg = Message.obtain();
                 msg.arg1 = returnMessage;
                 msg.setData(messageDataDetailedQuery);
