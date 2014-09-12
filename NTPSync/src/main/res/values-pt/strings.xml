@@ -16,7 +16,6 @@
     <item>13 euros</item>
   </string-array>
   <!--Dialogs-->
-  <string name="no_root_description">É possível que o binário su não tenha sido encontrado ou que você não tenha permissões root\npara o FasterGPS.\n\nIsto pode ocorrer se o seu dispositivo não tiver root.\nPode saber mais informações com como fazer root \nao seu telefone em www.cyanogenmod.com ou outros.</string>
   <string name="no_root_title">Requer acesso root</string>
   <!--Buttons-->
   <string name="button_exit">Sair</string>
@@ -61,7 +60,6 @@
   <string name="pref_set_on_boot">Aplicar ao arrancar</string>
   <string name="pref_set_on_boot_summary">(Requer acesso root)</string>
   <string name="pref_sync_daily">Sincronização diária</string>
-  <string name="pref_sync_daily_summary">Sincronização diária automática\n(Requer acesso root)</string>
   <string name="pref_sync_only_on_wifi">Sincronizar apenas por Wifi</string>
   <string name="pref_sync_only_on_wifi_summary">Executar sincronização em segundo plano se ligado a Wifi.</string>
   <string name="pref_help">Ajuda</string>

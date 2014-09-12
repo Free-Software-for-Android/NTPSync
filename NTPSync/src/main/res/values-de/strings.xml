@@ -16,7 +16,6 @@
     <item>13 Euro</item>
   </string-array>
   <!--Dialogs-->
-  <string name="no_root_description">Entweder konnte die su-Binery nicht gefunden werden, oder du hast die Root-Zugriffsrechte für FasterGPS verweigert.\n\nDer Grund kann sein dass dein Gerät nicht gerootet ist.\nInformationen wie du dein Gerät rootest findest du auf www.cyanogenmod.org oder anderen Internetseiten zum Thema Android. </string>
   <string name="no_root_title">Gerootetes Android benötigt</string>
   <!--Buttons-->
   <string name="button_exit">Beenden</string>
@@ -52,7 +51,6 @@
   <string name="pref_set_on_boot">Zeit bei Systemstart einstellen.</string>
   <string name="pref_set_on_boot_summary">(Benötigt Root-Zugriff)</string>
   <string name="pref_sync_daily">Täglicher Abgleich</string>
-  <string name="pref_sync_daily_summary">Einmal am Tag automatisch abgleichen\n(Benötigt Root-Zugriff)</string>
   <string name="pref_sync_only_on_wifi">Nur im WLAN synchronisieren</string>
   <string name="pref_sync_only_on_wifi_summary">Hintergrundabgleich nur bei WLAN-Verbindung durchführen.</string>
   <string name="pref_help">Hilfe</string>

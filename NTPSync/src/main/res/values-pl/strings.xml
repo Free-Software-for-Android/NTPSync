@@ -16,7 +16,7 @@
     <item>13 Euro</item>
   </string-array>
   <!--Dialogs-->
-  <string name="no_root_description">Albo nie znaleziono biblioteki su albo nie przyznałeś praw roota dla FasterGPS.\n\nTo może być spowodowane tym, że Twoje urządzenie nie jest zrootowane.\nInformacje na temat rootowania Twojego urządzenia możesz znaleźć na www.cyanogenmod.com lub innych stronach o tematyce Androida.</string>
+  <string name="no_root_description">Albo nie można znaleźć pliku su albo nie przyznałeś pozwoleń root dla NTPSync\n\nTo może się wydarzyć, gdy Twoje urządzenie jest zrootowane.\nMożesz znaleźć informacje o dostępie root dla Twojego telefonu na www.cyanogenmod.com albo innych stronach o tematyce Android.</string>
   <string name="no_root_title">Wymagany root</string>
   <!--Buttons-->
   <string name="button_exit">Wyjdź</string>
@@ -61,9 +61,11 @@
   <string name="pref_set_on_boot">Ustaw czas przy uruchamianiu</string>
   <string name="pref_set_on_boot_summary">(wymaga uprawnień root)</string>
   <string name="pref_sync_daily">Synchronizacja dzienna</string>
-  <string name="pref_sync_daily_summary">Synchronizuj automatycznie raz dziennie\n(wymaga uprawnień root)</string>
+  <string name="pref_sync_daily_summary">Synchronizuj automatyczne raz dziennie\n (Potrzebny dostęp root)</string>
   <string name="pref_sync_only_on_wifi">Synchronizuj tylko przez Wifi</string>
   <string name="pref_sync_only_on_wifi_summary">Wywołuje synchronizację w tle tylko podczas połączenia z siecią Wifi</string>
+  <string name="pref_show_sync_toast">Pokaż dymek po synchronizacji</string>
+  <string name="pref_show_sync_toast_summary">Pokazuje wiadomość z wynikiem synchronizacji</string>
   <string name="pref_help">Pomoc</string>
   <!--Permission-->
   <string name="permission_get_time_description">Zezwala aplikacji na pobranie czasu poprzez wykonanie zapytania do serwera NTP.</string>

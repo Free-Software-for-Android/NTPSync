@@ -16,7 +16,8 @@
     <item>13 Євро</item>
   </string-array>
   <!--Dialogs-->
-  <string name="no_root_description">Не знайдений виконуваний файл su, або ви не дозволили root-доступ для FasterGPS. \n\nЦе може статися, якщо на вашому пристрої не розблоковані права суперкористувача (root). Ви можете знайти інформацію про те, як їх отримати на www.cyanogenmod.com та інших сайтах, присвячених Android.</string>
+  <string name="no_root_description">Або двійкового su неможливо знайти або у вас немає прав суперкористувача для NTPSync.\n\nЦе може статися, якщо ваш пристрій не вкорінений.\n
+Ви можете знайти інформацію про те, як отримати права адміністратора пристрою на www.cyanogenmod.com або інших Android-сайтах.</string>
   <string name="no_root_title">Необхідний Android з root-доступом</string>
   <!--Buttons-->
   <string name="button_exit">Вихід</string>
@@ -61,9 +62,11 @@
   <string name="pref_set_on_boot">Встановлювати час при запуску</string>
   <string name="pref_set_on_boot_summary">(Вимагає прав root)</string>
   <string name="pref_sync_daily">Щоденна синхронізація</string>
-  <string name="pref_sync_daily_summary">Синхронізувати автоматично щодня \n(Вимагає прав root)</string>
+  <string name="pref_sync_daily_summary">Синхронізувати автоматично щодня\n(Вимагає прав адміністратора)</string>
   <string name="pref_sync_only_on_wifi">Синхронізувати тільки по Wi-Fi</string>
   <string name="pref_sync_only_on_wifi_summary">Виконувати фонову синхронізацію тільки при підключенні через Wi-Fi.</string>
+  <string name="pref_show_sync_toast">Показати вигульк після синхронізації</string>
+  <string name="pref_show_sync_toast_summary">Показує повідомлення із результатом синхронізації</string>
   <string name="pref_help">Допомога</string>
   <!--Permission-->
   <string name="permission_get_time_description">Дозволяє програмі встановити поточний час шляхом опитування NTP-сервера.</string>

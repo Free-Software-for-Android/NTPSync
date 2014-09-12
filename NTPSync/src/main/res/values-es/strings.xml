@@ -16,7 +16,6 @@
     <item>13 Euros</item>
   </string-array>
   <!--Dialogs-->
-  <string name="no_root_description">El binario de SU no se encuentra o no tienes permiso de root para FasterGPS.\nEsto puede ocurrir cuando tu dispositivo no está rooteado.\nPuedes encontrar información en www.cyanogenmod.com o en otros websites sobre Android.</string>
   <string name="no_root_title">Android rooteado requerido</string>
   <!--Buttons-->
   <string name="button_exit">Salir</string>
@@ -61,9 +60,10 @@
   <string name="pref_set_on_boot">Fijar hora al arrancar:</string>
   <string name="pref_set_on_boot_summary">(Necesita acceso root)</string>
   <string name="pref_sync_daily">Sincronización diaria</string>
-  <string name="pref_sync_daily_summary">Sincronización una vez al día (necesita acceso root)</string>
   <string name="pref_sync_only_on_wifi">Sincronizar sólo en Wifi</string>
   <string name="pref_sync_only_on_wifi_summary">Sincronización en segundo plano sólo cuando se conecte a una red wifi.</string>
+  <string name="pref_show_sync_toast">Mostrar toast después de sincronizar</string>
+  <string name="pref_show_sync_toast_summary">Muestra un mensaje con el resultado de la sincronización</string>
   <string name="pref_help">Ayuda</string>
   <!--Permission-->
   <string name="permission_get_time_description">Permite a las aplicaciones consultar la hora consultando al servidor NTP.</string>

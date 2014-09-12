@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Activities-->
+  <string name="activity_help">Aiuto</string>
+  <!--Help-->
+  <string name="help_help">Aiuto</string>
+  <string name="help_donations">Donazioni</string>
+  <string name="help_about_version">Versione:</string>
+  <string name="help_donation_paypal_item">Donazione NTPSync</string>
+  <string-array name="help_donation_google_catalog_values">
+    <item>1 Euro</item>
+    <item>2 Euro</item>
+    <item>3 Euro</item>
+    <item>5 Euro</item>
+    <item>8 Euro</item>
+    <item>13 Euro</item>
+  </string-array>
+  <!--Dialogs-->
+  <string name="no_root_title">E\' richiesto Android con Root</string>
+  <!--Buttons-->
+  <string name="button_exit">Esci</string>
+  <!--Detailed query-->
+  <string name="detailed_query_title">Query dettagliata</string>
+  <string name="detailed_query_unspecified">(non specificato o non disponibile)</string>
+  <string name="detailed_query_primary_reference">(riferimento principale; e.s., GPS)</string>
+  <string name="detailed_query_secondary_reference">(riferimento secondario; e.s. via NTP o SNTP)</string>
+  <string name="detailed_query_server">Server:</string>
+  <string name="detailed_query_stratum">Stratum:</string>
+  <string name="detailed_query_leap">Leap:</string>
+  <string name="detailed_query_version">Versione:</string>
+  <string name="detailed_query_precision">Precisione:</string>
+  <string name="detailed_query_mode">Modalità:</string>
+  <string name="detailed_query_poll">Poll:</string>
+  <string name="detailed_query_seconds">secondi</string>
+  <string name="detailed_query_rootdelay">RitardoRoot:</string>
+  <string name="detailed_query_rootdispersion">DispersioneRoot(ms):</string>
+  <string name="detailed_query_reference_identifier">Identificatore di Riferimento:</string>
+  <string name="detailed_query_reference_timestamp">Timestamp di Riferimento:</string>
+  <string name="detailed_query_originate_timestamp">Timestamp Generato:</string>
+  <string name="detailed_query_receive_timestamp">Ricevi Timestamp:</string>
+  <string name="detailed_query_transmit_timestamp">Trasmetti Timestamp:</string>
+  <string name="detailed_query_destination_timestamp">Timestamp di Destinazione:</string>
+  <string name="detailed_query_computed_offset">Offset calcolato:</string>
+  <string name="detailed_query_roundtrip_delay">Ritardo Roundtrip(ms):</string>
+  <string name="detailed_query_clock_offset">Offset Orologio(ms):</string>
+  <!--Return messages-->
+  <string name="return_generic_error">Errore generico!</string>
+  <string name="return_timeout">Timeout server!</string>
+  <string name="return_no_root">Nessun permesso di root!</string>
+  <string name="return_get_time">Orario NTP: </string>
+  <string name="return_set_time">L\'orario è stato impostato a</string>
+  <!--Preferences-->
+  <string name="pref_query">Query</string>
+  <string name="pref_detailed_query">Query dettagliata</string>
+  <string name="pref_query_and_set">Interroga e imposta orario</string>
+  <string name="pref_query_and_set_summary">(permessi root necessari)</string>
+  <string name="pref_settings">Impostazioni</string>
+  <string name="pref_ntp_server">Server NTP</string>
+  <string name="pref_ntp_server_summary">Scegli Server NTP</string>
+  <string name="pref_set_on_boot">Imposta orario all\'avvio</string>
+  <string name="pref_set_on_boot_summary">(permessi root necessari)</string>
+  <string name="pref_sync_daily">Sincronizza quotidianamente</string>
+  <string name="pref_sync_only_on_wifi">Sincronizza solo in Wifi</string>
+  <string name="pref_sync_only_on_wifi_summary">Esegui sincronizzazione in background solo se connesso via wifi.</string>
+  <string name="pref_show_sync_toast">Mostra avviso dopo sync</string>
+  <string name="pref_show_sync_toast_summary">Mostra un messaggio con risultati di sync</string>
+  <string name="pref_help">Aiuto</string>
+  <!--Permission-->
+  <string name="permission_get_time_description">Consente all\'applicazione di ottenere l\'orario attuale interrogando un server NTP.</string>
+  <string name="permission_get_time_label">Ottieni orario corrente da server NTP</string>
+  <string name="permission_set_time_description">Consente all\'applicazione di impostare l\'orario di sistema interrogando un server NTP.</string>
+  <string name="permission_set_time_label">Imposta l\'orario di sistema da server NTP</string>
+</resources>

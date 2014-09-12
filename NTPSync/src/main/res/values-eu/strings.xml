@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Activities-->
+  <string name="activity_help">Laguntza</string>
+  <!--Help-->
+  <string name="help_help">Laguntza</string>
+  <string name="help_donations">Dirulaguntzak</string>
+  <string name="help_about_version">Bertsioa:</string>
+  <string name="help_donation_paypal_item">NTPSync Dirulaguntza</string>
+  <string-array name="help_donation_google_catalog_values">
+    <item>1 Euro</item>
+    <item>2 Euro</item>
+    <item>3 Euro</item>
+    <item>5 Euro</item>
+    <item>8 Euro</item>
+    <item>13 Euro</item>
+  </string-array>
+  <!--Dialogs-->
+  <string name="no_root_title">Beharrezkoa Android errotua</string>
+  <!--Buttons-->
+  <string name="button_exit">Irten</string>
+  <!--Detailed query-->
+  <string name="detailed_query_server">Zerbitzaria:</string>
+  <string name="detailed_query_version">Bertsioa:</string>
+  <string name="detailed_query_precision">Zehaztasuna:</string>
+  <string name="detailed_query_mode">Modua:</string>
+  <string name="detailed_query_seconds">segundu</string>
+  <!--Return messages-->
+  <string name="return_no_root">Ez dago erro sarbiderik!</string>
+  <!--Preferences-->
+  <string name="pref_query">Eskabidea</string>
+  <string name="pref_query_and_set_summary">(Erro baimena behar du)</string>
+  <string name="pref_settings">Ezarpenak</string>
+  <string name="pref_ntp_server">NTP zerbitzaria</string>
+  <string name="pref_ntp_server_summary">Hautatu NTP zerbitzaria</string>
+  <string name="pref_sync_daily">Eguneroko aldiberetzea</string>
+  <string name="pref_help">Laguntza</string>
+  <!--Permission-->
+</resources>

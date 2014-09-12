@@ -16,7 +16,6 @@
     <item>13 欧元</item>
   </string-array>
   <!--Dialogs-->
-  <string name="no_root_description">没有找到 su 命令或您不允许 root 权限给 FasterGPS。\n\n当您设备没有被 rooted 就会出现这种情况。\n您可以访问 www.cyanogenmod.com 或其他安卓网站了解如何 root 您的设备。</string>
   <string name="no_root_title">需重启安卓系统</string>
   <!--Buttons-->
   <string name="button_exit">退出</string>
@@ -61,7 +60,6 @@
   <string name="pref_set_on_boot">在引导时设置时间</string>
   <string name="pref_set_on_boot_summary">需要 root 权限!</string>
   <string name="pref_sync_daily">每天同步</string>
-  <string name="pref_sync_daily_summary">每天一次的自动同步需要 root 权限!</string>
   <string name="pref_sync_only_on_wifi">仅在WLAN连接时同步</string>
   <string name="pref_sync_only_on_wifi_summary">仅在连接到WLAN网络时才执行后台同步。</string>
   <string name="pref_help">帮助</string>

@@ -6,8 +6,16 @@
   <string name="help_help">Помощь</string>
   <string name="help_donations">Пожертвования</string>
   <string name="help_about_version">Версия:</string>
+  <string name="help_donation_paypal_item">Поддержать проект</string>
+  <string-array name="help_donation_google_catalog_values">
+    <item>1 Евро</item>
+    <item>2 Евро</item>
+    <item>3 Евро</item>
+    <item>5 Евро</item>
+    <item>8 Евро</item>
+    <item>13 Евро</item>
+  </string-array>
   <!--Dialogs-->
-  <string name="no_root_description">Не найден исполняемый файл su, либо вы не разрешили root-доступ для FasterGPS.\n\nЭто может случиться, если на вашем устройстве не разблокированы права суперпользователя (root).\nВы можете найти информацию о том, как их получить на www.cyanogenmod.com и других сайтах, посвященных Android.</string>
   <string name="no_root_title">Необходим Android с root-доступом</string>
   <!--Buttons-->
   <string name="button_exit">Выход</string>
@@ -52,9 +60,10 @@
   <string name="pref_set_on_boot">Устанавливать время при запуске</string>
   <string name="pref_set_on_boot_summary">Требует прав суперпользователя!</string>
   <string name="pref_sync_daily">Ежедневная синхронизация</string>
-  <string name="pref_sync_daily_summary">Синхронизировать автоматически раз в день\nТребует прав суперпользователя!</string>
   <string name="pref_sync_only_on_wifi">Синхронизировать только по Wi-Fi</string>
   <string name="pref_sync_only_on_wifi_summary">Выполнять фоновую синхронизацию только при подключении через Wi-Fi.</string>
+  <string name="pref_show_sync_toast">Показывать уведомление после синхронизации</string>
+  <string name="pref_show_sync_toast_summary">Выводить сообщение с результатами синхронизации</string>
   <string name="pref_help">Помощь</string>
   <!--Permission-->
   <string name="permission_get_time_description">Позволяет приложению определить точное время путем опроса NTP-сервера.</string>

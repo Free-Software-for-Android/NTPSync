@@ -16,7 +16,7 @@
     <item>13 Euros</item>
   </string-array>
   <!--Dialogs-->
-  <string name="no_root_description">Soit le binaire su n\'a pas été trouvé, soit vous n\'avez pas donné la permission\n« root » à NTPSync.\n\nCeci peut arrivé quand votre appareil n\'est pas rooté.\nVous pouvez trouvez de l\'information sur comment rooter votre appareil sur www.cyanogenmod.com ou d\'autres sites Web Android.\n</string>
+  <string name="no_root_description">Soit le binaire su n\'a pas été trouvé, soit vous n\'avez pas donné la permission « root » à NTPSync.\n\nCeci peut arriver quand votre appareil n\'est pas rooté.\nVous pouvez trouvez de l\'information sur comment rooter votre appareil sur www.cyanogenmod.com ou d\'autres sites Web Android. </string>
   <string name="no_root_title">Android rooté exigé</string>
   <!--Buttons-->
   <string name="button_exit">Quitter</string>
@@ -61,9 +61,11 @@
   <string name="pref_set_on_boot">Définir l\'heure au démarrage</string>
   <string name="pref_set_on_boot_summary">(Besoin de l\'accès root)</string>
   <string name="pref_sync_daily">Synchro quotidienne</string>
-  <string name="pref_sync_daily_summary">Synchro automatique une fois par jour\n(Besoin de l\'accès root)</string>
+  <string name="pref_sync_daily_summary">Synchro automatique une fois par jour\n(a besoin de l\'accès root)</string>
   <string name="pref_sync_only_on_wifi">Synchro Wi-Fi uniqement</string>
   <string name="pref_sync_only_on_wifi_summary">Synchro en tache d\'arrière-plan seulement lorsque connecté à un réseau Wi-Fi.</string>
+  <string name="pref_show_sync_toast">Afficher un toast après la synchro</string>
+  <string name="pref_show_sync_toast_summary">Affiche un message avec le résultat de la synchro</string>
   <string name="pref_help">Aide</string>
   <!--Permission-->
   <string name="permission_get_time_description">Permet à l\'application d\'obtenir l\'heure actuelle en interrogeant un serveur NTP.</string>
