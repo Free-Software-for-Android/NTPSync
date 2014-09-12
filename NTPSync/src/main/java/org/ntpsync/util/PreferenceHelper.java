@@ -54,4 +54,11 @@ public class PreferenceHelper {
                 Boolean.parseBoolean(context.getString(R.string.pref_sync_only_on_wifi_def)));
     }
 
+    public static boolean getShowSyncToast(Context context) {
+        SharedPreferences prefs = context.getSharedPreferences(Constants.PREFS_NAME,
+                Context.MODE_PRIVATE);
+        return prefs.getBoolean(context.getString(R.string.pref_show_sync_toast_key),
+                Boolean.parseBoolean(context.getString(R.string.pref_show_sync_toast_def)));
+    }
+
 }

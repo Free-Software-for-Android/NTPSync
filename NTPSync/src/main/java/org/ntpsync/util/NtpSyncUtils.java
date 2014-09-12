@@ -76,14 +76,14 @@ public class NtpSyncUtils {
         int li = message.getLeapIndicator();
         output += "<br/>" + context.getString(R.string.detailed_query_leap) + " " + li + "<br/>"
                 + context.getString(R.string.detailed_query_version) + " " + version
-                + "<br/>Precision: " + message.getPrecision();
+                + "<br/>" + context.getString(R.string.detailed_query_precision) + " " + message.getPrecision();
 
         output += "<br/>" + context.getString(R.string.detailed_query_mode) + " "
                 + message.getModeName() + " (" + message.getMode() + ")";
         int poll = message.getPoll();
         // poll value typically btwn MINPOLL (4) and MAXPOLL (14)
         output += "<br/>" + context.getString(R.string.detailed_query_poll) + " "
-                + (poll <= 0 ? 1 : (int) Math.pow(2, poll)) + " seconds" + " (2 ** " + poll + ")";
+                + (poll <= 0 ? 1 : (int) Math.pow(2, poll)) + " " + context.getString(R.string.detailed_query_seconds) + " (2 ** " + poll + ")";
         double disp = message.getRootDispersionInMillisDouble();
         output += "<br/>" + context.getString(R.string.detailed_query_rootdelay) + " "
                 + numberFormat.format(message.getRootDelayInMillisDouble()) + "<br/>"

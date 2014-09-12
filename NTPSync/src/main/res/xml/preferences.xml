@@ -35,6 +35,12 @@
             android:key="@string/pref_sync_only_on_wifi_key"
             android:summary="@string/pref_sync_only_on_wifi_summary"
             android:title="@string/pref_sync_only_on_wifi" />
+        <CheckBoxPreference
+            android:defaultValue="@string/pref_show_sync_toast_def"
+            android:dependency="@string/pref_sync_daily_key"
+            android:key="@string/pref_show_sync_toast_key"
+            android:summary="@string/pref_show_sync_toast_summary"
+            android:title="@string/pref_show_sync_toast"/>
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/pref_help" >
         <Preference
