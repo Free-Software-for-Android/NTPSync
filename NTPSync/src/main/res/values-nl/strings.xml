@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Activities-->
+  <string name="activity_help">Hulp</string>
+  <!--Help-->
+  <string name="help_help">Hulp</string>
+  <string name="help_donations">Donaties</string>
+  <string name="help_about_version">Versie:</string>
+  <string name="help_donation_paypal_item">NTPSync-donatie</string>
+  <string-array name="help_donation_google_catalog_values">
+    <item>1 euro</item>
+    <item>2 euro</item>
+    <item>3 euro</item>
+    <item>5 euro</item>
+    <item>8 euro</item>
+    <item>13 euro</item>
+  </string-array>
+  <!--Dialogs-->
+  <string name="no_root_description">Het uitvoerbare bestand su kon niet worden gevonden of u heeft geen root-toestemming verleend aan FasterGPS.\n\nDit kan betekenen dat uw apparaat niet geroot is.\nMeer informatie over het rooten van uw apparaat is te vinden op www.cynanogenmod.com of andere Android-websites.</string>
+  <string name="no_root_title">Geroote Android vereist</string>
+  <!--Buttons-->
+  <string name="button_exit">Afsluiten</string>
+  <!--Detailed query-->
+  <string name="detailed_query_title">Gedetailleerde raadpleging</string>
+  <string name="detailed_query_unspecified">(Niet opgegeven of niet beschikbaar)</string>
+  <string name="detailed_query_primary_reference">(Hoofdreferentie; bijv., GPS)</string>
+  <string name="detailed_query_secondary_reference">(Secundaire referentie; bijv. via NTP of SNTP)</string>
+  <string name="detailed_query_server">Server:</string>
+  <string name="detailed_query_stratum">Stratum:</string>
+  <string name="detailed_query_leap">Sprong:</string>
+  <string name="detailed_query_version">Versie:</string>
+  <string name="detailed_query_precision">Nauwkeurigheid:</string>
+  <string name="detailed_query_mode">Modus:</string>
+  <string name="detailed_query_poll">Peiling:</string>
+  <string name="detailed_query_seconds">seconden</string>
+  <string name="detailed_query_rootdelay">Rootvertraging:</string>
+  <string name="detailed_query_rootdispersion">Rootdispersie(ms):</string>
+  <string name="detailed_query_reference_identifier">Referentie-ID:</string>
+  <string name="detailed_query_reference_timestamp">Referentietijdstempel:</string>
+  <string name="detailed_query_originate_timestamp">Oorsprongtijdstempel:</string>
+  <string name="detailed_query_receive_timestamp">Ontvangen tijdstempel:</string>
+  <string name="detailed_query_transmit_timestamp">Verzonden tijdstempel:</string>
+  <string name="detailed_query_destination_timestamp">Bestemmingstijdstempel:</string>
+  <string name="detailed_query_computed_offset">Gecalculeerd verschil:</string>
+  <string name="detailed_query_roundtrip_delay">Retourvertraging(ms):</string>
+  <string name="detailed_query_clock_offset">Klokverschil(ms):</string>
+  <!--Return messages-->
+  <string name="return_generic_error">Algemene fout!</string>
+  <string name="return_timeout">Server-timeout</string>
+  <string name="return_no_root">Geen roottoegang!</string>
+  <string name="return_get_time">NTP-tijd is</string>
+  <string name="return_set_time">Tijd was ingesteld op</string>
+  <!--Preferences-->
+  <string name="pref_query">Raadpleging</string>
+  <string name="pref_detailed_query">Gedetailleerde raadpleging</string>
+  <string name="pref_query_and_set">Raadpleging en tijdsinstelling</string>
+  <string name="pref_query_and_set_summary">(Heeft roottoegang nodig)</string>
+  <string name="pref_settings">Instellingen</string>
+  <string name="pref_ntp_server">NTP-server</string>
+  <string name="pref_ntp_server_summary">Kies NTP-server</string>
+  <string name="pref_set_on_boot">Stel tijd in bij apparaatopstart</string>
+  <string name="pref_set_on_boot_summary">(Heeft roottoegang nodig)</string>
+  <string name="pref_sync_daily">Dagelijkse synchronisatie</string>
+  <string name="pref_sync_daily_summary">Eén keer per dag automatisch synchroniseren\n(Heeft roottoegang nodig)</string>
+  <string name="pref_sync_only_on_wifi">Alleen synchroniseren bij WiFi-verbinding</string>
+  <string name="pref_sync_only_on_wifi_summary">Alleen synchroniseren wanneer u verbonden bent met een WiFi-netwerk.</string>
+  <string name="pref_show_sync_toast">Melding weergeven na synchroniseren</string>
+  <string name="pref_show_sync_toast_summary">Weergeeft een melding met het resultaat van de synchronisatie</string>
+  <string name="pref_help">Hulp</string>
+  <!--Permission-->
+  <string name="permission_get_time_description">Geeft de applicatie toestemming om de huidige tijd de verkrijgen door een NTP-server te raadplegen.</string>
+  <string name="permission_get_time_label">Huidige tijd opvragen bij NTP-servers</string>
+  <string name="permission_set_time_description">Geeft de applicatie toestemming om de systeemtijd in te stellen door een NTP-server te raadplegen.</string>
+  <string name="permission_set_time_label">Systeemtijd instellen middels NTP-servers</string>
+</resources>

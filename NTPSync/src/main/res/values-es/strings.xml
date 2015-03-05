@@ -16,14 +16,18 @@
     <item>13 Euros</item>
   </string-array>
   <!--Dialogs-->
-  <string name="no_root_title">Android rooteado requerido</string>
+  <string name="no_root_description">O bien el binario su no pudo encontrarse, o usted no concedió permisos de root para NTPSync.
+
+Esto puede suceder cuando su dispositivo no esta rooteado.
+Puede encontrar información acerca de cómo rootear su dispositivo en www.cyanogenmod.com u otros sitios web sobre Android.</string>
+  <string name="no_root_title">Se requiere un Android rooteado</string>
   <!--Buttons-->
   <string name="button_exit">Salir</string>
   <!--Detailed query-->
   <string name="detailed_query_title">Consulta detallada</string>
-  <string name="detailed_query_unspecified">(no disponible o no especificado)</string>
-  <string name="detailed_query_primary_reference">(Referencia principal; p.ej.: vía NTP o SNTP)</string>
-  <string name="detailed_query_secondary_reference">(Referencia secundaria; p.ej.: vía NTP o SNTP)</string>
+  <string name="detailed_query_unspecified">(No especificado o no disponible)</string>
+  <string name="detailed_query_primary_reference">(Referencia principal; ej.: GPS)</string>
+  <string name="detailed_query_secondary_reference">(Referencia secundaria; ej.: vía NTP o SNTP)</string>
   <string name="detailed_query_server">Servidor:</string>
   <string name="detailed_query_stratum">Estrato:</string>
   <string name="detailed_query_leap">Salto:</string>
@@ -32,42 +36,43 @@
   <string name="detailed_query_mode">Modo:</string>
   <string name="detailed_query_poll">Sondeo:</string>
   <string name="detailed_query_seconds">segundos:</string>
-  <string name="detailed_query_rootdelay">Retraso en origen:</string>
-  <string name="detailed_query_rootdispersion">Diferencia en origen (ms):</string>
+  <string name="detailed_query_rootdelay">Retardo a la raíz:</string>
+  <string name="detailed_query_rootdispersion">Dispersión a la raíz (ms):</string>
   <string name="detailed_query_reference_identifier">Identificador de referencia:</string>
   <string name="detailed_query_reference_timestamp">Marca de tiempo de referencia:</string>
   <string name="detailed_query_originate_timestamp">Marca de tiempo de origen:</string>
-  <string name="detailed_query_receive_timestamp">Marca de tiempo recibida:</string>
-  <string name="detailed_query_transmit_timestamp">Marca de tiempo enviada:</string>
+  <string name="detailed_query_receive_timestamp">Marca de tiempo de recepción:</string>
+  <string name="detailed_query_transmit_timestamp">Marca de tiempo de transmisión:</string>
   <string name="detailed_query_destination_timestamp">Marca de tiempo de destino:</string>
   <string name="detailed_query_computed_offset">Desfase calculado:</string>
-  <string name="detailed_query_roundtrip_delay">Retraso total (ms):</string>
+  <string name="detailed_query_roundtrip_delay">Retardo de ida y vuelta (ms):</string>
   <string name="detailed_query_clock_offset">Desfase del reloj (ms):</string>
   <!--Return messages-->
-  <string name="return_generic_error">Error genérico!</string>
-  <string name="return_timeout">Tiempo de espera del servidor superado!</string>
-  <string name="return_no_root">Sin acceso root!</string>
-  <string name="return_get_time">La hora NTP es: </string>
-  <string name="return_set_time">La hora fue fijada a:</string>
+  <string name="return_generic_error">¡Error genérico!</string>
+  <string name="return_timeout">¡Tiempo de espera del servidor superado!</string>
+  <string name="return_no_root">¡Sin acceso de root!</string>
+  <string name="return_get_time">La hora NTP es</string>
+  <string name="return_set_time">La hora fue fijada a</string>
   <!--Preferences-->
   <string name="pref_query">Consulta</string>
   <string name="pref_detailed_query">Consulta detallada</string>
-  <string name="pref_query_and_set">Consultar y fijar hora:</string>
-  <string name="pref_query_and_set_summary">(Necesita acceso root)</string>
-  <string name="pref_settings">Parámetros:</string>
-  <string name="pref_ntp_server">Servidor NTP:</string>
-  <string name="pref_ntp_server_summary">Elegir NTP servidor:</string>
-  <string name="pref_set_on_boot">Fijar hora al arrancar:</string>
-  <string name="pref_set_on_boot_summary">(Necesita acceso root)</string>
+  <string name="pref_query_and_set">Consultar y establecer hora</string>
+  <string name="pref_query_and_set_summary">(Necesita acceso de root)</string>
+  <string name="pref_settings">Configuración</string>
+  <string name="pref_ntp_server">Servidor NTP</string>
+  <string name="pref_ntp_server_summary">Elegir servidor NTP</string>
+  <string name="pref_set_on_boot">Establecer hora al arrancar</string>
+  <string name="pref_set_on_boot_summary">(Necesita acceso de root)</string>
   <string name="pref_sync_daily">Sincronización diaria</string>
-  <string name="pref_sync_only_on_wifi">Sincronizar sólo en Wifi</string>
-  <string name="pref_sync_only_on_wifi_summary">Sincronización en segundo plano sólo cuando se conecte a una red wifi.</string>
-  <string name="pref_show_sync_toast">Mostrar toast después de sincronizar</string>
+  <string name="pref_sync_daily_summary">Sincronizar automáticamente una vez al día (necesita acceso root)</string>
+  <string name="pref_sync_only_on_wifi">Sincronizar sólo sobre Wifi</string>
+  <string name="pref_sync_only_on_wifi_summary">Sincroniza en segundo plano sólo cuando se conecte a una red wifi.</string>
+  <string name="pref_show_sync_toast">Mostrar notificación después de sincronizar</string>
   <string name="pref_show_sync_toast_summary">Muestra un mensaje con el resultado de la sincronización</string>
   <string name="pref_help">Ayuda</string>
   <!--Permission-->
-  <string name="permission_get_time_description">Permite a las aplicaciones consultar la hora consultando al servidor NTP.</string>
-  <string name="permission_get_time_label">Consultar la hora actual desde servidores NTP</string>
-  <string name="permission_set_time_description">Permite a las aplicaciones ajustar la hora consultando al servidor NTP.</string>
-  <string name="permission_set_time_label">Establece la hora del sistema desde los servidores NTP</string>
+  <string name="permission_get_time_description">Permite a la aplicación obtener la hora actual consultando un servidor NTP.</string>
+  <string name="permission_get_time_label">Obtener la hora actual desde servidores NTP</string>
+  <string name="permission_set_time_description">Permite a la aplicación establecer la hora del sistema consultando a un servidor NTP.</string>
+  <string name="permission_set_time_label">Establecer la hora del sistema desde servidores NTP</string>
 </resources>

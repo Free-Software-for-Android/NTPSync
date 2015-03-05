@@ -16,6 +16,7 @@
     <item>13 Euro</item>
   </string-array>
   <!--Dialogs-->
+  <string name="no_root_description">Entweder das su-Kommando kann nicht gefunden werden oder NTPSync hat keine Root-Rechte.\n\nEs kann sein das ihr Gerät nicht gerootet ist.\nWie sie ihr Gerät rooten, erfahren sie unter www.cyanogenmod.com oder andere Android-Webseiten.\n(A.d.Ü.: www.android-hilfe.de hat mir geholfen.)</string>
   <string name="no_root_title">Gerootetes Android benötigt</string>
   <!--Buttons-->
   <string name="button_exit">Beenden</string>
@@ -30,9 +31,18 @@
   <string name="detailed_query_version">Version:</string>
   <string name="detailed_query_precision">Genauigkeit:</string>
   <string name="detailed_query_mode">Modus:</string>
+  <string name="detailed_query_poll">Abfrage:</string>
   <string name="detailed_query_seconds">Sekunden</string>
   <string name="detailed_query_rootdelay">Root-Verzögerung:</string>
+  <string name="detailed_query_rootdispersion">Quellstreubreite(ms):</string>
+  <string name="detailed_query_reference_identifier">Referenzbezeichner:</string>
+  <string name="detailed_query_reference_timestamp">Referenz-Zeitstempel:</string>
+  <string name="detailed_query_originate_timestamp">Ursprungs-Zeitstempel:</string>
+  <string name="detailed_query_receive_timestamp">Empfangs-Zeitstempel:</string>
+  <string name="detailed_query_transmit_timestamp">Übertragungs-Zeitstempel:</string>
+  <string name="detailed_query_destination_timestamp">Ziel-Zeitstempel:</string>
   <string name="detailed_query_computed_offset">Errechnete Abweichung:</string>
+  <string name="detailed_query_roundtrip_delay">Übertragungs-Verzögerung(ms):</string>
   <string name="detailed_query_clock_offset">Zeitabweichung (ms):</string>
   <!--Return messages-->
   <string name="return_generic_error">Unspezifischer Fehler!</string>
@@ -51,8 +61,11 @@
   <string name="pref_set_on_boot">Zeit bei Systemstart einstellen.</string>
   <string name="pref_set_on_boot_summary">(Benötigt Root-Zugriff)</string>
   <string name="pref_sync_daily">Täglicher Abgleich</string>
+  <string name="pref_sync_daily_summary">Synchronisiert automatisch einmal täglich\(Braucht Root-Rechte)</string>
   <string name="pref_sync_only_on_wifi">Nur im WLAN synchronisieren</string>
   <string name="pref_sync_only_on_wifi_summary">Hintergrundabgleich nur bei WLAN-Verbindung durchführen.</string>
+  <string name="pref_show_sync_toast">Zeige Erfolg der Synchronisation</string>
+  <string name="pref_show_sync_toast_summary">Zeigt eine Nachricht mit Synchronisations-Ergebnis</string>
   <string name="pref_help">Hilfe</string>
   <!--Permission-->
   <string name="permission_get_time_description">Erlaubt die aktuelle Zeit über eine Anfrage an ein NTP-Server zu ermitteln.</string>

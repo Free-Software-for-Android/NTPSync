@@ -16,24 +16,47 @@
     <item>13 Euro</item>
   </string-array>
   <!--Dialogs-->
+  <string name="no_root_description">Bietako bat edo su binarioa ezin da aurku edo ez duzu erro baimenik NTPSync-rako.\n\nHau zure gailua errotu gabe dagoenean gertatu daiteke.\nZure gailua nola erroturi buruzko argibideak www.cyanogenmod.com-en edo beste Android webguneetan aurkitu ditzakezu.</string>
   <string name="no_root_title">Beharrezkoa Android errotua</string>
   <!--Buttons-->
   <string name="button_exit">Irten</string>
   <!--Detailed query-->
+  <string name="detailed_query_title">Eskaera xehetua</string>
+  <string name="detailed_query_unspecified">(Adierazigabe edo Eskuraezina)</string>
+  <string name="detailed_query_primary_reference">(Lehen Xehetasuna; adib., GPS)</string>
+  <string name="detailed_query_secondary_reference">(Bigarren Xehetasuna; adib. NTP edo SNTP bidez)</string>
   <string name="detailed_query_server">Zerbitzaria:</string>
   <string name="detailed_query_version">Bertsioa:</string>
   <string name="detailed_query_precision">Zehaztasuna:</string>
   <string name="detailed_query_mode">Modua:</string>
   <string name="detailed_query_seconds">segundu</string>
+  <string name="detailed_query_reference_identifier">Xehetasun Ezagutarazlea:</string>
+  <string name="detailed_query_reference_timestamp">Xehetasun Denbora-irarketa:</string>
   <!--Return messages-->
+  <string name="return_generic_error">Akats generikoa!</string>
+  <string name="return_timeout">Zerbitzaria denboraz-kanpo!</string>
   <string name="return_no_root">Ez dago erro sarbiderik!</string>
+  <string name="return_get_time">NTP Ordua da</string>
+  <string name="return_set_time">Ordua ezarri da honela</string>
   <!--Preferences-->
   <string name="pref_query">Eskabidea</string>
+  <string name="pref_detailed_query">Eskaera xehetua</string>
+  <string name="pref_query_and_set">Eskatu eta ezarri ordua</string>
   <string name="pref_query_and_set_summary">(Erro baimena behar du)</string>
   <string name="pref_settings">Ezarpenak</string>
   <string name="pref_ntp_server">NTP zerbitzaria</string>
   <string name="pref_ntp_server_summary">Hautatu NTP zerbitzaria</string>
+  <string name="pref_set_on_boot">Ezarri ordua abiatzean</string>
+  <string name="pref_set_on_boot_summary">(Erro saribidea behar du)</string>
   <string name="pref_sync_daily">Eguneroko aldiberetzea</string>
+  <string name="pref_sync_daily_summary">Berezgaitasunez aldiberetu egunean behin\n(Erro sarbidea behar du)</string>
+  <string name="pref_sync_only_on_wifi">Aldiberetu Wifian bakarrik</string>
+  <string name="pref_sync_only_on_wifi_summary">Exekutatu barren aldiberetzea wifi sare batera elkartutakoan bakarrik.</string>
+  <string name="pref_show_sync_toast_summary">Mezu bat erakusten du aldiberetze emaitzekin</string>
   <string name="pref_help">Laguntza</string>
   <!--Permission-->
+  <string name="permission_get_time_description">Aplikazioari uneko ordua lortzea ahalbidetzen dio NTP zerbitzari bat eskatuz.</string>
+  <string name="permission_get_time_label">Lortu uneko ordua NTP zerbizarietatik</string>
+  <string name="permission_set_time_description">Aplikazioari uneko ordua lortzea ahalbidetzen dio NTP zerbitzari bat eskatuz.</string>
+  <string name="permission_set_time_label">Ezarri sistema orduan NTP zerbitzarietatik</string>
 </resources>

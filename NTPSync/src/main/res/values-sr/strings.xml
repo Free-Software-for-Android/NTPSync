@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Activities-->
+  <string name="activity_help">Помоћ</string>
+  <!--Help-->
+  <string name="help_help">Помоћ</string>
+  <string name="help_donations">Донације</string>
+  <string name="help_about_version">Издање:</string>
+  <string name="help_donation_paypal_item">Донација за НТПСинк</string>
+  <string-array name="help_donation_google_catalog_values">
+    <item>1 евро</item>
+    <item>2 евра</item>
+    <item>3 евра</item>
+    <item>5 евра</item>
+    <item>8 евра</item>
+    <item>13 евра</item>
+  </string-array>
+  <!--Dialogs-->
+  <string name="no_root_description">Или извршна „su“ није нађена или немате корене дозволе за НТПСинк.\n\nОво се може десити ако немате корени приступ вашем уређају.\nИнформације о томе како ћете „рутовати“ ваш уређај потражите на www.cyanogenmod.com или осталим сајтовима са Андроид тематиком.</string>
+  <string name="no_root_title">Потребан је рутован Андроид</string>
+  <!--Buttons-->
+  <string name="button_exit">Изађи</string>
+  <!--Detailed query-->
+  <string name="detailed_query_title">Детаљни упит</string>
+  <string name="detailed_query_unspecified">(неодређено или недоступно)</string>
+  <string name="detailed_query_primary_reference">(примарна референца; нпр. ГПС)</string>
+  <string name="detailed_query_secondary_reference">(секундарна референца; нпр. преко НТП или СНТП)</string>
+  <string name="detailed_query_server">Сервер:</string>
+  <string name="detailed_query_stratum">Стратум:</string>
+  <string name="detailed_query_leap">Преступ:</string>
+  <string name="detailed_query_version">Издање:</string>
+  <string name="detailed_query_precision">Прецизност:</string>
+  <string name="detailed_query_mode">Режим:</string>
+  <string name="detailed_query_poll">Интервал упита:</string>
+  <string name="detailed_query_seconds">секунди</string>
+  <string name="detailed_query_rootdelay">Корени застој:</string>
+  <string name="detailed_query_rootdispersion">Корена дисперзија (ms):</string>
+  <string name="detailed_query_reference_identifier">Референтни идентификатор:</string>
+  <string name="detailed_query_reference_timestamp">Референтно време:</string>
+  <string name="detailed_query_originate_timestamp">Време слања:</string>
+  <string name="detailed_query_receive_timestamp">Време примања:</string>
+  <string name="detailed_query_transmit_timestamp">Време одашиљања:</string>
+  <string name="detailed_query_destination_timestamp">Време одредишта:</string>
+  <string name="detailed_query_computed_offset">Израчунати помак:</string>
+  <string name="detailed_query_roundtrip_delay">Повратно кашњење (ms):</string>
+  <string name="detailed_query_clock_offset">Помак сата (ms):</string>
+  <!--Return messages-->
+  <string name="return_generic_error">Општа грешка!</string>
+  <string name="return_timeout">Истекло прековреме сервера!</string>
+  <string name="return_no_root">Нема кореног приступа!</string>
+  <string name="return_get_time">НТП време је</string>
+  <string name="return_set_time">Време је постављено на</string>
+  <!--Preferences-->
+  <string name="pref_query">Упит</string>
+  <string name="pref_detailed_query">Детаљни упит</string>
+  <string name="pref_query_and_set">Упит и постави време</string>
+  <string name="pref_query_and_set_summary">(захтева корени приступ)</string>
+  <string name="pref_settings">Поставке</string>
+  <string name="pref_ntp_server">НТП сервер</string>
+  <string name="pref_ntp_server_summary">Одредите НТП сервер</string>
+  <string name="pref_set_on_boot">Постави време при покретању</string>
+  <string name="pref_set_on_boot_summary">(захтева корени приступ)</string>
+  <string name="pref_sync_daily">Дневна синхронизација</string>
+  <string name="pref_sync_daily_summary">Синхронизуј аутоматски једном дневно\n(захтева корени приступ)</string>
+  <string name="pref_sync_only_on_wifi">Само на бежичној вези</string>
+  <string name="pref_sync_only_on_wifi_summary">Синхронизуј у позадини само кад је уређај повезан на бежичну мрежу.</string>
+  <string name="pref_show_sync_toast">Прикажи облачић након синхронизације</string>
+  <string name="pref_show_sync_toast_summary">Приказ облачића са резултатом синхронизације</string>
+  <string name="pref_help">Помоћ</string>
+  <!--Permission-->
+  <string name="permission_get_time_description">Дозвољава апликацији да добави тренутно време упитом НТП сервера.</string>
+  <string name="permission_get_time_label">Добављање тренутног времена са НТП сервера</string>
+  <string name="permission_set_time_description">Дозвољава апликацији да постави системско време упитом НТП сервера.</string>
+  <string name="permission_set_time_label">Постављање времена са НТП сервера</string>
+</resources>

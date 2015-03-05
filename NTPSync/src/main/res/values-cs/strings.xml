@@ -16,6 +16,7 @@
     <item>13 Eur</item>
   </string-array>
   <!--Dialogs-->
+  <string name="no_root_description">Nebyl nalezen spustitelný soubor su, nebo jste nepovolili administrátorské oprávnění programu NTPSync.\n\nTo se může stát, pokud na svém zařízení nemáte root oprávnění.\nInformace o získání administrátorských oprávnění pro své zařízení najdete na www.cyanogenmod.com nebo na dalších stránkách o systému Android.</string>
   <string name="no_root_title">Vyžaduje rootovaný Android</string>
   <!--Buttons-->
   <string name="button_exit">Ukončit</string>
@@ -32,8 +33,16 @@
   <string name="detailed_query_mode">Režim:</string>
   <string name="detailed_query_poll">Dotaz:</string>
   <string name="detailed_query_seconds">sekundy</string>
+  <string name="detailed_query_rootdelay">Kořenové zpoždění:</string>
+  <string name="detailed_query_rootdispersion">Kořenový rozptyl(ms):</string>
+  <string name="detailed_query_reference_identifier">Referenční identifikátor:</string>
+  <string name="detailed_query_reference_timestamp">Referenční časové razítko:</string>
+  <string name="detailed_query_originate_timestamp">Počáteční časové razítko:</string>
+  <string name="detailed_query_receive_timestamp">Přijaté časové razítko:</string>
+  <string name="detailed_query_transmit_timestamp">Odeslané časové razítko:</string>
   <string name="detailed_query_destination_timestamp">Čas zařízení:</string>
   <string name="detailed_query_computed_offset">Vypočítaný ofset:</string>
+  <string name="detailed_query_roundtrip_delay">Zpoždění oběhu(ms):</string>
   <string name="detailed_query_clock_offset">Ofset hodin (ms):</string>
   <!--Return messages-->
   <string name="return_generic_error">Obecná chyba!</string>
@@ -52,8 +61,11 @@
   <string name="pref_set_on_boot">Nastavit při startu zařízení</string>
   <string name="pref_set_on_boot_summary">(Vyžaduje root oprávnění)</string>
   <string name="pref_sync_daily">Každodenní synchronizace</string>
+  <string name="pref_sync_daily_summary">Synchronizovat automaticky jednou denně\n(Vyžaduje root oprávnění)</string>
   <string name="pref_sync_only_on_wifi">Synchronizovat pouze na Wi-Fi</string>
   <string name="pref_sync_only_on_wifi_summary">Synchronizovat na pozadí pouze při připojení přes Wi-Fi síť.</string>
+  <string name="pref_show_sync_toast">Zobrazit přípitek po synchronizaci</string>
+  <string name="pref_show_sync_toast_summary">Zobrazí zprávu s výsledkem synchronizace</string>
   <string name="pref_help">Nápověda</string>
   <!--Permission-->
   <string name="permission_get_time_description">Povolí aplikaci získání aktuálního času dotazem na NTP server.</string>
