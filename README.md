@@ -1,3 +1,7 @@
+# No longer in active development
+
+**NTPSync is no longer in active development. If you like to take over the maintaining, simply fork it and implement fixes. I will only do basic maintenance like merging pull requests and releasing new versions.**
+
 # NTPSync
 
 NTPSync is a simple NTP time synchronization app for Android. 
