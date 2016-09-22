@@ -1,6 +1,6 @@
 # NTPSync
 
-I needed NTP in one of my projects, and I found this old NTPSync app which was not maintained. I forked it, and updated it to for Android Marshmallow.
+I needed NTP in one of my projects, and I found this old NTPSync app which was not maintained. I forked it, and updated it for Android Marshmallow.
 
 Please note that NTP works only on rooted devices. If your device is not rooted, this code WILL NOT work on your device.
 
