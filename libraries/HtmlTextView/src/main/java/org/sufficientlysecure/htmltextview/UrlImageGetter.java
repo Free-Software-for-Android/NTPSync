@@ -30,7 +30,6 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 
 public class UrlImageGetter implements ImageGetter {
     Context c;
@@ -39,8 +38,8 @@ public class UrlImageGetter implements ImageGetter {
     /**
      * Construct the URLImageParser which will execute AsyncTask and refresh the container
      *
-     * @param t
-     * @param c
+     * @param t     the View
+     * @param c     the Context
      */
     public UrlImageGetter(View t, Context c) {
         this.c = c;
@@ -76,7 +75,7 @@ public class UrlImageGetter implements ImageGetter {
         @Override
         protected void onPostExecute(Drawable result) {
             // set the correct bound according to the result from HTTP call
-            urlDrawable.setBounds(0, 0, 0 + result.getIntrinsicWidth(), 0 + result.getIntrinsicHeight());
+            urlDrawable.setBounds(0, 0, result.getIntrinsicWidth(), result.getIntrinsicHeight());
 
             // change the reference of the current drawable to the result
             // from the HTTP call
@@ -89,21 +88,22 @@ public class UrlImageGetter implements ImageGetter {
         /**
          * Get the Drawable from URL
          *
-         * @param urlString
-         * @return
+         * @param urlString the URL
+         * @return          the Drawable
          */
         public Drawable fetchDrawable(String urlString) {
             try {
                 InputStream is = fetch(urlString);
                 Drawable drawable = Drawable.createFromStream(is, "src");
-                drawable.setBounds(0, 0, 0 + drawable.getIntrinsicWidth(), 0 + drawable.getIntrinsicHeight());
+                drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
                 return drawable;
             } catch (Exception e) {
                 return null;
             }
         }
 
-        private InputStream fetch(String urlString) throws MalformedURLException, IOException {
+        @SuppressWarnings("deprecation")
+        private InputStream fetch(String urlString) throws IOException {
             DefaultHttpClient httpClient = new DefaultHttpClient();
             HttpGet request = new HttpGet(urlString);
             HttpResponse response = httpClient.execute(request);

@@ -20,18 +20,6 @@
 
 package org.ntpsync.ui;
 
-import java.text.DateFormat;
-import java.util.Date;
-
-import org.ntpsync.R;
-import org.ntpsync.service.DailyListener;
-import org.ntpsync.service.NtpSyncService;
-import org.ntpsync.util.Constants;
-import org.ntpsync.util.PreferenceHelper;
-import org.ntpsync.util.Utils;
-
-import com.commonsware.cwac.wakeful.WakefulIntentService;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -47,6 +35,18 @@ import android.text.Html;
 import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.commonsware.cwac.wakeful.WakefulIntentService;
+
+import org.ntpsync.R;
+import org.ntpsync.service.DailyListener;
+import org.ntpsync.service.NtpSyncService;
+import org.ntpsync.util.Constants;
+import org.ntpsync.util.PreferenceHelper;
+import org.ntpsync.util.Utils;
+
+import java.text.DateFormat;
+import java.util.Date;
 
 public class BaseActivity extends PreferenceActivity {
     Activity mActivity;
@@ -99,11 +99,11 @@ public class BaseActivity extends PreferenceActivity {
         getPreferenceManager().setSharedPreferencesName(Constants.PREFS_NAME);
         addPreferencesFromResource(R.xml.preferences);
 
-        mQuery = (Preference) findPreference(getString(R.string.pref_query_key));
-        mDetailedQuery = (Preference) findPreference(getString(R.string.pref_detailed_query_key));
-        mQueryAndSet = (Preference) findPreference(getString(R.string.pref_query_and_set_key));
+        mQuery = findPreference(getString(R.string.pref_query_key));
+        mDetailedQuery = findPreference(getString(R.string.pref_detailed_query_key));
+        mQueryAndSet = findPreference(getString(R.string.pref_query_and_set_key));
         mSyncDailyPref = findPreference(getString(R.string.pref_sync_daily_key));
-        mHelp = (Preference) findPreference(getString(R.string.pref_help_key));
+        mHelp = findPreference(getString(R.string.pref_help_key));
 
         mQuery.setOnPreferenceClickListener(new OnPreferenceClickListener() {
 

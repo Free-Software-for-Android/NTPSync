@@ -44,14 +44,6 @@ abstract public class WakefulIntentService extends IntentService {
         ctxt.startService(i);
     }
 
-    public static void sendWakefulWork(Context ctxt, Class<?> clsService) {
-        sendWakefulWork(ctxt, new Intent(ctxt, clsService));
-    }
-
-    public static void scheduleAlarms(AlarmListener listener, Context ctxt) {
-        scheduleAlarms(listener, ctxt, true);
-    }
-
     public static void scheduleAlarms(AlarmListener listener, Context ctxt, boolean force) {
         SharedPreferences prefs = ctxt.getSharedPreferences(NAME, 0);
         long lastAlarm = prefs.getLong(LAST_ALARM, 0);
