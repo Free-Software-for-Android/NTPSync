@@ -4,8 +4,6 @@ I needed NTP in one of my projects, and I found this old NTPSync app which was n
 
 Please note that NTP works only on rooted devices. If your device is not rooted, this code WILL NOT work on your device.
 
-For more information visit http://sufficientlysecure.org/android-apps/
-
 
 # Installing
 
