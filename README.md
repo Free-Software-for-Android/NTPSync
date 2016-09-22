@@ -1,73 +1,15 @@
-# No longer in active development
-
-**NTPSync is no longer in active development. If you like to take over the maintaining, simply fork it and implement fixes. I will only do basic maintenance like merging pull requests and releasing new versions.**
-
 # NTPSync
 
-NTPSync is a simple NTP time synchronization app for Android. 
+I needed NTP in one of my projects, and I found this old NTPSync app which was not maintained. I forked it, and updated it to for Android Marshmallow.
+
+Please note that NTP works only on rooted devices. If your device is not rooted, this code WILL NOT work on your device.
 
 For more information visit http://sufficientlysecure.org/android-apps/
 
 
-# Build with Gradle
+# Installing
 
-1. Have Android SDK "tools", "platform-tools", and "build-tools" directories in your PATH (http://developer.android.com/sdk/index.html)
-2. Open the Android SDK Manager (shell command: ``android``). Expand the Extras directory and install "Android Support Repository"
-3. Export ANDROID_HOME pointing to your Android SDK
-4. Execute ``./gradlew build``
-
-## More build information
-
-Two productFlavors are build with gradle. One for Google Play (without Paypal and Flattr Donations) and one for F-Droid (without Google Play Donations).
-
-# Contribute
-
-Fork NTPSync and do a Pull Request. I will merge your changes back into the main project.
-
-## Development
-
-I am using the newest [Android Studio](http://developer.android.com/sdk/installing/studio.html) for development. Development with Eclipse is currently not possible because I am using the new [project structure](http://developer.android.com/sdk/installing/studio-tips.html).
-
-1. Clone the project from github
-2. From Android Studio: File -> Import Project -> Select the cloned top folder
-3. Import project from external model -> choose Gradle
-
-## Build Apache Commons Net
-
-current version: 3.3
-
-1. Download Source zip file from http://commons.apache.org/net/download_net.cgi
-2. Strip it down to NTP only:
- * remove src/main/java/examples
- * in src/main/java/org/apache/commons/net remove every folder except io, util, ntp
-3. copy src/main/java/* to NTPSync/src/main/java/
-
-# Use NTPSync in your Android application
-You want to query NTP servers from your Android app or set the system clock to NTP time?
-
-This can be done very easy using interprocess communication (IPC) in Android with AIDL. NTPSync provides you with an Interface where your application can connect to.
-
-See https://github.com/dschuermann/ntp-sync/tree/master/API-Demo for a complete example.
-
-* You need the following permissions in your Android Manifest, adapted to your needs:
-```xml
-<uses-permission android:name="org.ntpsync.permission.GET_TIME" />
-<uses-permission android:name="org.ntpsync.permission.SET_TIME" />
-```
-
-* copy the following file with the correct path to your project: https://github.com/dschuermann/ntp-sync/tree/master/API-Demo/src/main/aidl/org/ntpsync/service/INtpSyncRemoteService.aidl
-* Connect to NTPSyncs service like shown in https://github.com/dschuermann/ntp-sync/tree/master/API-Demo/src/main/java/org/ntpsync/apidemo/BaseActivity.java
-
-# Translations
-
-Translations are hosted on Transifex, which is configured by ".tx/config"
-
-1. To pull newest translations install transifex client (e.g. ``apt-get install transifex-client``)
-2. Config Transifex client with "~/.transifexrc"
-3. Go into root folder of git repo
-4. execute ``tx pull`` (``tx pull -a`` to get all languages)
-
-see http://help.transifex.net/features/client/index.html#user-client
+All you need is to open this app as a new project in Android Studio and open the build.gradle file. If Android Studio is up-to-date and it has build-tool 24.x installed, it'll compile this project and it'll be ready for your use.
 
 # Coding Style
 

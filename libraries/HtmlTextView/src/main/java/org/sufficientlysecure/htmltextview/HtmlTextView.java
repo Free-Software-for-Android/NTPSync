@@ -42,8 +42,8 @@ public class HtmlTextView extends JellyBeanSpanFixTextView {
     /**
      * http://stackoverflow.com/questions/309424/read-convert-an-inputstream-to-a-string
      *
-     * @param is
-     * @return
+     * @param is    the input stream
+     * @return      the String
      */
     static private String convertStreamToString(java.io.InputStream is) {
         java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
@@ -55,8 +55,8 @@ public class HtmlTextView extends JellyBeanSpanFixTextView {
      * This allows translatable resource (e.g., res/raw-de/ for german).
      * The containing HTML is parsed to Android's Spannable format and then displayed.
      *
-     * @param context
-     * @param id      for example: R.raw.help
+     * @param context   the context
+     * @param id        for example: R.raw.help
      */
     public void setHtmlFromRawResource(Context context, int id) {
         // load html from html file from /res/raw
@@ -70,6 +70,7 @@ public class HtmlTextView extends JellyBeanSpanFixTextView {
      *
      * @param html String containing HTML, for example: "<b>Hello world!</b>"
      */
+    @SuppressWarnings("deprecation")
     public void setHtmlFromString(String html) {
         // this uses Android's Html class for basic parsing, and HtmlTagHandler
         setText(Html.fromHtml(html, new UrlImageGetter(this, getContext()), new HtmlTagHandler()));

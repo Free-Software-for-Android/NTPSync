@@ -139,7 +139,6 @@ public abstract class Command {
     /**
      * Waits for this command to finish and forwards exitCode into afterExecution method
      * 
-     * @param timeout
      * @throws TimeoutException
      * @throws BrokenBusyboxException
      */
