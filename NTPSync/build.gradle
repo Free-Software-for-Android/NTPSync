@@ -2,14 +2,14 @@ apply plugin: 'android'
 
 dependencies {
     compile 'com.android.support:support-v4:18.0.+'
-    compile project(':libraries:Donations')
-    compile project(':libraries:HtmlTextView')
+    compile 'org.sufficientlysecure:donations:2.4'
+    compile 'org.sufficientlysecure:html-textview:2.0'
     compile project(':libraries:RootCommands')
 }
 
 android {
     compileSdkVersion 17
-    buildToolsVersion "17.0.0"
+    buildToolsVersion "25.0.0"
 
     defaultConfig {
         minSdkVersion 7
@@ -46,10 +46,10 @@ android {
 
     productFlavors {
         google {
-            buildConfig "public final static boolean DONATIONS_GOOGLE = true;"
+            buildConfigField "boolean", "DONATIONS_GOOGLE", "true"
         }
         fdroid {
-            buildConfig "public final static boolean DONATIONS_GOOGLE = false;"
+            buildConfigField "boolean", "DONATIONS_GOOGLE", "false"
         }
     }
 }

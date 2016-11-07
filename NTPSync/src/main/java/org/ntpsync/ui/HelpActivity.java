@@ -44,7 +44,7 @@ public class HelpActivity extends FragmentActivity {
     /**
      * PayPal
      */
-    private static final String PAYPAL_USER = "dominik@dominikschuermann.de";
+    private static final String PAYPAL_USER = "dominik@sufficientlysecure.org";
     private static final String PAYPAL_CURRENCY_CODE = "EUR";
 
 
@@ -69,10 +69,10 @@ public class HelpActivity extends FragmentActivity {
         if (BuildConfig.DONATIONS_GOOGLE) {
             donationsFragment = DonationsFragment.newInstance(BuildConfig.DEBUG, true, GOOGLE_PUBKEY, GOOGLE_CATALOG,
                     getResources().getStringArray(R.array.help_donation_google_catalog_values), false, null, null,
-                    null, false, null, null);
+                    null, false, null, null, false, null);
         } else {
             donationsFragment = DonationsFragment.newInstance(BuildConfig.DEBUG, false, null, null, null, true, PAYPAL_USER,
-                    PAYPAL_CURRENCY_CODE, getString(R.string.help_donation_paypal_item), true, FLATTR_PROJECT_URL, FLATTR_URL);
+                    PAYPAL_CURRENCY_CODE, getString(R.string.help_donation_paypal_item), true, FLATTR_PROJECT_URL, FLATTR_URL, false, null);
         }
 
         ft.replace(R.id.help_donations_container, donationsFragment, "donationsFragment");
