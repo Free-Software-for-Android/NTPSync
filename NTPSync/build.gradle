@@ -16,6 +16,13 @@ android {
         targetSdkVersion 17
     }
 
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+
     /*
      * To sign release build, create file gradle.properties in ~/.gradle/ with this content:
      *
@@ -29,7 +36,7 @@ android {
             project.hasProperty('signingKeyAlias') &&
             project.hasProperty('signingKeyPassword')) {
         println "Found sign properties in gradle.properties! Signing build…"
-        
+
         signingConfigs {
             release {
                 storeFile file(signingStoreLocation)
