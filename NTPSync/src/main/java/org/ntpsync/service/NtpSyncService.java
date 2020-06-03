@@ -160,7 +160,7 @@ public class NtpSyncService extends IntentService {
 
                 if (mData.containsKey(DATA_APPLY_DIRECTLY)) {
                     if (mData.getBoolean(DATA_APPLY_DIRECTLY)) {
-                        returnMessage = Utils.setTime(offset);
+                        returnMessage = Utils.setTimestamp(System.currentTimeMillis() + offset);
                     }
                 }
             } catch (IOException e) {

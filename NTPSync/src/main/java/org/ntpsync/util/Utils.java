@@ -24,11 +24,13 @@ import org.ntpsync.R;
 import org.ntpsync.service.NtpSyncService;
 import org.sufficientlysecure.rootcommands.Shell;
 import org.sufficientlysecure.rootcommands.Toolbox;
+import org.sufficientlysecure.rootcommands.command.SimpleCommand;
 import org.sufficientlysecure.rootcommands.util.RootAccessDeniedException;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Locale;
 import java.util.concurrent.TimeoutException;
 
 import android.app.Activity;
@@ -66,6 +68,39 @@ public class Utils {
 
         AlertDialog alert = builder.create();
         alert.show();
+    }
+
+    /**
+     * Sets time in Android using RootCommands library
+     *
+     * @param timestamp
+     * @return true if it succeeded
+     */
+    public static int setTimestamp(long timestamp) {
+        try {
+            Shell rootShell = Shell.startRootShell();
+            SimpleCommand cmd = new SimpleCommand(String.format(Locale.ENGLISH, "date @%d", timestamp / 1000));
+            rootShell.add(cmd).waitForFinish();
+            rootShell.close();
+
+            if (cmd.getOutput().contains("bad date")) {
+                Log.d(Constants.TAG, "Error returned from date command!\n" + cmd.getOutput());
+                return NtpSyncService.RETURN_GENERIC_ERROR;
+            } else {
+                Log.d(Constants.TAG, "Date was set using RootCommands library!\n" + cmd.getOutput());
+                // it works, thus return true
+                return NtpSyncService.RETURN_OKAY;
+            }
+        } catch (RootAccessDeniedException e) {
+            Log.e(Constants.TAG, "Android is not rooted or root access was denied!", e);
+            return NtpSyncService.RETURN_NO_ROOT;
+        } catch (IOException e) {
+            Log.e(Constants.TAG, "IOException!", e);
+            return NtpSyncService.RETURN_GENERIC_ERROR;
+        } catch (TimeoutException e) {
+            Log.e(Constants.TAG, "Timeout of root command!", e);
+            return NtpSyncService.RETURN_GENERIC_ERROR;
+        }
     }
 
     /**

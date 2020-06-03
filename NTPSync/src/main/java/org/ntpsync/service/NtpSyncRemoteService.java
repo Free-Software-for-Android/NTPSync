@@ -120,7 +120,7 @@ public class NtpSyncRemoteService extends Service {
 
                     output.putLong(OUTPUT_OFFSET, offset);
 
-                    returnMessage = Utils.setTime(offset);
+                    returnMessage = Utils.setTimestamp(System.currentTimeMillis() + offset);
                 } catch (Exception e) {
                     returnMessage = NtpSyncService.RETURN_SERVER_TIMEOUT;
                 }
